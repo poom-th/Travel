@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เที่ยวทั่วไทย</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.0/framer-motion.umd.min.js"></script>
+    <script>
+      function fadeEffectButton(buttonId) {
+        let btn = document.getElementById(buttonId);
+        btn.style.animation = "none";
+        void btn.offsetWidth;  
+        btn.style.animation = "fadeEffect 0.5s ease";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+    const sliderContainers = document.querySelectorAll(".slider-container");
+  
+    sliderContainers.forEach((container, sliderIndex) => {
+      let currentIndex = 0;
+      const slider = container.querySelector(".slider");
+      const slides = container.querySelectorAll(".slide");
+      const dotsContainer = container.querySelector(".dots-container");
+  
+      slides.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        if (index === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => showSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+  
+      const dots = dotsContainer.querySelectorAll(".dot");
+  
+      function showSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+  
+        currentIndex = index;
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+  
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[currentIndex].classList.add("active");
+      }
+    });
+  });
+  
+  function scrollToDiv(divId) {
+    const targetDiv = document.getElementById(divId);
+    targetDiv.scrollIntoView({ behavior: 'smooth' });
+  }
+    </script>
+
+</head>
+<body>
+  <div id="bottom-div5" onclick="scrollToDiv('top-div5')">top</div>
+
+  <nav class="menu-bar">
+    <div class="left">
+      <button id="button1" onclick="fadeEffectButton('button1'); scrollToDiv('bottom-div5')">
+        <img src="imgtest/เที่ยวไทย.png" />
+      </button>
+    </div>
+
+    <div class="center">
+      <button id="button2" onclick="fadeEffectButton('button2'); scrollToDiv('bottom-div1')">
+        <span class="item2">สถานที่เที่ยวแนะํนา</span>
+      </button>
+  
+      <button id="button3" onclick="fadeEffectButton('button3'); scrollToDiv('bottom-div2')">
+        <span class="item2">ที่พักยอดนิยม</span>
+      </button>
+  
+      <button id="button4" onclick="fadeEffectButton('button4'); scrollToDiv('bottom-div3')">
+        <span class="item2">ภูมิภาค</span>
+      </button>
+  
+      <button id="button5" onclick="fadeEffectButton('button5'); scrollToDiv('bottom-div4')">
+        <span class="item2">Contact</span>
+      </button>
+    </div>
+  </nav>
+      <nav class="menu-bar2">
+      <div ><h3 class="item3">Thai</h3>
+      </div>
+    </nav>
+    <nav class="menu-bar3">
+      <div><h3 class="item4">Land</h3></div>
+    </nav>
+    <nav class="menu-bar4">
+      <div style="margin-top: 10%;"><h1 class="item5">ท่องเที่ยวทั่วไทย</h1></div>
+    </nav>
+
+    <div style="background-color: #FDEB9E;">
+    <nav class="menu-bar1">
+      <div id="bottom-div1" onclick="scrollToDiv('top-div1')"><h2>สถานที่เที่ยวแนะํนา</h2></div>
+    </nav>
+    <div class="slider-container" data-slider="1" style="background-color: #fdefb0;">
+      <div class="slider">
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg6.jpg" class="slide-img">
+            <div class="text-overlay"><h1>ดอยช้าง</h1> ตั้งอยู่บ้านดอยช้าง ตั้งอยู่หมู่ที่ 3  ตำบลวาวี อำเภอแม่สรวย จังหวัดเชียงราย <br> จุดชมวิวดอยช้างอยู่สูงถึง 1,485 เมตร ด้านบนสามารถมองเห็นวิวได้โดยรอบ มีการจัดภูมิทัศน์ด้วยการปลูกแปลงดอกไม้และสวนสน อากาศเย็นสบายตลอดปี อุณหภูมิเฉลี่ย 18 องศาเซลเซียส <br>ดอยช้างมีชื่อเสียงในเรื่องของเป็นแหล่งปลูกกาแฟที่ใหญ่ที่สุดแห่งหนึ่งในประเทศไทย มาเที่ยวที่นี่ นักท่องเที่ยว จะได้ชมสวนกาแฟที่สุกอร่ามเต็มดอย พร้อมๆกับชมดอกซากุระหรือนางพญาเสือโคร่งที่กำลังบาน สีสันสดใส ชมพู อีกทั้งเพลินตา กับศิลปะวิถีชาวบ้าน
+             <br>  จุดชมวิวดอยช้างเป็นจุดชมพระอาทิตย์ตกที่สวยมากแห่งหนึ่ง
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg7.webp" class="slide-img">
+            <div class="text-overlay"><h1>เกาะขาม</h1>ตั้งอยู่ในพื้นที่ตำบลแสมสาร อำเภอสัตหีบ จังหวัดชลบุรี <br> เกาะขามมีแนวปะการังนํ้าตื้นที่สมบูรณ์มากมาย รวมพื้นที่ปะการังรอบเกาะขามมีทั้งหมดราว ๆ 83,000 ตารางเมตร ที่นี่จึงเหมาะมาก ๆ สำหรับคนที่ชอบดำนํ้าชมปะการัง อีกทั้งยังมีเส้นทางศึกษาธรรมชาติขึ้นไปยังจุดชมวิวด้านบนเขา ซึ่งสามารถมองเห็นท้องทะเลสัตหีบได้ไกลสุดลูกหูลูกตา <br> นักท่องเที่ยวต้องขึ้นเรือจากฐานทัพเรือสัตหีบและมีจำนวจำกัดต่อวันเพื่ออนุรักษ์สิ่งแวดล้อม</div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg8.jpg" class="slide-img">
+            <div class="text-overlay"><h1>หาดไร่เลย์</h1>ตั้งอยู่ที่ตำบลอ่าวนาง อำเภอเมือง จังหวัดกระบี่ อยู่ในเขตพื้นที่ของอุทยานแห่งชาติหาดนพรัตน์ธารา-หมู่เกาะพีพี <br> หาดไร่เลย์ตะวันตก (หาดน้ำเมา) เป็นที่ตั้งของถ้ำพระนาง ซึ่งภายในมีศาลพระนางที่ชาวเรือแถบนี้เคารพสักการะ เหมาะสำหรับชมทัศนียภาพของพระอาทิตย์ตก <br> หาดไร่เลย์ตะวันออก มีชื่อเสียงและเป็นที่นิยมของนักท่องเที่ยวชาวต่างชาติ คือ การปีนผา <br><br> </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg9.jpg" class="slide-img">
+            <div class="text-overlay"><h1>ภูลมโล</h1>สถานที่ท่องเที่ยวชื่อดังที่เต็มไปด้วยเสน่ห์ของธรรมชาติ โดยเฉพาะในช่วงฤดูหนาว ซึ่งเป็นเวลาที่ดอกนางพญาเสือโคร่งบานสะพรั่งปกคลุมทั่วทั้งภูเขา เปลี่ยนพื้นที่ให้กลายเป็นภาพความงดงามสีชมพูสดใส นอกจากนี้ยังมีอากาศบริสุทธิ์และบรรยากาศที่เงียบสงบ เหมาะสำหรับผู้ที่ต้องการสัมผัสความงามของธรรมชาติ <br>โดยปกติดอกนางพญาเสือโคร่งที่ภูลมโลจะบานในช่วงเดือนมกราคม-กุมภาพันธ์ของทุกปี ขึ้นอยู่กับสภาพอากาศของแต่ละปี โดยปกติแล้วดอกจะเริ่มบานในช่วงต้นเดือนมกราคม <br> </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg10.jpg" class="slide-img">
+            <div class="text-overlay"><h1>ทุ่งโปรยทอง</h1>ตั้งอยู่ในเขตชุมชนบ้านแสมภู่ ปากน้ำประแส อำเภอแกลง มีพื้นที่กว่า 6,000 ไร่ <br> จุดเด่น คือต้นโปรงที่ขึ้นหนาแน่นอยู่เต็มพื้นที่สะท้อนสีเขียวอ่อน จนกลายเป็นทุ่งโปรงทองที่สวยงามแปลกตา <br> เส้นทางศึกษาธรรมชาติเป็นสะพานทอดยาวประมาณ 1 กิโลเมตร ไปสิ้นสุดที่ทะเลประแสซึ่งเป็นที่ตั้งของเรือรบหลวงประแส  หากเดินด้วยเท้าใช้เวลาประมาณ 1 ชั่วโมงกว่า <br> สะพานไม้ได้ลัดเลาะไปตามป่าโกงกางประมาณ 200 เมตร  จะทะลุออกมาจนเจอ ทุ่งโปรงทอง ที่เต็มไปด้วยต้นโปรงขึ้นเบียดกันแน่น</div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg11.png" class="slide-img">
+            <div class="text-overlay"><h1>บ้านอิต่อง ปิล็อก</h1>ตั้งอยู่ที่ตำบลปิล็อก อำเภอทองผาภูมิ จังหวัดกาญจนบุรี <br> บ้านอีต่อง เป็นที่ตั้งของเหมืองปิล็อก ที่เคยรุ่งเรืองในอดีต เมื่อราวปี พ.ศ. 2483 เหมืองขุดแร่ดีบุกที่มีคนงานร่วม 600 คน จนราคาแร่ทั่วโลกตกต่ำ ผลจากการตัดราคาของแร่จากจีน  ประมาณปี พ.ศ. 2527-2528 ความรุ่งโรจน์ของการขุดแร่ได้จบลง  ปิล๊อกที่เคยรุ่งเรือง มีตลาดที่เฟื่องฟู เคยมีโรงภาพยนตร์ถึง 2 โรงก็เงียบเหงา เหมืองแร่ต่างๆ ที่นี่ทยอยปิดตัวลง คนงานเริ่มทยอยกลับบ้านแยกย้ายกันไป ปัจจุบันนี้รายได้หลักของหมู่บ้านอีต่องคือ การท่องเที่ยว ที่พักโฮมสเตย์ เหมาะสำหรับผู้ที่ชอบธรรมชาติ อากาศดี อยู่สูงจากระดับน้ำทะเลกว่า 1,000 เมตร เมืองที่ร่ำรวยด้วยหมอก ปัจจุบันเป็นจุดหมายปลายทางที่นักท่องเที่ยวหลายคนต้องการมาสัมผัส ต้องเดินทางผ่าน 399 โค้ง และยังมีแหล่งท่องเที่ยวใกล้ๆ คือ น้ำตกจ๊อกกระดิ่น เนินช้างศึก อุทยานแห่งชาติทองผาภูมิ</div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bg12.jpg" class="slide-img">
+            <div class="text-overlay"><h1>วัดร่องขุ่น</h1>ตั้งอยู่ที่ตำบลป่าอ้อดอนชัย อำเภอเมือง จังหวัดเชียงราย <br> ถือเป็นศาสนสถานที่สำคัญแห่งหนึ่งของจังหวัดเชียงราย เป็นผลงานการออกแบบและก่อสร้างโดย อาจารย์เฉลิมชัย โฆษิตพิพัฒน์ จิตรกรไทยที่มีผลงานจิตรกรรมไทยหลากหลาย จนได้รับการยกย่องขึ้นเป็น ศิลปินแห่งชาติ สาขาทัศนศิลป์ (จิตรกรรม) ในปี พ.ศ. 2554 ผู้ซึ่งอุทิศตนสร้างวัดวัดร่องขุ่นอันยิ่งใหญ่นี้ขึ้นเพื่อถวายเป็นพุทธบูชา <br><br> สิ่งที่โดดเด่นเมื่อมาเยือนวัดร่องขุ่นก็คือ "พระอุโบสถ" ที่มีความโดดเด่นด้วยเอกลักษณ์ทางศิลปะ และสถาปัตยกรรมที่แสนวิจิตรอลังการ ไม่ว่าจะเป็นรูปทรงช่อฟ้า ใบระกา และรายละเอียดซึ่งแตกต่างไปจากวัดแห่งอื่น โดยตัวพระอุโบสถที่เน้นสีขาวบริสุทธิ์นั้นสื่อแทนพระบริสุทธิคุณ ขณะที่กระจกขาววาววับจับประกายระยิบระยับ หมายถึงพระปัญญาธิคุณของพระพุทธองค์ที่โชติจรัสชัชวาลไปทั่วทั้งโลกมนุษย์และจักรวาล</div>
+          </div>
+        </div>
+      </div>
+      <div class="dots-container"></div>
+    </div>
+
+    <nav class="menu-bar5">
+      <div id="bottom-div2" onclick="scrollToDiv('top-div3')"><h2>ที่พักยอดนิยม</h2></div>
+    </nav>
+    <div class="slider-container" data-slider="2" style="background-color: #fdefb0;">
+      <div class="slider">
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bgที่พัก1.avif" class="slide-img">
+            <div class="text-overlay"><h1>โรงแรมอินเตอร์คอนติเนนตัล หัวหิน รีสอร์ท</h1>
+              <h3> 4.6/5 ดาว | อ่านเพิ่มเติมได้ที่ <a href="https://www.google.com/travel/search?q=%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%A1%E0%B9%83%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A2&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaZgpGEkQyJTB4MzA0ZDhkZjc0NzQyNGRiMToweDllZDcyYzg4MDc1N2U4MDI6G-C4m-C4o-C4sOC5gOC4l-C4qOC5hOC4l-C4ohIcEhQKBwjpDxAEGAoSBwjpDxAEGAsYATIECAAQACoJCgU6A1RIQigI&qs=CAEyJkNoZ0kxcjZkeVAtS3pkdTNBUm9MTDJjdk1YUnVjM0JqY1hvUUFROAZCCRGSZ4toTlW0GkIJEXVKpBcsK8AnQgkReGBm3A22hE5IAFqZATKWAaoBkgEQASotIinguJfguLXguYjguJ7guLHguIEg4Lii4Lit4LiUIOC4meC4tOC4ouC4oSg1Mh8QASIbBL8TQutpeRHcSB7HJAqjPOyDP2K4dIZnDFvOMj4QAiI64LiX4Li14LmI4Lie4Lix4LiBIOC4ouC4reC4lCDguJnguLTguKLguKEg4LmD4LiZIOC5hOC4l-C4og&ap=KigKEgnVZzl8lDoZQBGkiXeA0xlXQBISCXl7BeW8BDlAEaSJd4B7BFtAMABoAQ&ictx=111&ved=0CAAQ5JsGahgKEwjgl-equsWMAxUAAAAAHQAAAAAQnAE" class="color">Hotels</a></h3>
+              <h4>33 33 ถ.เพชรเกษม ตำบลหัวหิน อำเภอหัวหิน ประจวบคีรีขันธ์</h4>
+              <img src="imgtest/bgภายใน1.1.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน1.2.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน1.3.jpg" class="imgIn"> </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bgที่พัก2.jpg" class="slide-img">
+            <div class="text-overlay"><h1>คาทิลิยาเมาท์เทน รีสอร์ท แอนด์ สปา</h1>
+              <h3> 4.6/5 ดาว | อ่านเพิ่มเติมได้ที่ <a href="https://www.google.com/travel/search?q=%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%A1%E0%B9%83%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A2%E0%B8%84%E0%B8%B2%E0%B8%97%E0%B8%B4%E0%B8%A5%E0%B8%B4%E0%B8%A2%E0%B8%B2%E0%B9%80%E0%B8%A1%E0%B8%B2%E0%B8%97%E0%B9%8C%E0%B9%80%E0%B8%97%E0%B8%99%20%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97%20%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C%20%E0%B8%AA%E0%B8%9B%E0%B8%B2&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaTgowEi4KCy9nLzF0ZjNsMF92Oh_guJXguLPguJrguKUg4Lio4Lij4Li14LiE4LmJ4LizEhoSFAoHCOkPEAQYChIHCOkPEAQYCxgBMgIQACoJCgU6A1RIQigI&qs=CAAgACgAMiRDaGNJNHRqNDRKZUdtYjBJR2dzdlp5OHhkR1l6YkRCZmRoQUI4DUgA&ap=KigKEgkdW2kyvjQ0QBEHLiPBbfJYQBISCYYY78kINzRAEQcuIxbr8lhAMABoAQ&ictx=111&ved=0CAAQ5JsGahgKEwjgl-equsWMAxUAAAAAHQAAAAAQ6wE" class="color">Hotels</a></h3>
+              <h4>388 Pha Sang อำเภอแม่จัน เชียงราย</h4> 
+              <img src="imgtest/bgภายใน2.1.webp" class="imgIn">
+              <img src="imgtest/bgภายใน2.2.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน2.3.webp" class="imgIn"></div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bgที่พัก3.jpg" class="slide-img">
+            <div class="text-overlay"><h1>ลีไวน์รักไทยรีสอร์ท</h1>
+              <h3> 4.5/5 ดาว | อ่านเพิ่มเติมได้ที่ <a href="https://www.google.com/travel/search?q=%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%A1%E0%B9%83%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A2&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaZgpGEkQyJTB4MzA0ZDhkZjc0NzQyNGRiMToweDllZDcyYzg4MDc1N2U4MDI6G-C4m-C4o-C4sOC5gOC4l-C4qOC5hOC4l-C4ohIcEhQKBwjpDxAEGAoSBwjpDxAEGAsYATIECAAQACoJCgU6A1RIQigI&qs=CAEyJkNoZ0luNGJDLS1tZWs1MmVBUm9MTDJjdk1YUm1aM0p4TldZUUFROAZCCRGSZ4toTlW0GkIJEXVKpBcsK8AnQgkReGBm3A22hE5IAFqZATKWAaoBkgEQASotIinguJfguLXguYjguJ7guLHguIEg4Lii4Lit4LiUIOC4meC4tOC4ouC4oSg1Mh8QASIbBL8TQutpeRHcSB7HJAqjPOyDP2K4dIZnDFvOMj4QAiI64LiX4Li14LmI4Lie4Lix4LiBIOC4ouC4reC4lCDguJnguLTguKLguKEg4LmD4LiZIOC5hOC4l-C4og&ap=KigKEglZYmfDhxcpQBG8NKpxgf1YQBISCQoqDOnpGSlAEbw0KhzA_VhAMABoAQ&ictx=111&ved=0CAAQ5JsGahgKEwjgl-equsWMAxUAAAAAHQAAAAAQmAM" class="color">Hotels</a></h3> 
+              <h4>ตำบลหมอกํจาแป่ อำเภอเมืองแม่ฮ่องสอน แม่ฮ่องสอน</h4>
+              <img src="imgtest/bgภายใน3.1.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน3.2.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน3.3.jpg" class="imgIn"></div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bgที่พัก4.jpg" class="slide-img">
+            <div class="text-overlay"><h1>Casuarina Resort</h1>
+              <h3> 4.0/5 ดาว | อ่านเพิ่มเติมได้ที่ <a href="https://www.google.com/travel/search?q=Casuarina%20Resort&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaGhIYEhIKBwjpDxAEGAcSBwjpDxAEGAgyAggAKgkKBToDVEhCKAg&qs=CAAgACgASAA&ap=KigKEgkin3cj9NgpQBEYd0MTjgFZQBISCXjXfGBV2ylAERh3w73MAVlAMABoAboBCG92ZXJ2aWV3&ictx=111&ved=0CAAQ5JsGahgKEwjgl-equsWMAxUAAAAAHQAAAAAQoQQ" class="color">Hotels</a></h3> 
+              <h4>ตำบลปึกเตียน อำเภอท่ายาง เพชรบุรี</h4>
+              <img src="imgtest/bgภายใน4.1.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน4.2.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน4.3.jpg" class="imgIn"></div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-content">
+            <img src="imgtest/bgที่พัก5.png" class="slide-img">
+            <div class="text-overlay"><h1>เรือนเสน่หา</h1>
+              <h3> 4.8/5 ดาว | อ่านเพิ่มเติมได้ที่ <a href="https://www.google.com/travel/search?q=%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%AA%E0%B8%99%E0%B9%88%E0%B8%AB%E0%B8%B2%20%E0%B8%AD%E0%B8%B1%E0%B8%A1%E0%B8%9E%E0%B8%A7%E0%B8%B2&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaGhIYEhIKBwjpDxAEGAoSBwjpDxAEGAsyAggAKgkKBToDVEhCKAg&qs=CAAgASgAMihDaG9JdEpuZnB0SFg4Yjc3QVJvTkwyY3ZNVEZqYmpoNlh6ZHdZaEFCSAA&ap=KigKEgkin3cj9NgpQBEYd0MTjgFZQBISCXjXfGBV2ylAERh3w73MAVlAMABoAboBCG92ZXJ2aWV3&ictx=111" class="color">Hotels</a></h3> 
+              <h4>ตำบลบางช้าง อำเภออัมพวา สมุทรสงคราม</h4>
+              <img src="imgtest/bgภายใน5.1.webp" class="imgIn">
+              <img src="imgtest/bgภายใน5.2.jpg" class="imgIn">
+              <img src="imgtest/bgภายใน5.3.webp" class="imgIn"></div>
+          </div>
+        </div>
+      </div>
+      <div class="dots-container"></div>
+    </div>
+
+    <div style="background-color: #fdefb0;">
+    <nav class="menu-bar5">
+      <div id="bottom-div3" onclick="scrollToDiv('top-div2')"><h2>ภูมิภาค</h2></div>
+    </nav>
+  </div>
+<div class="เหนือ">
+  <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B9%80%E0%B8%AB%E0%B8%99%E0%B8%B7%E0%B8%AD.html"><img src="imgtest/เหนือ.png" alt="เหนือ"></a>
+</div>
+<div class="ตะวันตก">
+  <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%95%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%81.html"><img src="imgtest/ตะวันตก.png" alt="ตะวันตก"></a>
+</div>
+<div class="กลาง">
+  <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87.html"><img src="imgtest/กลาง.png" alt="กลาง"></a>
+</div>
+<div class="อีสาน">
+  <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%AD%E0%B8%B5%E0%B8%AA%E0%B8%B2%E0%B8%99.html"><img src="imgtest/อีสาน.png" alt="อีสาน"></a>
+</div>
+<div class="ตะวันออก">
+  <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%95%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%81.html"><img src="imgtest/ตะวันออก.png" alt="ตะวันออก"></a>
+</div>
+<div class="ใต้">
+  <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B9%83%E0%B8%95%E0%B9%89.html"><img src="imgtest/ใต้.png" alt="ใต้"></a>
+</div>
+</div>
+
+<div style="background-color: #ffffff;">
+  <div id="bottom-div4" onclick="scrollToDiv('top-div3')">
+    <center><h3 style=" font-size: 65px; margin-top: 5%;">Contact</h3></center>
+      <div class="social-icons" style="margin-left: 5%;">
+        <a href="https://www.facebook.com/sarit.choeisai" target="_blank" style="margin-left: -5%;">
+          <img src="imgtest/feacbook.png"/>
+        </a>
+        <a href="https://www.instagram.com/kagigaki/" target="_blank">
+          <img src="imgtest/IG.png"/>
+        </a>
+        <a href="https://github.com/poom-th" target="_blank" >
+          <img src="imgtest/github.png"/>
+        </a>
+      </div>
+      <br><h2 style="margin-left: 5%; font-size: 25px;margin-top: -3%;">ผู้จัดํทาเว็ป</h2>
+      <h3 style="margin-top: 0%; margin-left:5%; font-size: 35px; font-weight: 1500;">MR.Sarit Choeisai</h3> <br>
+  </div>
+</div>
+</body>
+</html>
