@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภาคเหนือ</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.0/framer-motion.umd.min.js">
+    </script>
+    <style>
+    @font-face{
+        font-family: font1; 
+        src: url(Krub-Light.ttf);
+      }
+    @font-face{
+        font-family: font2; 
+        src: url(TorsilpChaiDiMak.ttf);
+      }
+    @font-face{
+        font-family: font3; 
+        src: url(PhakchiThin-Regular.ttf);
+      }
+    h1 {
+          font-family: font1;
+          font-size: 30px;
+          margin: 0;
+          padding: 10px 20px;
+      }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('imgtest/bg5.5.png');
+        background-size:100%;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        width: 100vw;
+        overflow-x: hidden;
+        justify-content: center;    
+    }
+
+    .menu-bar {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 100 100;
+        padding: 0px 20px;
+        box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.41);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 20;
+      }
+
+      .menu-bar1 {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 75%;
+        border-radius: 20px;
+        margin: 0 auto;
+        padding: 5px 0px;
+        box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.41);
+        position: relative; /* ทำให้มันอยู่ด้านบน */
+        z-index: 20; /* ให้สูงกว่าพวก menu-bar12-4 */
+        flex-direction: column;
+        text-align: center;
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        min-width: 120px; /* ปรับขนาดให้คลิกง่ายขึ้น */
+        min-height: 50px; 
+        border-radius: 10px; /* ทำให้ดูสวยขึ้น */
+      }
+
+      button span {
+        font-size: 35px;
+        font-family: font2;
+        color: white;
+      }
+      .item1 {
+        font-size: 35px;
+        font-family: font3;
+        color: rgb(0, 0, 0);
+      }
+      .item2 {
+        font-size: 35px;
+        font-family: font2;
+        color: rgb(255, 255, 255);
+      }
+
+      .เชียงราย {margin-top: 8%; margin-left: 952px;} .เชียงใหม่ {margin-left: 802px; margin-top: -155px;} .แม่ฮ่องสอน {margin-top: -332px; margin-left: 720px;} .ลำพูน {margin-left: 879.5px; margin-top: -150px;} .ลำปาง {margin-left: 905px; margin-top: -265px;} .พะเยา {margin-left: 1003px; margin-top: -331px;} .แพร่ {margin-left: 968px; margin-top: -10px;} .น่าน {margin-left: 1079px; margin-top: -261px;} .อุตรดิตถ์ {margin-left: 1031px; margin-top: -63px;}
+      
+      @keyframes fadeEffect {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes fadeOutEffect {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes bounceUp {
+        0% { transform: translateY(0); opacity: 0.5; }
+        50% { transform: translateY(-20px); opacity: 1; }
+        100% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    @keyframes bounceDown {
+        0% { transform: translateY(-10px); opacity: 1; }
+        100% { transform: translateY(0); opacity: 0.5; }
+    }
+
+    .info-box {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 2%;
+      text-align: center;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .info-box.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .เชียงราย, .เชียงใหม่, .แม่ฮ่องสอน, .ลำพูน, .ลำปาง, .พะเยา, .แพร่, .น่าน, .อุตรดิตถ์ {
+        transition: transform 0.3s ease
+    }
+
+    .province img {
+      opacity: 0.5;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .active img {
+        opacity: 1;
+        transform: translateY(-20px);
+    }
+
+    .bounce-up img {
+        opacity: 1;
+    }
+
+    .bounce-down img {
+        opacity: 0.5;
+    }
+    .container {
+      position: relative;
+      width: 900px;
+      height: 500px;
+    }
+
+    .img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: transform 0.5s, opacity 0.5s, left 0.5s;
+      cursor: pointer;
+    }
+
+    .imgIn {
+      max-width: 300px;
+      max-height: 200px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-left: 30px;
+    }
+
+    .text-box {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      background-color: white;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* จุดนำ */
+    .indicators {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .dot {
+      width: 15px;
+      height: 15px;
+      margin: 0 5px;
+      border-radius: 50%;
+      background-color: #ccc;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #555;
+    }
+    .box {
+      height: 50px;
+      background-color: transparent;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 35px;
+      font-family: font2;
+      transition: background-color 0.3s;
+      white-space: nowrap;
+      padding: 0 10px; 
+    }
+
+    .buttons-container {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.9);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .buttons-container.show {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .buttons-container a {
+      margin-top: -5%;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 25px;
+      font-family: font2;
+      transition: background-color 0.2s, transform 0.1s ease;
+    }
+
+    .buttons-container a:active {
+      transform: scale(0.95);
+    }
+
+    .card {
+      display: flex;
+      align-items: flex-start;
+      width: 70%;
+      overflow: hidden;
+      margin: 20px auto;
+      font-family: font1;
+      font-size: 18px;
+    }
+
+    .card img {
+      width: 400px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .card .content {
+      padding: 15px;
+      flex: 1;
+    }
+
+    .card-container {
+      width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* ระยะห่างระหว่างกล่อง */
+    }
+    .image-block {
+      display: flex;
+      align-items: center;
+      margin-left: 5%;
+      margin-bottom: 20px;
+      max-width: 100%;
+    }
+    .image-block img {
+      width: 600px;
+      height: 400px;
+      border-radius: 8px;
+      margin-right: 0px; /* ระยะห่างระหว่างรูปกับข้อความ */
+    }
+    .image-block .text {
+      flex: 1;
+      max-width: 700px;
+      font-size: 18px;
+      margin-left: 5%;
+      font-family: font1;
+      color: #333;
+    }
+    </style>
+
+<script>
+  function fadeEffectButton(buttonId) {
+    let btn = document.getElementById(buttonId);
+    btn.style.animation = "none";
+    void btn.offsetWidth;  
+    btn.style.animation = "fadeEffect 0.5s ease";
+  }
+
+  function animateAndRedirect(event, url, buttonId) {
+    event.preventDefault(); // ป้องกันการเปลี่ยนหน้าทันที
+    let btn = document.getElementById(buttonId);
+    btn.style.animation = "none"; 
+    void btn.offsetWidth; 
+    btn.style.animation = "fadeEffect 0.5s ease"; 
+    
+    setTimeout(() => {
+        window.location.href = url; // เปลี่ยนหน้าหลังอนิเมชันจบ
+    }, 500); // รอ 0.5 วินาที (ต้องตรงกับ animation duration)
+
+}
+
+let activeProvince = null; // เก็บค่าอันที่กำลังเปิดอยู่
+
+function toggleProvince(provinceClass, infoId) {
+let imgElement = document.querySelector('.' + provinceClass);
+let infoBox = document.getElementById(infoId);
+
+// ถ้ามีอันที่ active อยู่ ให้ปิดก่อน
+if (activeProvince && activeProvince !== imgElement) {
+activeProvince.classList.remove('active');
+let oldInfoId = activeProvince.getAttribute('data-info-id');
+let oldInfoBox = document.getElementById(oldInfoId);
+oldInfoBox.classList.remove('show');
+setTimeout(() => oldInfoBox.style.display = 'none', 500); // ซ่อนหลัง animation
+}
+
+if (activeProvince === imgElement) {
+imgElement.classList.remove('active');
+infoBox.classList.remove('show');
+setTimeout(() => infoBox.style.display = 'none', 500);
+activeProvince = null;
+} else {
+imgElement.classList.add('active');
+infoBox.style.display = 'block';
+setTimeout(() => infoBox.classList.add('show'), 10);
+activeProvince = imgElement;
+activeProvince.setAttribute('data-info-id', infoId);
+}
+}
+window.onload = function () {
+  document.querySelectorAll(".container").forEach((container, containerIndex) => {
+    let images = Array.from(container.querySelectorAll(".img"));
+    let indicatorsContainer = container.parentElement.querySelector(".indicators");
+    let textBoxes = Array.from(container.parentElement.querySelectorAll(".text-box"));
+
+    const messages = [
+      "ข้อความของรูปภาพที่ 1",
+      "ข้อความของรูปภาพที่ 2",
+      "ข้อความของรูปภาพที่ 3",
+      "ข้อความของรูปภาพที่ 4",
+      "ข้อความของรูปภาพที่ 5"
+    ];
+
+    // สร้าง indicators
+    images.forEach(() => {
+      let dot = document.createElement("div");
+      dot.classList.add("dot");
+      indicatorsContainer.appendChild(dot);
+    });
+
+    let dots = Array.from(indicatorsContainer.querySelectorAll(".dot"));
+
+    function updateImages() {
+      images.forEach((img, index) => {
+        img.style.zIndex = images.length - index;
+        if (index === 0) {
+          img.style.opacity = "1";
+          img.style.transform = "scale(1)";
+          img.style.left = "0";
+        } else if (index === 1) {
+          img.style.opacity = "0.5";
+          img.style.transform = "scale(0.9)";
+          img.style.left = "20%";
+        } else if (index === 2) {
+          img.style.opacity = "0.4";
+          img.style.transform = "scale(0.85)";
+          img.style.left = "40%";
+        } else if (index === 3) {
+          img.style.opacity = "0.4";
+          img.style.transform = "scale(0.85)";
+          img.style.left = "-40%";
+        } else if (index === 4) {
+          img.style.opacity = "0.5";
+          img.style.transform = "scale(0.9)";
+          img.style.left = "-20%";
+        }
+      });
+
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[images.indexOf(container.querySelector(".img"))].classList.add("active");
+
+      // ซ่อนกล่องข้อความทั้งหมดของ container นี้
+      textBoxes.forEach(box => (box.style.display = "none"));
+    }
+
+    function rotateImages(direction) {
+      if (direction === "right") {
+        let lastImage = images.pop();
+        images.unshift(lastImage);
+      } else {
+        let firstImage = images.shift();
+        images.push(firstImage);
+      }
+      updateImages();
+    }
+
+    images.forEach((img, imgIndex) => {
+      img.addEventListener("click", function () {
+        let clickedIndex = images.indexOf(this);
+
+        // ถ้าคลิกที่รูปเดียวกันแล้ว (เคยแสดงข้อความอยู่แล้ว) จะซ่อนข้อความ
+        if (textBoxes[imgIndex].style.display === "block") {
+          textBoxes[imgIndex].style.display = "none"; // ซ่อนข้อความ
+        } else {
+          // ซ่อนกล่องข้อความอื่น ๆ ของ container นี้
+          textBoxes.forEach(box => (box.style.display = "none"));
+
+          // แสดงกล่องข้อความของรูปนี้
+          let textBox = textBoxes[imgIndex];
+          textBox.style.display = "block";
+        }
+
+        // หมุนรูปภาพเหมือนเดิม
+        if (clickedIndex > 2) {
+          rotateImages("right");
+        } else if (clickedIndex > 0) {
+          rotateImages("left");
+        }
+      });
+    });
+
+    updateImages();
+  });
+};
+
+function toggleButtons() {
+      const container = document.getElementById('buttons');
+      container.classList.toggle('show');
+    }
+
+</script>
+</head>
+<body>
+    <nav class="menu-bar">
+        <div>
+          <button id="button1" onclick="animateAndRedirect(event, 'http://127.0.0.1:5500/%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81.html', 'button1')">
+            <span class="item2">
+                หน้าหลัก
+            </span>
+        </button>
+          <button id="button2" onclick="fadeEffectButton('button2')">
+            <div class="box" onclick="toggleButtons()">ภูมิภาคอื่นๆ</div>
+          </button>
+          <div class="buttons-container" id="buttons">
+            <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%AD%E0%B8%B5%E0%B8%AA%E0%B8%B2%E0%B8%99.html">ภาคตะวันออกเฉียงเหนือ</a>
+            <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87.html">ภาคกลาง</a>
+            <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%95%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%81.html">ภาคตะวันออก</a>
+            <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B8%95%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%81.html">ภาคตะวันตก</a>
+            <a href="http://127.0.0.1:5500/%E0%B8%A0%E0%B8%B2%E0%B8%84/%E0%B9%83%E0%B8%95%E0%B9%89.html">ภาคใต้</a>
+          </div>
+        </div>
+      </nav>
+
+    <div class="province เชียงราย"><img src="imgจังหวัดเหนือ/เชียงราย.png" alt=""></div>
+    <div class="province เชียงใหม่"><img src="imgจังหวัดเหนือ/เชียงใหม่.png" alt=""></div>
+    <div class="province แม่ฮ่องสอน"><img src="imgจังหวัดเหนือ/แม่ฮ่องสอน.png" alt=""></div>
+    <div class="province ลำพูน"><img src="imgจังหวัดเหนือ/ลำพูน.png" alt=""></div>
+    <div class="province ลำปาง"><img src="imgจังหวัดเหนือ/ลำปาง.png" alt=""></div>
+    <div class="province พะเยา"><img src="imgจังหวัดเหนือ/พะเยา.png" alt=""></div>
+    <div class="province แพร่"><img src="imgจังหวัดเหนือ/แพร่.png" alt=""></div>
+    <div class="province น่าน"><img src="imgจังหวัดเหนือ/น่าน.png" alt=""></div>
+    <div class="province อุตรดิตถ์"><img src="imgจังหวัดเหนือ/อุตรดิตถ์.png" alt=""></div>
+<br><br>
+<nav class="menu-bar1">
+  <div>
+      <button onclick="toggleProvince('เชียงราย', 'info-เชียงราย')">เชียงราย</button>
+      <button onclick="toggleProvince('เชียงใหม่', 'info-เชียงใหม่')">เชียงใหม่</button>
+      <button onclick="toggleProvince('แม่ฮ่องสอน', 'info-แม่ฮ่องสอน')">แม่ฮ่องสอน</button>
+      <button onclick="toggleProvince('ลำพูน', 'info-ลำพูน')">ลำพูน</button>
+      <button onclick="toggleProvince('ลำปาง', 'info-ลำปาง')">ลำปาง</button>
+      <button onclick="toggleProvince('พะเยา', 'info-พะเยา')">พะเยา</button>
+      <button onclick="toggleProvince('แพร่', 'info-แพร่')">แพร่</button>
+      <button onclick="toggleProvince('น่าน', 'info-น่าน')">น่าน</button>
+      <button onclick="toggleProvince('อุตรดิตถ์', 'info-อุตรดิตถ์')">อุตรดิตถ์</button>
+  </div>
+</nav>
+    
+      <div id="info-เชียงราย" class="info-box">
+       <nav class="menu-bar1">
+        <h1>ที่เที่ยว</h1>
+       </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวเชียงราย1.jpg" class="img" />
+          <img src="imgเหนือ/bgที่เที่ยวเชียงราย2.jpg" class="img" />
+          <img src="imgเหนือ/bgที่เที่ยวเชียงราย3.jpg" class="img" />
+          <img src="imgเหนือ/bgที่เที่ยวเชียงราย4.jpg" class="img" />
+          <img src="imgเหนือ/bgที่เที่ยวเชียงราย5.jpg" class="img" />
+        </div>
+        <div class="text-box"><h1>วัดร่องขุ่น</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงราย1.1.jpg" />
+            <div class="content">
+            <p>เป็นวัดพุทธ ตั้งอยู่ที่ ตำบลป่าอ้อดอนชัย อำเภอเมืองเชียงราย จังหวัดเชียงราย 57000 เปิดและปิดเวลา 8.00 - 17.00 น.ของทุกวัน <br> ออกแบบและก่อสร้างโดย เฉลิมชัย โฆษิตพิพัฒน์ ตั้งแต่ พ.ศ. 2540 จนถึงปัจจุบัน โดยเฉลิมชัยคาดว่างานก่อสร้างวัดร่องขุ่นจะไม่เสร็จลงภายในช่วงชีวิตของตนวัดร่องขุ่นถอดแบบมาจากวัดมิ่งเมือง จังหวัดน่าน <br>เมื่อวันที่ 5 พฤษภาคม พ.ศ. 2557 เวลา 18.05 น. เกิดแผ่นดินไหวขนาด 6.3 มีศูนย์กลางอยู่ที่อำเภอแม่ลาว จังหวัดเชียงราย และแผ่นดินไหวตามหลายครั้ง สร้างความเสียหายให้กับวัดร่องขุ่นเป็นอย่างมาก เช่น ผนังโบสถ์ปูนกระเทาะออก กระเบื้องหลุด ยอดพระธาตุหัก ภาพเขียนเสียหายหมด ทำให้ต้องปิดวัดเพื่อซ่อมแซมตั้งแต่วันที่ 6 พฤษภาคม ปีเดียวกัน <br> <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A3%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B8%B8%E0%B9%88%E0%B8%99/@19.8237553,99.7604383,17z/data=!4m10!1m2!2m1!1z4Lin4Lix4LiU4Lij4LmI4Lit4LiH4LiC4Li44LmI4LiZ!3m6!1s0x30d70e54b2e18761:0xb3495716c9ffd4ac!8m2!3d19.8242337!4d99.7633179!15sCiHguKfguLHguJTguKPguYjguK3guIfguILguLjguYjguJmSARBwbGFjZV9vZl93b3JzaGlwqgFMEAEyHxABIhvU24Jr_kPHuj7Ud05TBUTIM_N6R4pz3E-Gl5gyJxACIiPguKfguLHguJQg4Lij4LmI4Lit4LiHIOC4guC4uOC5iOC4meABAA!16s%2Fg%2F11ckzc6zmw?entry=ttu&g_ep=EgoyMDI1MDUwNS4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+
+        <div class="text-box"><h1>สิงค์ปาร์ค</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงราย2.1.jpg" />
+            <div class="content">
+            <p>ไร่สวยที่มีลักษณะเหมือนฟาร์ม มีไร่ชา สวนผลไม้ ทางเดิน รถราง และฟาร์มสัตว์ ตั้งอยู่ที่ 99 ตำบล แม่กรณ์ อำเภอเมืองเชียงราย เชียงราย 57000 เปิดและปิดเวลา 8.30 - 17.00 น.ของทุกวัน <br> เป็นแหล่งท่องเที่ยวเชิงเกษตร มีพื้นที่เกษตรกรรม ไร่ชา และธรรมชาติที่สวยงามในพื้นที่กว่า 12.8 ตารางกิโลเมตร ในช่วงฤดูหนาวมีทุ่งดอกคอสมอส ทุ่งปอเทือง และผลไม้ เช่น สตรอว์เบอร์รี พุทราพันธุ์ซื่อหมี่ และชาสูตรพิเศษนานาชนิดที่เป็นสูตรเฉพาะจากไร่
+
+              นอกจากนี้ยังมีกิจกรรมให้เช่าจักรยานปั่นภายในไร่ การโหนซิปไลน์ ชมไร่ชาในมุมสูงรอบทิศ 360 องศา รถรางบริการนำเที่ยวชมในไร่ตามจุดต่าง ๆ และให้อาหารสัตว์ เช่น ยีราฟ ม้าลาย อย่างใกล้ชิด ระยะเวลาเที่ยวชม 1 ชั่วโมง ให้บริการทุก 30 นาที <a href="https://www.google.com/maps/place/%E0%B8%AA%E0%B8%B4%E0%B8%87%E0%B8%AB%E0%B9%8C%E0%B8%9B%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2/@19.8530809,99.7334942,16z/data=!4m10!1m2!2m1!1z4Liq4Li04LiH4Lir4LmM4Lib4Liy4Lij4LmM4LiEIOC5gOC4iuC4teC4ouC4h-C4o-C4suC4og!3m6!1s0x30d70feb0e464e53:0xeeb653eaf54e130e!8m2!3d19.8530809!4d99.7430214!15sCjfguKrguLTguIfguKvguYzguJvguLLguKPguYzguIQg4LmA4LiK4Li14Lii4LiH4Lij4Liy4LiiWjoiOOC4quC4tOC4h-C4q-C5jCDguJvguLLguKPguYzguIQg4LmA4LiK4Li14Lii4LiH4Lij4Liy4LiikgESdG91cmlzdF9hdHRyYWN0aW9uqgFgEAEyHhABIhpvxRzy6QVxvRyDC9st9j8AGKO14GX9sybydDI8EAIiOOC4quC4tOC4h-C4q-C5jCDguJvguLLguKPguYzguIQg4LmA4LiK4Li14Lii4LiH4Lij4Liy4Lii4AEA!16s%2Fg%2F11b637_5y8?entry=ttu&g_ep=EgoyMDI1MDUwNS4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+
+        <div class="text-box"><h1>ภูชี้ฟ้า</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงราย3.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ตำบลตับเต่า อำเภอเทิง จังหวัดเชียงราย เป็นสถานที่ท่องเที่ยวที่มีชื่อเสียงในจังหวัดเชียงราย อยู่ในเขตป่าสงวนแห่งชาติ ป่าแม่อิงฝั่งขวาและป่าแม่งาว ฟ้าทอง มีพื้นที่ประมาณ 58,069 ไร่ ใน 4 อำเภอ ของ จ.เชียงราย ได้แก่ อ.เชียงของ เวียงแก่น ขุนตาล และเทิง <br> โดยกรมป่าไม้ได้มีคำสั่งจัดตั้งเป็นวนอุทยาน เมื่อวันที่ 6 กุมภาพันธ์ พ.ศ. 2541 พื้นที่วนอุทยานเป็นยอดเขาสูงในเทือกเขาดอยผาหม่น ติดชายแดนไทยและสาธารณรัฐประชาธิปไตยประชาชนลาว <br> ภูชี้ฟ้า ตั้งอยู่บนเทือกเขาสูงทางตะวันออกของจังหวัดเชียงราย อยู่ระหว่างรอยตะเข็บชายแดนไทย–ลาว ลักษณะเป็นหน้าผาสูงเป็นแนวยาวไปตามแนวชายแดน บริเวณปลายสุดของหน้าผามีลักษณะแหลมคล้ายกับนิ้วมือชี้ยื่นออกไปในอากาศ จึงเป็นที่มาของชื่อ "ภูชี้ฟ้า" จุดที่สูงสุดของภูชี้ฟ้าอยู่สูงจากระดับน้ำทะเลปานกลาง 1,200 ถึง 1,628 เมตร เบื้องล่างของหน้าผาเป็นแอ่งหุบเขา เป็นที่ตั้งของหมู่บ้านเชียงตอง แขวงไชยบุรี ประเทศลาว<a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4%E0%B8%A0%E0%B8%B9%E0%B8%8A%E0%B8%B5%E0%B9%89%E0%B8%9F%E0%B9%89%E0%B8%B2/@19.8505752,100.4435892,15z/data=!4m14!1m7!3m6!1s0x30d7d01978dac17d:0x1d0100b2deabcfc0!2sPhu+Chifa!8m2!3d19.8505556!4d100.4538889!16s%2Fm%2F0j3gjyy!3m5!1s0x30d7d01d7347842b:0x1e5958bd3a8ded57!8m2!3d19.8500121!4d100.4460122!16s%2Fg%2F11h1mq482?entry=ttu&g_ep=EgoyMDI1MDUwNS4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+
+        <div class="text-box"><h1>วัดห้วยปลากั้ง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงราย4.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 553 หมู่ที่ 3 549 หมู่3 ตำบล แม่ยาว อำเภอเมืองเชียงราย เชียงราย 57100 เปิดและปิดเวลา 7.00 - 21.00 น.ของทุกวัน <br> วัดห้วยปลากั้ง เป็นวัดราษฎร์สังกัดคณะสงฆ์ฝ่ายมหานิกาย ตั้งอยู่ในตำบลริมกก อำเภอเมืองเชียงราย จังหวัดเชียงราย มีเนื้อที่ประมาณ 15 ไร่ ตั้งอยู่บนเนินเขาลูกเล็ก ๆ ในชุมชนห้วยปลากั้ง วัดห้วยปลากั้งก่อตั้งขึ้นโดยพระอาจารย์ พบโชค ติสสะวังโส เจ้าอาวาส สภาพเดิม เป็นเนินเขาที่มีเพียงซากของวัดร้างและพงหญ้ารกชัฏ ต่อมาพระอาจารย์พบโชคซึ่งเป็นพระภิกษุจำพรรษาอยู่ที่วัดร่องธาร เชียงราย จึงมีจิตศรัทธาต้องการบูรณะ จึงได้ย้ายไปพำนักอยู่ครั้งแรกเมื่อวันที่ 19 พฤศจิกายน พ.ศ. 2548 โดยมีชาวชุมชนห้วยปลากั้งร่วมบูรณะ เริ่มจากการตั้งเป็นสำนักสงฆ์ จนได้รับอนุญาตตั้งวัดเมื่อวันที่ 24 กรกฎาคม พ.ศ. 2552 โดยมีพระอธิการพบโชค ติสฺสวํโส เป็นเจ้าอาวาสรูปแรก<a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B9%89%E0%B8%87/@19.9487796,99.8037232,17z/data=!4m10!1m2!2m1!1z4Lin4Lix4LiU4Lir4LmJ4Lin4Lii4Lib4Lil4Liy4LiB4Lix4LmJ4LiH!3m6!1s0x30d7069baaddba13:0x2c5a86908fd38ceb!8m2!3d19.9491994!4d99.8067097!15sCirguKfguLHguJTguKvguYnguKfguKLguJvguKXguLLguIHguLHguYnguIdaLyIt4Lin4Lix4LiUIOC4q-C5ieC4p-C4oiDguJvguKXguLIg4LiB4Lix4LmJ4LiHkgEPYnVkZGhpc3RfdGVtcGxlqgFVEAEyHhABIhqvoJh8d67pnhjKBFORem-s_lEySCKi15qjSjIxEAIiLeC4p-C4seC4lCDguKvguYnguKfguKIg4Lib4Lil4LiyIOC4geC4seC5ieC4h-ABAA!16s%2Fg%2F119vr_mj_?entry=ttu&g_ep=EgoyMDI1MDUwNS4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+
+        <div class="text-box"><h1>ดอยช้าง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงราย5.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ บ้านดอยช้าง ตั้งอยู่หมู่ที่ 3 ตำบลวาวี อำเภอแม่สรวย จังหวัดเชียงราย <br> จุดชมวิวดอยช้างอยู่สูงถึง 1,485 เมตร ด้านบนสามารถมองเห็นวิวได้โดยรอบ มีการจัดภูมิทัศน์ด้วยการปลูกแปลงดอกไม้และสวนสน อากาศเย็นสบายตลอดปี อุณหภูมิเฉลี่ย 18 องศาเซลเซียส <br>ดอยช้างมีชื่อเสียงในเรื่องของเป็นแหล่งปลูกกาแฟที่ใหญ่ที่สุดแห่งหนึ่งในประเทศไทย มาเที่ยวที่นี่ นักท่องเที่ยว จะได้ชมสวนกาแฟที่สุกอร่ามเต็มดอย พร้อมๆกับชมดอกซากุระหรือนางพญาเสือโคร่งที่กำลังบาน สีสันสดใส ชมพู อีกทั้งเพลินตา กับศิลปะวิถีชาวบ้าน
+              <br>  จุดชมวิวดอยช้างเป็นจุดชมพระอาทิตย์ตกที่สวยมากแห่งหนึ่ง<a href="https://www.google.com/maps/place/%E0%B8%94%E0%B8%AD%E0%B8%A2%E0%B8%8A%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AA%E0%B8%A3%E0%B8%A7%E0%B8%A2+%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2+57180/@19.8051194,99.507295,13z/data=!3m1!4b1!4m6!3m5!1s0x30d7161c486a3a6b:0x7ed2dc6ffd30651d!8m2!3d19.800321!4d99.5562219!16s%2Fg%2F11kpg9nxrt?entry=ttu&g_ep=EgoyMDI1MDUwNS4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        
+        <div class="indicators"></div></center><br>
+      <nav class="menu-bar1">
+        <h1>ที่พัก</h1>
+       </nav>
+       <center><div class="container">
+        <img src="imgเหนือ/bgที่พักเชียงราย1.jpg" class="img">
+        <img src="imgเหนือ/bgที่พักเชียงราง2.webp" class="img">
+        <img src="imgเหนือ/bgที่พักเชียงราย3.webp" class="img">
+        <img src="imgเหนือ/bgที่พักเชียงราย4.jpg" class="img">
+        <img src="imgเหนือ/bgที่พักเชียงราย5.jpg" class="img">
+      </div>
+      <div class="text-box"><h1>คาทิลิยาเมาท์เทน รีสอร์ท แอนด์ สปา</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย1.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 388 Pha Sang อำเภอแม่จัน เชียงราย เวลาทำการ 24ชม. โทร:053603000 <br><br> หลีกหนีความวุ่นวายมาที่คาทิลิยา เมาน์เท่น รีสอร์ท แอนด์ สปา สวรรค์อันเงียบสงบในแม่จัน เชียงราย ที่พักสุดพิเศษแห่งนี้มอบสภาพแวดล้อมอันเงียบสงบสำหรับนักเดินทางสองคนที่กำลังมองหาสถานที่พักผ่อนอันน่าจดจำ ดื่มด่ำกับสิ่งอำนวยความสะดวกสุดหรู เช่น อาหารเช้าในห้องพัก สระว่ายน้ำ และน้ำอุ่น อ่างอาบน้ำ เชื่อมต่อกับ Wi-Fi ฟรีและเพลิดเพลินกับเครื่องปรับอากาศในห้องพักกว้างขวางพร้อมระเบียง/เฉลียงส่วนตัว ดื่มด่ำกับความงามของธรรมชาติพร้อมวิวสวนอันเงียบสงบหรือทิวทัศน์ภูเขาอันตระการตา ใช้บริการทัวร์ มินิกอล์ฟ และสปาผ่อนคลาย ทรีตเมนต์ ค้นพบเสน่ห์เหนือกาลเวลาของอัญมณีที่ซ่อนอยู่นี้ ซึ่งสมบูรณ์แบบสำหรับการหลีกหนีจากความกระปรี้กระเปร่าและน่าจดจำ
+           <a href="https://www.google.com/travel/search?q=%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%A1%E0%B9%83%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%A2%E0%B8%84%E0%B8%B2%E0%B8%97%E0%B8%B4%E0%B8%A5%E0%B8%B4%E0%B8%A2%E0%B8%B2%E0%B9%80%E0%B8%A1%E0%B8%B2%E0%B8%97%E0%B9%8C%E0%B9%80%E0%B8%97%E0%B8%99%20%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97%20%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C%20%E0%B8%AA%E0%B8%9B%E0%B8%B2&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaTgowEi4KCy9nLzF0ZjNsMF92Oh_guJXguLPguJrguKUg4Lio4Lij4Li14LiE4LmJ4LizEhoSFAoHCOkPEAQYChIHCOkPEAQYCxgBMgIQACoJCgU6A1RIQigI&qs=CAAgACgAMiRDaGNJNHRqNDRKZUdtYjBJR2dzdlp5OHhkR1l6YkRCZmRoQUI4DUgA&ap=KigKEgkdW2kyvjQ0QBEHLiPBbfJYQBISCYYY78kINzRAEQcuIxbr8lhAMABoAQ&ictx=111&ved=0CAAQ5JsGahgKEwjgl-equsWMAxUAAAAAHQAAAAAQ6wE" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย1.2.jpg" style="margin-left: 30%;" >
+        </div>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย1.3.webp"style="margin-left: 10%;">
+        </div>
+      </div>
+
+      <div class="text-box"><h1>เลอ เมอริเดียน เชียงราย รีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย2.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 221, 2 ถ. แควหวาย ตำบล รอบเวียง Amphur Muang, เชียงราย 57000 โทร:053603333 <br><br> ค้นพบเสน่ห์ของเชียงรายด้วยการเข้าพักที่เลอ เมอริเดียน เชียงราย รีสอร์ท ประเทศไทย เหมาะสำหรับนักเดินทางคนเดียว สถานที่พักผ่อนริมแม่น้ำมีทิวทัศน์อันตระการตาและห้องพักที่กว้างขวาง ดื่มด่ำในใจกลางเมืองที่มีชีวิตชีวา สำรวจวัดที่น่าหลงใหล และแช่ตัว สัมผัสบรรยากาศตลาดกลางคืนอันคึกคัก เพลิดเพลินกับสิ่งอำนวยความสะดวกสุดพิเศษ ทั้งสระว่ายน้ำที่สดชื่นพร้อมทิวทัศน์และบาร์สุดเก๋ ผ่อนคลายที่สปา รับประทานอาหารอิตาเลียนเลิศรส และออกกำลังกายที่ฟิตเนสเซ็นเตอร์ สถานที่พักผ่อนที่สมบูรณ์แบบสำหรับคนเดียว นักผจญภัย
+            <a href="https://www.google.com/travel/search?q=%E0%B9%80%E0%B8%A5%E0%B8%AD%20%E0%B9%80%E0%B8%A1%E0%B8%AD%E0%B8%A3%E0%B8%B4%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%99%20%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2%20%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAqCQoFOgNUSEIoCA&qs=CAAgACgA&ap=KigKEgkdW2kyvjQ0QBEHLiPBbfJYQBISCYYY78kINzRAEQcuIxbr8lhAMABoAQ&ictx=111&ved=0CAAQ5JsGahcKEwjQwf2Nq5WNAxUAAAAAHQAAAAAQOA" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงราย2.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงราย2.3.webp">
+        </div>
+      </div>
+      <div class="text-box"><h1>โรงแรมนาค นคราที่พัก</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย3.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 648, 6 ถ, อุตรกิจ ตำบลเวียง เมือง, เชียงราย 57000 โทร:053717702 <br><br> โรงแรมนาค นครา ตั้งอยู่ในใจกลางเมืองเชียงรายที่มีชีวิตชีวา มอบประสบการณ์การผสมผสานระหว่างความหรูหราและวัฒนธรรมท้องถิ่นให้กับนักเดินทาง เพียงไม่กี่ก้าวจากหอนาฬิกาเชียงรายและเชียงรายไนท์บาซาร์ สามารถสำรวจชีวิตท้องถิ่นได้อย่างง่ายดาย ผู้เข้าพักสามารถผ่อนคลายในสระว่ายน้ำในร่มที่มีสไตล์ของโรงแรม หรือเพลิดเพลินกับการนวดผ่อนคลายเพื่อประสบการณ์ที่หรูหราอย่างแท้จริง ห้องพักมีอินเทอร์เน็ตไร้สาย (Wi-Fi) ฟรี และเครื่องปรับอากาศ เพื่อความสะดวกสบายในการเข้าพัก โดยห้องพักบางห้องมีวิวเมืองที่น่าหลงใหล สวนและพื้นที่สระว่ายน้ำที่สวยงามให้การหลบหนีที่เงียบสงบ ในขณะที่เพลิดเพลินกับอาหารไทยแท้ริมสระน้ำ ทำให้เป็นฐานที่เหมาะสำหรับการสำรวจความมีชีวิตชีวาของเชียงราย
+            <a href="https://www.google.com/travel/search?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%99%E0%B8%B2%E0%B8%84%20%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaYwpFEkMKDC9nLzExM2g5azByZzoz4LmA4LiX4Lio4Lia4Liy4Lil4LiZ4LiE4Lij4LmA4LiK4Li14Lii4LiH4Lij4Liy4LiiEhoSFAoHCOkPEAUYDxIHCOkPEAUYEBgBMgIIAioJCgU6A1RIQigI&qs=CAAgACgAMidDaGtJa1ozSXc0ZkR3ZnFsQVJvTUwyY3ZNVEV6YURsck1ISm5FQUU4DUgA&ap=KigKEglhYSl2zuYzQBFSu8Zf__RYQBISCaPe5eNl6zNAEVK7xgn69VhAMABoAQ&ictx=111&ved=0CAAQ5JsGahgKEwjQwf2Nq5WNAxUAAAAAHQAAAAAQzQM" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงราย3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงราย3.3.webp">
+        </div>
+      </div>
+      <div class="text-box"><h1>เดอะ อิมพีเรียล ริเวอร์เฮ้าส์ รีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย4.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 482 หมู่ที่ 4 ถนนแม่กก ตำบลริมกก อำเภอเมืองเชียงราย เชียงราย 57100 โทร:053750830 <br><br> หลบหนีสู่ดิ อิมพีเรียล ริเวอร์เฮาส์ รีสอร์ต ตั้งอยู่ริมแม่น้ำกกในริมกก เหมาะสำหรับนักเดินทางสองคน เพลิดเพลินกับการพักผ่อนที่เงียบสงบพร้อมทัศนียภาพอันงดงามและวัฒนธรรมไทยที่มีชีวิตชีวา ผ่อนคลายริมสระว่ายน้ำที่ส่องประกายระยิบระยับ ดื่มด่ำกับการนวดผ่อนคลาย หรือเข้าร่วมทัวร์ที่คัดสรรมาอย่างดี ห้องพักมี WiFi ฟรี เครื่องปรับอากาศ และมักจะมีระเบียงส่วนตัวพร้อมวิวสวนอันเขียวชอุ่มหรือแม่น้ำ สถานที่ท่องเที่ยวใกล้เคียง ได้แก่ อนุสาวรีย์พ่อขุนเม็งรายมหาราชและเชียงรายไนท์บาซาร์ กระท่อมไม้กว้างขวางให้การเข้าถึงวัดสีน้ำเงินได้อย่างง่ายดาย และบุฟเฟ่ต์ไทย-ตะวันตกที่ไม่เหมือนใครเพิ่มประสบการณ์ให้ดียิ่งขึ้น สำรวจด้วยจักรยานชายหาดฟรีสำหรับการผจญภัยที่มีชีวิตชีวา
+            <a href="https://www.imperialriverhouse.com/" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงราย4.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงราย4.3.webp">
+        </div>
+      </div>
+      <div class="text-box"><h1>โรงแรมโมรา</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงราย5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 48, 6 ถ, อุตรกิจ ตำบลเวียง เมือง, เชียงราย 57000 โทร:053717702 <br><br> ค้นพบเสน่ห์ของใจกลางเมืองเชียงรายที่โรงแรมโมรา บูติก เหมาะสำหรับนักเดินทางคนเดียว ที่พักอันประณีตแห่งนี้มอบความสะดวกสบายอันทันสมัยด้วยห้องพักปรับอากาศ Wi-Fi ฟรี และห้องอาบน้ำที่สดชื่น เริ่มต้นวันใหม่ด้วยบริการอาหารเช้าแสนอร่อยแบบนำกลับก่อน สำรวจตลาดกลางคืนที่มีชีวิตชีวาและวัดวาอารามใกล้เคียง ผ่อนคลายริมสระว่ายน้ำ หรือเช่ารถเพื่อการเดินทางที่สะดวกสบาย เพลิดเพลินกับทัศนียภาพอันงดงามของเมือง สวน หรือสระว่ายน้ำจากห้องพักของคุณ (ขึ้นอยู่กับห้องว่าง) ด้วยห้องพักสไตล์โคโลเนียล และสิ่งอำนวยความสะดวกที่ยอดเยี่ยม โมรา บูติก โฮเทล มอบการเข้าพักอันน่ารื่นรมย์และหรูหราในใจกลางเมืองเก่าของเชียงราย
+            <a href="https://www.google.com/travel/search?q=%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B9%82%E0%B8%A1%E0%B8%A3%E0%B8%B2&g2lb=4965990%2C4969803%2C72248050%2C72248051%2C72277293%2C72302247%2C72317059%2C72406588%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72808078%2C72825295%2C72827241%2C72832976%2C72852292%2C72882230%2C72885032%2C72911993%2C72922331&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAEaZApGEkQKDS9nLzExZ3kxcDJ6MG06M-C5gOC4l-C4qOC4muC4suC4peC4meC4hOC4o-C5gOC4iuC4teC4ouC4h-C4o-C4suC4ohIaEhQKBwjpDxAFGA8SBwjpDxAFGBAYATICCAIqBwoFOgNUSEI&qs=CAAgACgAMidDaGtJeE9hRDhhM196NE1TR2cwdlp5OHhNV2Q1TVhBeWVqQnRFQUU4DUgA&ap=KigKEgmXZSMevOYzQBG_M-ihGfVYQBISCRUvaIxT6zNAEb8z6EsU9lhAMABoAQ&ictx=111&ved=0CAAQ5JsGahgKEwjQwf2Nq5WNAxUAAAAAHQAAAAAQggs" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงราย5.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงราย5.3.webp">
+        </div>
+      </div>
+      <div class="indicators"></div></center>
+    </div>
+
+      <div id="info-เชียงใหม่" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่2.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่3.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>เชียงใหม่ไนท์ซาฟารี</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่1.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 33, ตำบล หนองควาย อำเภอหางดง เชียงใหม่ 50230 เปิดและปิดเวลา 11.00 - 22.00 น.ของทุกวัน <br> เป็นสวนสัตว์เปิดที่ตั้งอยู่ในตำบลแม่เหียะ อำเภอเมืองเชียงใหม่ และ ตำบลหนองควาย อำเภอหางดง จังหวัดเชียงใหม่ บริเวณด้านหลังทางทิศตะวันตกของอุทยานหลวงราชพฤกษ์ เชียงใหม่ไนท์ซาฟารีอยู่ภายใต้การกำกับดูแลของรัฐบาล เปิดให้เข้าชมเป็นครั้งแรกเมื่อ 18 พฤศจิกายน พ.ศ. 2548 และเปิดบริการอย่างเป็นทางการเมื่อ วันที่ 6 กุมภาพันธ์ พ.ศ. 2549 ในระยะเริ่มแรกอยู่ในภายใต้การดูแลขององค์การบริหารการพัฒนาพื้นที่พิเศษเพื่อการท่องเที่ยวอย่างยั่งยืน ถือเป็นสวนสัตว์กลางคืนแห่งแรกในประเทศไทย และถือเป็นสวนสัตว์กลางคืนที่ใหญ่ที่สุดในโลก ด้วยขนาดพื้นที่ 819 ไร่ ในปัจจุบันเชียงใหม่ไนท์ซาฟารีได้ปรับเปลี่ยนรูปแบบการให้บริการที่สามารถท่องเที่ยวได้ตลอดทั้งวัน ทั้งในเวลากลางวัน และในเวลากลางคืน
+              <a href="https://www.google.com/maps/place/%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B9%84%E0%B8%99%E0%B8%97%E0%B9%8C%E0%B8%8B%E0%B8%B2%E0%B8%9F%E0%B8%B2%E0%B8%A3%E0%B8%B5/@18.7423503,98.9173241,17z/data=!4m10!3m9!1s0x30da37293ac232bf:0xcaafc0bee2a3f81a!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.7423503!4d98.9173241!16s%2Fm%2F09gj5fc?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>I love flower Farm</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่2.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 33 ตำบล เหมืองแก้ว อำเภอแม่ริม เชียงใหม่ 50180 เปิดและปิดเวลา 08.00 - 17.00 น.ของทุกวัน <br> สวนดอกไม้เชียงใหม่นี้เปิดให้บริการตั้งแต่ปี 2017 โดยมีแนวคิดในการสร้างพื้นที่ที่ผสมผสานความงดงามของธรรมชาติเข้ากับการเกษตรอย่างยั่งยืน เพื่อให้ผู้มาเที่ยวเชียงใหม่ได้สัมผัสกับความสดชื่นและความงดงามของดอกไม้ที่แท้จริง ทุกมุมของสวนดอกไม้เชียงใหม่ได้รับการจัดแต่งอย่างประณีต ทำให้ผู้ที่มาเที่ยวสวนดอกไม้เชียงใหม่นี้สามารถถ่ายภาพได้ทุกที่ที่ก้าวไป และเพลิดเพลินไปกับการเดินเล่นท่ามกลางทุ่งดอกไม้ที่งดงามเหมือนภาพฝัน
+               <a href="https://www.google.com/maps/place/I+Love+Flower+Farm/data=!4m2!3m1!1s0x0:0x5ca3eb49bd84f5b8?sa=X&ved=1t:2428&ictx=111&cshid=1746759526913526" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ถํ้าเชียงดาว</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่3.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 273 หมู่ 5 ตำบล เชียงดาว อำเภอเชียงดาว เชียงใหม่ 50170 เปิดและปิดเวลา 07.00 - 17.00 น.ของทุกวัน <br> ถ้ำเชียงดาว เป็นถ้ำสวยที่ตั้งอยู่ใน อำเภอเชียงดาว จังหวัดเชียงใหม่ แลยังเป็นที่ตั้งของ วัดถ้ำเชียงดาว อีกด้วย ซึ่งจะอยู่ที่เชิงเขาของดอยหลวงเชียงดาวเลย โดยภายในแต่ละถ้ำจะมีความงามมากมาย ทั้ง หินงอกหินย้อยที่ประกายระยิบระยับ เป็นต้น และนอกจากนั้น ที่นี่ก็ยังมีไฮไลท์อยู่ตรงที่มีน้ำใสๆ ไหลจากในถ้ำ ออกมาที่บริเวณหน้าถ้ำ ไม่เคยมีวันไหนที่น้ำไม่ไหลเลยค่ะ ซึ่งบริเวณที่น้ำไหลมารวมกันนั้น ก็จะเป็นสระน้ำมีปลาว่ายไปมาอีกด้วย เป็นบรรยากาศของธรรมชาติที่สดชื่นและชุ่มฉ่ำใจมากๆ
+              <a href="https://www.google.com/maps/place/%E0%B8%96%E0%B9%8D%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%94%E0%B8%B2%E0%B8%A7/data=!4m2!3m1!1s0x30d0a72bcaac8bb3:0xc70c287f75e3147c?sa=X&ved=1t:155783&ictx=111" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ดอยอินทนนท์</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่4.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่อำเภอจอมทอง จังหวัดเชียงใหม่ เดิมมีชื่อว่า "ดอยหลวง" หรือ "ดอยหลวงอ่างกา" ชื่อของ ดอยอินทนนท์ เป็นชื่อของกษัตริย์พระนามว่าพระเจ้าอินทวิชยานนท์ เจ้าผู้ครองนครเชียงใหม่ ทรงเป็นผู้ที่ห่วงใยในป่าทางภาคเหนือ และพยายามรักษาไว้ ภายหลังเสด็จพิราลัย พระอัฐิส่วนหนึ่งได้เชิญไปประดิษฐาน ณ พระสถูปบนยอดดอยหลวง และเปลี่ยนชื่อเพื่อเป็นเกียรติ​ความสูง
+              เหนือระดับน้ำทะเล	2,565 เมตร (8,415 ฟุต)
+              <a href="https://www.google.com/maps/place/%E0%B8%94%E0%B8%AD%E0%B8%A2%E0%B8%AD%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%99%E0%B8%99%E0%B8%97%E0%B9%8C/data=!4m2!3m1!1s0x30dbaa9c1c7fd96b:0xf3f01fb3a96c7054?sa=X&ved=1t:155783&ictx=111" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดอุโมง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวเชียงใหม่5.1.jpg" />
+            <div class="content">
+            <p> ตั้งอยู่ที่ 135 หมู่ 10 ตำบลสุเทพ อำเภอเมือง จังหวัดเชียงใหม่ <br> วัดอุโมงค์ หรือ สวนพุทธธรรม ตั้งอยู่ที่ ถนนสุเทพ อำเภอเมือง จังหวัดเชียงใหม่ ค่ะ ที่นี่สร้างขึ้นในสมัยพญามังรายราวๆ ปี พ.ศ.1839 ซึ่งถ้านับถึงวันนี้ก็ราวๆ 700 กว่าปีแล้ว ต่อมาพญากือนา ทรงสร้างอุโมงค์ขึ้นที่นี่เพื่อให้พระมหาเถระจันทร์ใช้เป็นที่วิปัสสนากรรมฐานค่ะ กำแพงภายในจึงเป็นหลายช่องทางเดินทะลุกันได้ รวมถึงยังมีภาพวาดจิตรกรรมผาผนังที่มีความเก่าแก่อยู่ภายในอุโมงค์อีกด้วยค่ะ นักท่องเที่ยวจึงมักมาเดินชมความสวยงามภายในอุโมงค์ และถ่ายรูปสวยๆ
+              <a href="https://goo.gl/maps/66UUCBPu3koaLkbf9" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่1.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่2.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่3.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่4.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>โรงแรมแชงกรีลา เชียงใหม่</h1><br>
+          <div class="image-block">
+            <img src="imgเหนือ/bgที่พักเชียงใหม่1.1.webp" >
+            <div class="text">
+              ตั้งอยู่ที่ 89/8 ถ. ช้างคลาน ตำบลช้างคลาน อำเภอเมืองเชียงใหม่ เชียงใหม่ 50100 โทร:053 253 888 <br><br> แชงกรี-ลา เชียงใหม่ ตั้งอยู่ในย่านช้างคลานที่มีชีวิตชีวาของเชียงใหม่ ให้บริการที่พักที่ผสมผสานระหว่างวัฒนธรรมและความสะดวกสบายอย่างลงตัว เหมาะสำหรับนักเดินทางสองคน โรงแรมอยู่ห่างจากเชียงใหม่ไนท์บาซาร์และประตูท่าแพเพียงไม่กี่ก้าว ทำให้ผู้เข้าพักอยู่ใกล้กับสถานที่สำคัญและตลาดที่คึกคัก ผ่อนคลายในห้องพักปรับอากาศที่มี WiFi ฟรี ระเบียงส่วนตัว และวิวเมืองหรือวิวสระว่ายน้ำให้เลือก ผ่อนคลายที่สระว่ายน้ำกลางแจ้งพร้อมชมวิวที่สวยงาม เติมความสดชื่นในห้องอบไอน้ำ หรือเพลิดเพลินกับค็อกเทลที่บาร์สุดเก๋ ไม่ว่าจะสำรวจสถานที่ท่องเที่ยวทางวัฒนธรรมหรือเพลิดเพลินกับการพักผ่อน โรงแรมนี้จะมอบการเข้าพักที่หรูหราและน่าจดจำให้กับคุณ
+              <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B9%81%E0%B8%8A%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B5-%E0%B8%A5%E0%B8%B2+%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88/data=!4m2!3m1!1s0x0:0xf34886d7f00ab5f3?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+            </div>
+          </div>
+          <div class="image-block" style="margin-left: 30%;" >
+            <img src="imgเหนือ/bgที่พักเชียงใหม่1.2.webp" >
+          </div>
+          <div class="image-block" style="margin-left: 10%;">
+            <img src="imgเหนือ/bgที่พักเชียงใหม่1.3.webp">
+          </div>
+      </div>
+        <div class="text-box"><h1>The Inside House</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่2.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 56 ถนน สามล้าน ตำบล พระสิงห์ อำเภอเมืองเชียงใหม่ เชียงใหม่ 50200 โทร:053 904 699 <br><br> สัมผัสเสน่ห์เมืองเก่าเชียงใหม่ได้ที่ ดิ อินไซด์ เฮาส์ (SHA Extra Plus) โรงแรมที่สวยงามแห่งนี้ตั้งอยู่ใจกลางเมือง มอบความสะดวกสบายอันทันสมัย ​​พร้อมทิวทัศน์อันตระการตาของสวน ภูเขา หรือสระว่ายน้ำ นักเดินทางคนเดียวจะประทับใจกับ การบริการของพนักงานชั้นยอดและความสะดวกสบายในการเดินไปยังตลาด วัด และร้านอาหารอันคึกคัก ดื่มด่ำกับอาหารเช้าแสนอร่อยและน้ำชายามบ่าย ผ่อนคลายริมสระว่ายน้ำในร่ม และเพลิดเพลินกับบรรยากาศสบาย ๆ ด้วยเตียงนุ่มสบายและสิ่งอำนวยความสะดวกที่หรูหรา The Inside เฮาส์เป็นอัญมณีเล็กๆ ที่แนะนำเป็นอย่างยิ่งสำหรับนักเดินทางคนเดียวที่กำลังมองหาการเข้าพักที่น่าจดจำในเชียงใหม่
+            <a href="https://www.google.com/maps/place/The+Inside+House/data=!4m2!3m1!1s0x0:0x211b2acefae6b6f?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงใหม่2.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่2.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>ณ นิรันดร์ โรแมนติก บูทีค รีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่3.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ Q2J4+223 1/1 Soi 9 ถนน เจริญประเทศ อำเภอเมืองเชียงใหม่ เชียงใหม่ 50100 โทร:053280988 <br><br> ณ นิรันดร์ โรแมนติก บูทิก รีสอร์ต ตั้งอยู่ในย่านช้างคลานที่มีชีวิตชีวาของเชียงใหม่ เป็นสวรรค์สำหรับคู่รักที่ต้องการผสมผสานระหว่างการสำรวจและการพักผ่อน รีสอร์ตตั้งอยู่ริมแม่น้ำปิงในทำเลที่ยอดเยี่ยม สามารถเดินทางไปยังเชียงใหม่ไนท์บาซาร์และงานประเพณียี่เป็งและลอยกระทง (เทศกาลลอยโคม) ได้อย่างสะดวกสบาย ผ่อนคลายริมสระว่ายน้ำอันสวยงามหรือเพลิดเพลินกับการนวดผ่อนคลาย ห้องพักมีสิ่งอำนวยความสะดวกที่ทันสมัย เช่น เครื่องปรับอากาศและ WiFi ฟรี โดยบางห้องมีลานภายในที่สวยงามหรือวิวแม่น้ำ เพลิดเพลินกับอาหารตะวันตกและอาหารพื้นเมืองแสนอร่อยที่ร้านอาหารริมแม่น้ำ เหมาะสำหรับการพักผ่อนหลังจากการค้นพบวัฒนธรรมมาทั้งวัน
+            <a href="https://www.google.com/maps/place/%E0%B8%93+%E0%B8%99%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B8%A3%E0%B9%8C+%E0%B9%82%E0%B8%A3%E0%B9%81%E0%B8%A1%E0%B8%99%E0%B8%95%E0%B8%B4%E0%B8%81+%E0%B8%9A%E0%B8%B9%E0%B8%97%E0%B8%B5%E0%B8%84+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/@18.7799501,99.0049679,17z/data=!4m10!3m9!1s0x30da30078004f8b9:0xbca4d865d6faf95e!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.7799501!4d99.0049679!16s%2Fg%2F11cs4gxqq2?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงใหม่3.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Away chiang mai thapae resort</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่4.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 9 ถ. ท่าแพ ซ. 5 ตำบล ช้างม่อย อำเภอเมืองเชียงใหม่ เชียงใหม่ 50100 โทร:053904974 <br><br> อะเวย์ เชียงใหม่ ท่าแพ รีสอร์ต - อะ วีแกน รีทรีต เป็นที่พักที่เหมาะสำหรับนักเดินทางคนเดียว มอบการหลีกหนีความวุ่นวายในพื้นที่ท่าแพที่มีชีวิตชีวาของเชียงใหม่ ผ่อนคลายในสระว่ายน้ำที่เงียบสงบหรือสำรวจวัดและตลาดใกล้เคียงด้วยบริการรถเช่าที่สะดวกสบาย เพลิดเพลินกับห้องพักปรับอากาศพร้อม Wi-Fi และวิวเมือง สวน หรือสระว่ายน้ำ ห่างจากประตูท่าแพเพียง 575 เมตร และใกล้กับเชียงใหม่ไนท์บาซาร์ รีสอร์ตแห่งนี้มอบประสบการณ์ทางวัฒนธรรมและการช้อปปิ้งอันหลากหลาย ลิ้มรสเมนูมังสวิรัติหลากหลายในบรรยากาศสวนที่เงียบสงบเพื่อการพักผ่อนที่ไม่เหมือนใครและฟื้นฟูจิตใจ
+            <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B0%E0%B9%80%E0%B8%A7%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B9%81%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/data=!4m2!3m1!1s0x0:0x37c941ba52390ba?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงใหม่4.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่4.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Khum Phaya Resort & Spa</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่5.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 137, ตำบลหนองป่าครั่ง อำเภอเมืองเชียงใหม่ เชียงใหม่ 50000 โทร:053415555 <br><br> คุ้มพญา รีสอร์ต แอนด์ สปา บูทิก คอลเลกชัน ตั้งอยู่ในอำเภอสันทราย จังหวัดเชียงใหม่ มอบสถานที่พักผ่อนอันเงียบสงบสำหรับนักเดินทางสองคนที่ต้องการพักผ่อนและสำรวจพื้นที่โดยรอบ ท่ามกลางธรรมชาติที่เขียวขจี ใกล้กับตลาดท้องถิ่น วัด และเซ็นทรัลช้อปปิ้งเซ็นเตอร์ เพลิดเพลินกับความสะดวกสบายทันสมัย เช่น ห้องพักปรับอากาศพร้อมระเบียงหรือเฉลียงส่วนตัว บางห้องสามารถมองเห็นวิวสระว่ายน้ำ รีสอร์ตมีเสน่ห์แบบล้านนา สวนสวย สระว่ายน้ำขนาดใหญ่ บริการสปาผ่อนคลาย สระว่ายน้ำในร่ม ห้องอบไอน้ำ และทัวร์พร้อมไกด์ เพื่อการเข้าพักที่สดชื่นและน่าจดจำ
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%84%E0%B8%B8%E0%B9%89%E0%B8%A1%E0%B8%9E%E0%B8%8D%E0%B8%B2+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C%E0%B8%AA%E0%B8%9B%E0%B8%B2+%E0%B8%9A%E0%B8%B9%E0%B8%95%E0%B8%B4%E0%B8%81%E0%B8%84%E0%B8%AD%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%81%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99/data=!4m2!3m1!1s0x0:0x7ba02eddd42f105?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักเชียงใหม่5.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักเชียงใหม่5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+
+      <div id="info-แม่ฮ่องสอน" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน2.png" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน3.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>ปางอุ๋ง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน1.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ โรงเรียนบ้านรักไทย ตำบล หมอกจำแป่ อำเภอเมืองแม่ฮ่องสอน แม่ฮ่องสอน 58000 <br> ปางอุ๋ง หรือมีชื่อเต็มว่า โครงการพระราชดำริปางตอง 2 ตั้งอยู่ในพื้นที่หมู่บ้านรวมไทย ตำบลหมอกจำแป่ อำเภอเมืองแม่ฮ่องสอน จังหวัดแม่ฮ่องสอน เป็นสถานที่ท่องเที่ยวมีสภาพแวดล้อมเป็นป่าสนขึ้นเรียงรายอยู่รอบ ๆ อ่างเก็บน้ำขนาดใหญ่บนยอดเขา ในช่วงฤดูหนาวระหว่างเดือนธันวาคม–มกราคม ในตอนเช้าจะมีลมหนาวพัดมาพร้อมกับไอหมอกที่ลอยอยู่เหนือผืนน้ำ ได้รับการขนานนามว่าเป็น "สวิตเซอร์แลนด์แห่งเมืองไทย" <br> ปางอุ๋งเป็นหนึ่งในโครงการพระราชดำริของพระบาทสมเด็จพระมหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร ที่ทรงพัฒนาขึ้นเพื่อให้ราษฎรชนกลุ่มน้อยบริเวณนั้นเลิกปลูกพืชเสพติดและบุกรุกพื้นที่ป่า ฯลฯ คำว่า ปาง แปลว่าที่พักของคนทำงานในป่า ส่วน อุ๋ง หมายถึงที่ลุ่มต่ำ เมื่อรวมกันจึงแปลว่า "ที่พักริมอ่างเก็บน้ำ"
+              <a href="https://www.google.com/maps/place/%E0%B8%9B%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%B8%E0%B9%8B%E0%B8%87/@19.498392,97.9092037,17z/data=!3m1!4b1!4m6!3m5!1s0x30d00422101421bd:0xfb2e41c65e203d76!8m2!3d19.498392!4d97.9092037!16s%2Fg%2F11bc962d84?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>Thom’s Pai Elephant Camp</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน2.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล แม่ฮี้ อำเภอปาย แม่ฮ่องสอน 58130 เปิดและปิดเวลา 08.30 - 17.00 น.ของทุกวัน <br> Thom’s Pai Elephant Camp เป็นแคมป์ช้างแห่งแรกในอำเภอปาย และเป็นแคมป์ช้างแห่งแรกที่มีกิจกรรมให้นักท่องเที่ยวได้ขี่ช้างกันแบบไม่มีเก้าอี้นั่งอีกด้วย น่าตื่นเต้นมากๆ โดยเส้นทางขี่ช้างจะเริ่มต้นจากหน้าแคมป์ช้างไปตามถนน จากนั้นก็จะเลี้ยวซ้ายเข้าไปในป่า ตัดผ่านไร่ข้าวโพด ไร่ถั่วเหลือง ที่กำลังโตเขียวขจี จากบริเวณนั้นสามารถมองเห็นผืนไร่และทิวเขาสลับซับซ้อนของปายสวยงามมาก ปิดท้ายด้วยการพาช้างไปอาบน้ำที่แม่น้ำปายซึ่งอยู่ใกล้ๆ เล่นน้ำกับช้างสุดน่ารัก เป็นกิจกรรมที่บอกเลยว่าไม่ควรพลาด <br> สำหรับการขี่ช้างนั้นสามารถขึ้นขี่ได้เชือกละ 2-3 คน หากขึ้น 3 คนจะมีคนหนึ่งนั่งตรงคอช้าง ส่วนอีก 2 คนนั่งตรงหลังช้างค่ะ ราคาก็อยู่ที่คนละ 400 บาท หากใครยังไม่กล้าจะขี่ช้างแบบนี้ อยากนั่งเก้าอี้ ที่นี่ก็มีบริการเช่นกันแต่ต้องบวกเงินเพิ่มอีกนิดหน่อย และการขี่ช้างจะใช้เวลาประมาณ 1-3 ชั่วโมง
+              <a href="https://www.google.com/maps/place/Thom's+Pai+Elephant+Camp+%E0%B9%81%E0%B8%84%E0%B8%A1%E0%B8%9B%E0%B9%8C%E0%B8%8A%E0%B9%89%E0%B8%B2%E0%B8%87+%E0%B8%98%E0%B8%AD%E0%B8%A1+%E0%B8%9B%E0%B8%B2%E0%B8%A2/@19.310723,98.463093,17z/data=!3m1!4b1!4m6!3m5!1s0x30da8092c5d8c97d:0x74a8ffc9743498b0!8m2!3d19.310723!4d98.463093!16s%2Fg%2F1q6jzbqck?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>สะพานประวัติศาสตร์ปาย</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน3.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล แม่ฮี้ อำเภอปาย แม่ฮ่องสอน 58130 <br> มื่อมาถึงที่ สะพานประวัติศาสตร์ปาย นี้ นอกจากความสวยงามตามธรรมชาติแล้ว ต้องขอบอกว่าขนลุกพอสมควรเลยทีเดียวค่ะ เพราะที่แห่งนี้ในช่วงสงครามโลกครั้งที่ 2 นั้นเป็นจุดสำคัญที่ทางกองทัพญี่ปุ่นลำเลียงเสบียงอาหาร และยุทโธปกรณ์ต่างๆ เพื่อเข้าสู่ประเทศพม่า <br>     แต่ด้วยสภาพภูมิประเทศที่ไม่เอื้ออำนวย มีทั้งภูเขา หุบเหว และมีแม่น้ำปายขวางกั้น จึงทำให้ญี่ปุ่นต้องเกณฑ์ชาวบ้านจ้างให้ขุดถางสร้างเส้นทางระหว่างเชียงใหม่ไปแม่ฮ่องสอน และจากแม่ฮ่องสอนไปยังเชียงใหม่ โดยมาบรรจบกันที่สองฝั่งของแม่น้ำปาย บริเวณตรงนี้ แล้วสร้างสะพานไม้เชื่อมระหว่างสองฝั่งกลายเป็น สะพานประวัติศาสตร์ปาย
+              <a href="https://www.google.com/maps/place/%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B9%8C+%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9B%E0%B8%B2%E0%B8%A2/@19.2974272,98.4650524,17z/data=!3m1!4b1!4m6!3m5!1s0x30da80bfbc14715b:0x10a0f9ca0982a59a!8m2!3d19.2974272!4d98.4650524!16s%2Fg%2F1hm5snjmq?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>บ้านรักไทย</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน4.1.jpg" />
+            <div class="content">
+            <p>บ้านรักไทย หรือชื่อท้องถิ่น บ้านแม่ออ เป็นหมู่บ้านที่ตั้งอยู่บนดอยสูงในตำบลหมอกจำแป่ อำเภอเมืองแม่ฮ่องสอน จังหวัดแม่ฮ่องสอน ห่างจากตัวเมืองแม่ฮ่องสอนประมาณ 44 กิโลเมตร มีอ่างเก็บน้ำขนาดใหญ่อยู่ตรงกลางหมู่บ้าน <br>บ้านรักไทยเป็นหมู่บ้านชาวจีนยูนนานหรือจีนฮ่อ อดีตทหารจีนคณะชาติ กองพล 93 ที่ได้อพยพลี้ภัยสงครามกลางเมืองเข้ามาตั้งถิ่นฐานในประเทศไทย ในช่วงแรกเป็นเป็นการหลบหนีเข้ามายังไทยอย่างผิดกฎหมาย แต่ภายหลังจีนฮ่อกลุ่มนี้สามารถปราบปรามผู้ก่อการร้ายคอมมิวนิสต์ได้ตามความต้องการของรัฐบาลไทย รัฐบาลจึงได้มอบสัญญาติให้กับชาวจีนฮ่อเหล่านี้โดยกระทรวงมหาดไทยได้จัดสรรที่ดินบริเวณ 3 จังหวัดชายแดนภาคเหนือ ได้แก่ เชียงใหม่ เชียงราย และแม่ฮ่องสอน ให้แก่ชาวจีนฮ่อ ชาวจีนฮ่อที่พบในจังหวัดแม่ฮ่องสอนมีอยู่ 3 หมู่บ้าน ได้แก่ หมู่บ้านรักไทย หมู่บ้านสุริยะ และหมู่บ้านสันติชล โดยที่บ้านรักไทยมี ครอบครัวของนายโกวยี่ฉ่าย หยางเจินอาง และนางหลงเซียน แซ่หลิน มาสร้างบ้านเรือนเป็นครอบครัวแรก
+              <a href="https://www.google.com/maps/search/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B9%84%E0%B8%97%E0%B8%A2/@18.3128108,98.0639648,7z?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>หมู่บ้านกะเหรี่ยงคอยาว</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแม่ฮ่องสอน5.1.jpg" />
+            <div class="content">
+            <p> บ้านโต้งหลวง คือ หมู่บ้านชาวเขาที่อยู่กลางหุบเขา ในอำเภอแม่ริม จังหวัดเชียงใหม่ ในหมู่บ้านโต้งหลวง ประกอบด้วยชาวเขา 5 เผ่า อาศัยอยู่ในพื้นที่นี้ จริงๆ ผู้เขียนไปที่หมู่บ้านโต้งหลวง โดยบังเอิญค่ะเพราะไปที่บ้านโต้งหลวงจากการไปซื้อทริปขี้ช้าง แล้วก็ขี่ช้างไปที่ บ้านโต้งหลวง <br>   นักท่องเที่ยวสามารถเข้าไปที่ บ้านโต้งหลวง ได้จาก 2 ช่องทาง อย่างแรกคือซื้อทริปขี่ช้าง กับ เข้า บ้านโต้งหลวง ทางด้านหน้าของ บ้านโต้งหลวง ในกรณีหลังนี้ต้องชำระค่าตั๋ว 500 บาท เพื่อเข้ามาชม บ้านโต้งหลวง รายได้ส่วนหนึ่งไม่ว่าจะจากทริปขี้ช้างและค่าตั๋วจะถูกนำมาแบ่งให้กับคนในชุมชนบ้านโต้งหลวง ซึ่งเป็นรายได้อีกช่องทางหนึ่งของชาวเขา
+              <a href="https://www.google.com/maps/search/%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B8%B0%E0%B9%80%E0%B8%AB%E0%B8%A3%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B8%A2%E0%B8%B2%E0%B8%A7/@19.2597499,97.9022276,17z?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน1.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน2.webp" class="img">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน3.webp" class="img">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน4.webp" class="img">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>ลีไวน์รักไทยรีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน1.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ ตำบล หมอกจำแป่ อำเภอเมืองแม่ฮ่องสอน แม่ฮ่องสอน 58000 โทร:0895529650 <br><br> รีสอร์ตวิลลานี้มีบริการ Wi-Fi ฟรีในทุกห้องพักพร้อมให้ท่องเน็ตได้ทุกเมื่อ รวมถึงบริการที่จอดรถฟรี ที่พักตั้งอยู่ในย่านหมอกจำแป่ของแม่ฮ่องสอน ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ทริปยังไม่จบถ้าไม่ได้แวะไปที่เที่ยวชื่อดังอย่าง สนามบินแม่ฮ่องสอน ด้วยอีกสักที่ ที่พัก 4 ดาวนี้มีห้องอาหาร การเข้าพักจึงผ่อนคลายและสะดวกสบายสุดๆ
+            <a href="https://www.google.com/maps/place/%E0%B8%A5%E0%B8%B5%E0%B9%84%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B9%84%E0%B8%97%E0%B8%A2%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/data=!4m2!3m1!1s0x0:0x9e3a4cf69f70831f?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน1.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน1.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Baan Daeng Resort</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน2.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 117 ตำบล หมอกจำแป่ อำเภอเมืองแม่ฮ่องสอน แม่ฮ่องสอน 58000 โทร:0614082464 <br><br> ตั้งอยู่ในพื้นที่เงียบสงบของหมอกจำแป่ในแม่ฮ่องสอน Baan Daeng Resort บ้านรักไทย มอบประสบการณ์การพักผ่อนที่เงียบสงบสำหรับนักเดินทางที่เดินทางคนเดียว รายล้อมไปด้วยวิวภูเขาที่งดงามและวัฒนธรรมชนเผ่าที่หลากหลาย รีสอร์ทเหมาะสำหรับผู้ที่มองหาความสงบและธรรมชาติ มีสวนที่สวยงาม พื้นที่เลานจ์ส่วนกลางที่อบอุ่นสำหรับการผ่อนคลาย และที่จอดรถในสถานที่ ห้องพักมีการออกแบบอย่างพิถีพิถัน พร้อมระเบียงหรือชานส่วนตัวที่เหมาะสำหรับการพักผ่อนหรือไตร่ตรอง ที่พักบางแห่งมีวิวภูเขาที่สวยงามเป็นฉากหลังที่สงบสำหรับการเดินทางของคุณ ที่นี่รอคอยบรรยากาศที่อบอุ่นสำหรับคุณ
+            <a href="https://www.google.com/maps/place/Baan+Daeng+Resort+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B9%84%E0%B8%97%E0%B8%A2+%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AE%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%99/data=!4m2!3m1!1s0x0:0x5368fae490ab1061?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน2.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน2.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>Pai Village Boutique Resort</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน3.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 88 Moo 3 Vieng Tai อำเภอปาย แม่ฮ่องสอน 58130 โทร:053698152 <br><br> หลีกหนีสู่โอเอซิสอันเงียบสงบของปาย วิลเลจ บูติก รีสอร์ท เหมาะสำหรับนักเดินทางสองคนที่แสวงหาความเงียบสงบและความงามตามธรรมชาติ รีสอร์ทที่สวยงามแห่งนี้มาพร้อมทิวทัศน์แม่น้ำอันน่าทึ่งและสวนอันเขียวชอุ่ม ผ่อนคลายริมสระน้ำหรือปล่อยใจไปกับการนวดที่สปา เชื่อมต่ออินเทอร์เน็ตได้ฟรี Wi-Fi และผ่อนคลายบนระเบียงส่วนตัวของคุณ ดื่มด่ำกับมรดกทางวัฒนธรรมของเชียงใหม่พร้อมสถานที่สำคัญที่มีชื่อเสียงใกล้เคียง เพลิดเพลินกับบริการที่โดดเด่น ห้องพักสะอาด และอาหารเช้าแสนอร่อย ด้วยทำเลที่ดีเยี่ยมใจกลางปาย คุณจะ ห่างจากร้านอาหาร ร้านค้า และสถานที่ท่องเที่ยวเพียงไม่กี่ก้าว สถานที่พักผ่อนอันน่าจดจำของคุณรออยู่
+            <a href="https://www.google.com/maps/place/%E0%B8%9B%E0%B8%B2%E0%B8%A2+%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%88+%E0%B8%9A%E0%B8%B9%E0%B8%95%E0%B8%B4%E0%B8%81+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/data=!4m2!3m1!1s0x0:0x52493f0261a06ea7?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Puripai Villa</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน4.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 130, หมู่ 1, ตำบลแม่นาเติง อำเภอปาย Mae Hong Son แม่ฮ่องสอน 58130 โทร:052040121 <br><br> ค้นพบความงามอันเงียบสงบของภูริปายวิลล่าในพื้นที่อันมีเสน่ห์ของแม่นาเติง ปาย ดื่มด่ำกับทิวทัศน์อันงดงามและดื่มด่ำกับการผสมผสานวัฒนธรรมไทยดั้งเดิมอันเป็นเอกลักษณ์ ดื่มด่ำกับการว่ายน้ำเพื่อความสดชื่นในสระน้ำที่ส่องประกายระยิบระยับและปรนเปรอตัวเองด้วยรสชาติอร่อย เครื่องดื่มที่บาร์และร้านกาแฟในสถานที่ ห้องพักแสนสบายมอบความสะดวกสบายที่นักเดินทางคนเดียวต้องการ เช่น เครื่องปรับอากาศ Wi-Fi ฟรี ห้องอาบน้ำฝักบัวที่เติมพลัง และอุปกรณ์อาบน้ำที่หรูหรา สำรวจ Nam Yang Kung Fu Retreat ในบริเวณใกล้เคียงเพื่อประสบการณ์อันน่าจดจำ อยู่ห่างออกไปไม่ไกล จองการเข้าพักที่ Puripai Villa และเริ่มต้นการผจญภัยเดี่ยวสุดพิเศษ
+            <a href="https://www.google.com/maps/place/Puripai+Villa/data=!4m2!3m1!1s0x0:0x5d9c85877d054fd2?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน4.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน4.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>The Imperial Mae Hong Son Resort</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ รร.อิมพีเรียลแม่ฮ่องสอน 149 ม.8 ตำบล ปางหมู เมือง แม่ฮ่องสอน 58000 โทร:053684444 <br><br> พักในใจกลางเมืองแม่ฮ่องสอนที่ อิมพีเรียล แม่ฮ่องสอน รีสอร์ท ที่พักพิเศษแห่งนี้มอบการเข้าถึงที่ง่ายดายไปยังสถานที่ท่องเที่ยวในท้องถิ่น ตลาดที่มีชีวิตชีวา และสถานที่ทางวัฒนธรรม ทำให้เหมาะสำหรับนักเดินทางสองคนที่กำลังมองหาวันหยุดพักผ่อนที่น่าจดจำ เพลิดเพลินกับความหรูหราของ ห้องพักสะดวกสบายที่คุณสามารถผ่อนคลายบนระเบียง/เฉลียงส่วนตัวและเชื่อมต่ออินเทอร์เน็ตไร้สายฟรี แช่ตัวในสระว่ายน้ำอันน่าหลงใหลพร้อมทิวทัศน์อันตระการตาหรือผ่อนคลายในห้องซาวน่า อิ่มอร่อยกับอาหารเช้าแบบนำกลับแสนอร่อยเพื่อเริ่มต้นวันใหม่ของคุณ ด้วยสวนเมืองร้อนและราคาไม่แพง อิมพีเรียล แม่ฮ่องสอน รีสอร์ท มอบการเข้าพักอันเป็นเอกลักษณ์และน่าจดจำสำหรับนักเดินทางสองคน
+            <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%B5%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%A5%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AE%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%AD%E0%B8%99/data=!4m2!3m1!1s0x0:0xac79b45d54cd08ba?sa=X&ved=1t:2428&ictx=111" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน5.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแม่ฮ่องสอน5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+
+      <div id="info-ลำพูน" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวลำพูน1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำพูน2.webp" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำพูน3.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำพูน4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำพูน5.webp" class="img">
+        </div>
+        <div class="text-box"><h1>อุทยานแห่งชาติดอยขุนตาล</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำพูน1.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ทาปลาดุก อำเภอแม่ทา ลำพูน 51140 เปิดและปิดเวลา 7.45 - 18.00 น. ของทุกวัน <br> อุทยานแห่งชาติดอยขุนตาล เป็นอุทยานแห่งชาติที่ตั้งอยู่ในอำเภอแม่ทา จังหวัดลำพูนและอำเภอห้างฉัตร อำเภอเมืองลำปาง จังหวัดลำปาง สภาพพื้นที่เป็นป่าอุดมสมบูรณ์ เป็นแหล่งต้นน้ำ สามารถเดินทางโดยรถไฟมาลงที่สถานีรถไฟขุนตาน ซึ่งเป็นที่ตั้งอุโมงค์ขุนตาน อุโมงค์รถไฟที่ยาวที่สุดในประเทศไทย สร้างโดยชาวเยอรมัน <br> ป่าดอยขุนตาลเป็นป่า 1 ใน 14 แห่ง ที่คณะรัฐมนตรีได้มีมติในการประชุม เมื่อวันที่ 7 ตุลาคม พ.ศ. 2502 ให้จัดตั้งเป็นอุทยานแห่งชาติ ซึ่งกรมป่าไม้ได้ประกาศให้ป่าในท้องที่บางส่วนของตำบลทาปลาดุก อำเภอแม่ทา จังหวัดลำพูน เป็นป่าสงวนแห่งชาติป่าดอยขุนตาล ตามกฎกระทรวง ฉบับที่ 116 (พ.ศ. 2506) ประกาศในราชกิจจานุเบกษา เล่ม 80 ตอนที่ 82 วันที่ 13 สิงหาคม 2506 เนื้อที่ 39,206.25 ไร่ และในท้องที่บางส่วนของตำบลเวียงตาล ตำบลวอแก้ว อำเภอห้างฉัตร และตำบลบ้านเอื้อม อำเภอเมือง จังหวัดลำปาง เป็นป่าสงวนแห่งชาติป่าดอยขุนตาลตาม กฎกระทรวงฉบับที่ 359 (พ.ศ. 2511) ประกาศในราชกิจจานุเบกษา เล่ม 85 ตอนที่ 109 วันที่ 22 พฤศจิกายน 2511 เนื้อที่ 120,625 ไร่
+              <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%AD%E0%B8%A2%E0%B8%82%E0%B8%B8%E0%B8%99%E0%B8%95%E0%B8%B2%E0%B8%A5/@18.4956917,99.2710882,17z/data=!3m1!4b1!4m6!3m5!1s0x30d97eafce537423:0x7d2fddfa0477cefd!8m2!3d18.4956917!4d99.2710882!16s%2Fm%2F0h7m5qd?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>สะพานขาวทาชมภู</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำพูน2.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ทาปลาดุก อำเภอแม่ทา ลำพูน 51140 <br> ะพานขาวทาชมภู เริ่มก่อสร้างเมื่อปีพ.ศ. 2461 และสร้างเสร็จในปีพ.ศ. 2463 โดยมีรูปทรงเป็นทรงโค้งทาสีขาวในแบบสถาปัตยกรรมตะวันตก นับเป็นสะพานประวัติศาสตร์ ที่มีความแปลกและท้าทาย คือเป็นสะพานคอนกรีตเสริมเหล็ก ปกติสะพานรถไฟจะสร้างด้วยเหล็กเท่านั้น เพราะสามารถทนต่อแรงสั่นสะเทือนและอ่อนตัวได้ดีกว่า <br> แต่เนื่องจากช่วงเวลาที่สร้างสะพานเป็นภาวะสงคราม จึงไม่สามารถหาเหล็กมาสร้างสะพานได้ แต่ด้วยการคำนวณและควบคุมงานที่ยอดเยี่ยมของ นายพลเอกพระเจ้าบรมวงศ์เธอ พระองค์เจ้าบุรฉัตรไชยากร กรมพระกำแพงเพชรอัครโยธินได้ ทำให้สะพานขาวทาชมภูยังคงใช้งานได้อยู่จนถึงทุกวันนี้ และในปัจจุบันได้กลายเป็นสถานที่ถ่ายรูปสำหรับนักท่องเที่ยว ถือได้ว่าเป็นจุดเช็กอินหลักของจังหวัดลำพูนเลยก็ว่าได้ อีกทั้งทุกวันที่ 14 กุมภาพันธ์ของทุกปี จะมีการจัดงานที่คู่รักจะมาจดทะเบียนสมรถ ณ สะพานขาวทาชมภูแห่งนี้
+              <a href="https://www.google.com/maps/place/%E0%B8%AA%E0%B8%B0%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A7%E0%B8%97%E0%B8%B2%E0%B8%8A%E0%B8%A1%E0%B8%A0%E0%B8%B9/@18.5106367,99.2179119,17z/data=!3m1!4b1!4m6!3m5!1s0x30d97e69fb646b3d:0x98b8b6571187589d!8m2!3d18.5106367!4d99.2179119!16s%2Fg%2F119vcnzr5?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดพระธาตุหริภุญชัย</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำพูน3.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ถนน รอบเมืองใน ตำบล ในเมือง อำเภอเมืองลำพูน ลำพูน 51000 เปิดและปิดเวลา 6.00 - 21.00 น. ของทุกวัน <br> วัดพระธาตุหริภุญชัยอดีตนิยมเรียก วัดเจดีย์หลวง เป็นพระอารามหลวงชั้นเอก ชนิดวรมหาวิหาร ตั้งอยู่ใจกลางเมืองลำพูน มีเนื้อที่ทั้งหมดประมาณ 28 ไร่ 3 งาน 26 ตารางวา ตำนานมูลศาสนาและตำนานพระธาตุเจ้าหริภุญชัย กล่าวว่า ครั้นพุทธกาล พระพุทธเจ้าได้เสด็จมาบิณฑบาตในหมู่บ้านของเหล่าเม็งคบุตร แล้วเสด็จเลียบลำน้ำแม่ระมิงค์ (แม่น้ำปิง) พวกเม็งตามเสด็จมาถึงที่สถานที่หนึ่งทางทิศตะวันตกของแม่น้ำ พระพุทธเจ้าปรารถจะนั่ง ก็มีแท่นหินก้อนหนึ่งผุดขึ้นมาจากพื้นดิน พระพุทธเจ้าจึงทรงวางบาตรและประทับเหนือแท่นหินนั้น ชมพูนาคราชและพญากาเผือกออกมาอุปัฏฐากพระองค์ ลัวะผู้หนึ่งได้ถวายหมากสมอ เมื่อพระพุทธเจ้าฉันเสร็จได้ซัดเมล็ดสมอลงเหนือพื้นดิน เมล็ดสมอหมุนเวียน 3 รอบ แล้วจึงได้ฝังพระเกศาแล้วเอาผลสมอทับไว้ มีพุทธพยากรณ์ว่า ในภายภาคหน้าเมื่อพระเจ้าอาทิตยราชเสวยราชย์ สถานที่นี้จะเป็นที่ตั้งของมหานครใหญ่ชื่อ "หริภุญชัย" เพราะพระพุทธเจ้าได้มาฉันหมากสมอที่นี้ ที่พระพุทธเจ้านั่งจะเป็นที่ตั้งของเจดีย์ที่ประดิษฐานพระบรมสารีริกธาตุ มีธาตุกระดูกพระเศียร ธาตุกระดูกอก ธาตุกระดูกนิ้ว และธาตุย่อย รวม 1 บาตรเต็ม ณ มหานครแห่งนี้ เมื่อพระพุทธเจ้าเสด็จกลับไปแล้ว พญากาเผือกเมื่อได้ยินพุทธพยากรณ์ก็จำได้สิ้น เมื่อบินกลับถึงป่าหิมพานต์จึงเรียกกาดำผู้เป็นหลานมาเล่าพุทธพยากรณ์ พร้อมให้กาดำอยู่เฝ้ารักษาสถานที่ เหล่าเทวดา อสูร ฤๅษี พากันมาบูชาแท่นหินนั้นเป็นนิตย์ ตำนานพระธาตุเจ้าหริภุญชัยว่าแท่นหินนั้นจมลงไปในดินตามเดิม ภายหลังพระยาศรีธรรมาโศกราชได้นำพระธาตุใส่ในกระบอกไม้รวก แล้วใส่ในโกศแก้วลูกใหญ่ 3 กำ บรรจุใต้ที่พระพุทธเจ้าประทับนั่งฉันหมากสมอ
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%95%E0%B8%B8%E0%B8%AB%E0%B8%A3%E0%B8%B4%E0%B8%A0%E0%B8%B8%E0%B8%8D%E0%B8%8A%E0%B8%B1%E0%B8%A2+%E0%B8%A7%E0%B8%A3%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3/@18.5771055,99.008501,17z/data=!3m1!4b1!4m6!3m5!1s0x30dbcd5981096c87:0x5fe6427cf8d3de23!8m2!3d18.5771055!4d99.008501!16s%2Fm%2F0vxcvtx?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดสันป่ายางหลวง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำพูน4.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ พระครูปัญญาธรรมวัฒน์ วัดสันป่ายางหลวง ครูบาอินทร อำเภอเมือง ลำพูน 51000 เปิด24 ชม. ของทุกวัน <br> เป็นวัดที่มีความสวยงามโดยเฉพาะวิหารได้ติดอันดับ 1 ใน 10 วิหารสวยของประเทศไทยอีกด้วย พระวิหารพระเขียวโขง สร้างเมื่อ พ.ศ. 2536 โดยใช้วัสดุเสาไม้ตะเคียนทอง ไม้แดง จากประเทศลาว พม่า และไทย พระครูบาอินทรเป็นผู้ออกแบบก่อสร้างและออกแบบลวดลายพื้นเมือง ผสมผสานระหว่างสมัยเก่ากับสมัยใหม่ วิหารพระเจ้าเขียวโขงเมื่อมองจากด้านหน้าจะมีหลังคา 5 ชั้นมีช่อฟ้า 5 ตัวหมายถึงพระเจ้า 5 พระองค์ ด้านหลังอีกสามหมายถึงศีลสมาธิปัญญา หมายถึงการปฏิบัติของพระพุทธเจ้า เพื่อเดินเข้าสู่พระนิพพาน หน้า 5 รวมหลัง 3 เป็น 8 หมายถึงต้องปฏิบัติตามทางสายกลางคือมรรค 8 ได้ธรรมมัชฌิมา ทางสายกลางคือ 9 เป็นโลกุตรธรรม นอกจากนี้ภายในวิหารพระเขียวโขงเป็นที่ประดิษฐานพระพุทธอัญญรัตนมหานาทีศรีหริภุญชัย หรือพระเขียวโขง เป็นพระพุทธรูปแกะสลักจากหินแม่น้ำโขง บ้านดอนมหาวัน ที่ใกล้กับประเทศลาว
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AA%E0%B8%B1%E0%B8%99%E0%B8%9B%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87+%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B8%9A%E0%B8%B2%E0%B8%AD%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3+%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%84%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B9%8C+%E0%B8%88.%E0%B8%A5%E0%B8%B3%E0%B8%9E%E0%B8%B9%E0%B8%99/@18.5853354,99.0120942,17z/data=!3m1!4b1!4m6!3m5!1s0x30dbcd560bffa0b1:0x26b07bcaf9a0303f!8m2!3d18.5853354!4d99.0120942!16s%2Fg%2F1v1n_bj6?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>แก่งก้อ</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำพูน5.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ก้อ อำเภอลี้ ลำพูน 51110 <br>   แก่งก้อ เป็นพื้นที่ของทะเลสาบสวยๆ ที่อยู่ใน อุทยานแห่ชาติแม่ปิง ตำบลก้อ อำเภอลี้ จังหวัดลำพูน เกิดขึ้นมาจากการสร้างเขื่อนภูมิผลฯ เพราะหลังจากสร้างเขื่อนเสร็จ พื้นที่นี้น้ำก็เข้าท่วมจนกลายเป็นทะเลสาบขึ้นมาค่ะ เป็นน้ำจากลำห้วยของแม่ก้อที่ไหลมาบรรจบกับแม่น้ำปิง มีบรรยากาศโดยรอบสวยงดงามมากๆ เพราะบริเวณนี้ถูกล้อมไปด้วยขุนเขา ต้นไม้สีเขียว เลยทำให้กลายเป็นสถานที่พักผ่อนกลางธรรมชาติที่ดีมากๆ <br>   โดยบริเวณรอบๆ แก่งก้อ จะมีเรือนแพให้บริการค่ะ สามารถนั่งชมวิวหรือจะนั่งเรือไปชมวิวรอบๆ สองฝั่งแม่น้ำปิงก็ได้เช่นกันค่ะ เพราะรอบๆ จะมีเขาหินปูนที่ถูกกัดเซาะ เป็นหินงอกหินย้อยสวยงดงามมากๆ รวมไปถึง สัตว์น้อยใหญ่ ทั้งปลาหลากหลายชนิด หรือแม้กระทั่ง นกที่บินโฉบไปมา
+              <a href="https://www.google.com/maps/place/%E0%B9%81%E0%B8%81%E0%B9%88%E0%B8%87%E0%B8%81%E0%B9%89%E0%B8%AD+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B8%81%E0%B9%89%E0%B8%AD+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%A5%E0%B8%B5%E0%B9%89+%E0%B8%A5%E0%B8%B3%E0%B8%9E%E0%B8%B9%E0%B8%99+51110/data=!4m2!3m1!1s0x30dc7209693bd8bd:0x7e26e14886cb51db?sa=X&ved=1t:242&ictx=111" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักลำพูน1.webp" class="img">
+          <img src="imgเหนือ/bgที่พักลำพูน2.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักลำพูน3.webp" class="img">
+          <img src="imgเหนือ/bgที่พักลำพูน4.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักลำพูน5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>ต้นกล้า บูทิก โฮเต็ล</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำพูน1.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ ถนน เจริญราษฎร์ ตำบล เหมืองง่า Muang ลำพูน 51000 โทร:0626871234 <br> ต้นกล้า บูทิก โฮเต็ล เป็นสถานที่พักผ่อนอันเงียบสงบท่ามกลางเมืองประวัติศาสตร์ลำพูน เหมาะสำหรับนักเดินทางสองคนที่มองหาการหลีกหนีทางวัฒนธรรม ล้อมรอบด้วยวัดที่เงียบสงบ ตลาดที่มีชีวิตชีวา และชนบทที่เขียวขจี ทำเลนี้มอบความสมดุลที่ลงตัวระหว่างประวัติศาสตร์และการพักผ่อน โรงแรมให้บริการเช็คอินและแผนกต้อนรับตลอด 24 ชั่วโมง เพื่อให้การเข้าพักเป็นไปอย่างไร้กังวล ผู้เข้าพักสามารถผ่อนคลายในพื้นที่สวนที่เงียบสงบหลังจากการสำรวจมาทั้งวัน ห้องพักที่ตกแต่งอย่างดีมีบริการ WiFi ฟรี เครื่องปรับอากาศ และระเบียงหรือเฉลียงส่วนตัว โดยบางห้องมีวิวเมืองที่สวยงามเพิ่มเสน่ห์ให้กับการเข้าพัก
+            <a href="https://www.google.com/maps/place/Tonkla+Boutique+Hotel/@18.5919512,99.0157564,17z/data=!4m10!3m9!1s0x30da2d9fe9bc5157:0xe791aa5f99f5ef0f!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.5919512!4d99.0157564!16s%2Fg%2F11j0btbxcr?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำพูน1.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำพูน1.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>โรงแรมฝันหวาน</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำพูน2.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 420 ตำบล ลี้ อำเภอลี้ ลำพูน 51110 โทร:0806701468 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านลี้ของลำพูน ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%9D%E0%B8%B1%E0%B8%99%E0%B8%AB%E0%B8%A7%E0%B8%B2%E0%B8%99+Funwan+Hotel+and+Viennoiserie/@17.8042442,98.9471039,17z/data=!4m10!3m9!1s0x30dc09988174e519:0xced7fb7bc7ea1496!5m3!1s2025-05-15!4m1!1i2!8m2!3d17.8042442!4d98.9471039!16s%2Fg%2F1hm61nmby?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำพูน2.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำพูน2.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>โรงแรมพญาอิน</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำพูน3.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 35/1 ถ.จิตตวงศ์พันธ์รังสรร ในเมือง อำเภอเมืองลำพูน ลำพูน 51000 โทร:053511777 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านเมืองลำพูนของลำพูน ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%9E%E0%B8%8D%E0%B8%B2%E0%B8%AD%E0%B8%B4%E0%B8%99/@18.582971,99.0157155,17z/data=!4m10!3m9!1s0x30dbcd57d5d74b37:0xf92e4f5e47e7474c!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.582971!4d99.0157155!16s%2Fg%2F1tq_yyx0?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำพูน3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำพูน3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>จามาเดวี</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำพูน4.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ ตำบล ในเมือง อำเภอเมืองลำพูน ลำพูน 51000 โทร:053512115 <br> ค้นพบเสน่ห์อันน่าหลงใหลของลำพูน เมืองประวัติศาสตร์ที่ขึ้นชื่อในเรื่องวัดโบราณและภูมิทัศน์อันเขียวชอุ่ม ดื่มด่ำไปกับมรดกทางวัฒนธรรมอันมั่งคั่งและบรรยากาศอันเงียบสงบ พักที่จามเทวีสำหรับห้องพักที่สะดวกสบาย Wi-Fi ฟรี และห้องอาบน้ำที่สดชื่น เพลิดเพลินกับรสชาติอร่อย อาหารเช้าเติมพลังสำหรับการผจญภัยของคุณ ด้วยทำเลสะดวก ใกล้ตลาดกลางคืนและสถานที่ท่องเที่ยว สำรวจเมืองได้อย่างง่ายดาย สัมผัสความสะดวกสบายด้วยสิ่งอำนวยความสะดวกทั้งจักรยานให้เช่าและรูมเซอร์วิสตลอด 24 ชั่วโมง บางห้องมองเห็นวิวสวนอันเงียบสงบเพื่อหลีกหนีความวุ่นวาย . จองการเข้าพักที่จามเทวีเพื่อการเดินทางอันน่าจดจำในจังหวัดลำพูน
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%88%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%94%E0%B8%A7%E0%B8%B5/@18.5796661,99.0017941,17z/data=!3m1!4b1!4m10!3m9!1s0x30dbcd4552dbbddd:0x378a0c3da4a3edcd!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.5796661!4d99.0017941!16s%2Fg%2F11c527bvg_?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำพูน4.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำพูน4.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>อีซี โฮเทล (Esy Hotel)</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำพูน5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 2/7 หมู่ ดอย ติ ซอย 3 ตำบล เวียงยอง อำเภอเมืองลำพูน ลำพูน 51000 โทร:053511558 <br> อีซี โฮเทลในลำพูนเป็นสถานที่พักที่เหมาะสำหรับนักเดินทางสองคนที่กำลังมองหาการพักผ่อนในเมืองที่มีประวัติศาสตร์ ค้นพบเสน่ห์ของวัดโบราณในลำพูน ตลาดท้องถิ่นที่มีชีวิตชีวา และบรรยากาศล้านนาแท้ ๆ ผู้เข้าพักสามารถผ่อนคลายริมสระว่ายน้ำกลางแจ้งที่สดชื่นหรือสำรวจพื้นที่ด้วยบริการเช่าจักรยานที่สะดวกสบาย การเช็คอินตลอด 24 ชั่วโมงช่วยให้การเดินทางมาถึงเป็นไปอย่างไร้กังวลไม่ว่าจะมาถึงเวลาไหน ห้องพักมี Wi-Fi ฟรี เครื่องปรับอากาศ และฝักบัวอาบน้ำที่สดชื่น โดยบางห้องมีวิวถนนที่น่ารื่นรมย์ เหมาะสำหรับการสำรวจและพักผ่อนในบรรยากาศที่เงียบสงบ
+            <a href="https://www.google.com/travel/search?q=%E0%B8%AD%E0%B8%B5%E0%B8%8B%E0%B8%B5%20%E0%B9%82%E0%B8%AE%E0%B9%80%E0%B8%97%E0%B8%A5%20(Esy%20Hotel)&g2lb=4965990%2C4969803%2C72277293%2C72302247%2C72317059%2C72414906%2C72471280%2C72472051%2C72481459%2C72485658%2C72560029%2C72573224%2C72616120%2C72619927%2C72647020%2C72648289%2C72686036%2C72760082%2C72803964%2C72832976%2C72882230%2C72885032%2C72948010%2C72949865%2C72955970%2C72958594%2C72958623%2C72959982%2C72960541&hl=th-TH&gl=th&cs=1&ssta=1&ts=CAESCgoCCAMKAggDEAAaeQpbElkyJTB4MzBkYmVjMDAwMDAwMDA0MToweDEyYmQxZmY3ZWY0NGE4MWI6MOC4reC4teC4i-C4teC5iOC5guC4ruC5gOC4l-C4pSAxIOC4peC4s-C4nuC4ueC4mRIaEhQKBwjpDxAFGA8SBwjpDxAFGBAYATICCAIqBwoFOgNUSEI&qs=CAEyJENoY0ltOUNTLXY3LXg5NFNHZ3N2Wnk4eGRIbG9OSFJpWkJBQjgGWmYyZKoBYRABKg0iCWVzeSBob3RlbCg1Mh8QASIb2llf-C-5Wll_Em0iS7bfk3n8-DaL1fYe1wI-Mi0QAiIp4Lit4Li1IOC4i-C4tSDguYLguK4g4LmA4LiXIOC4pSBlc3kgaG90ZWw&ap=KigKEgkR-_ZcdZAyQBG1JGExIMBYQBISCUqpPmgWlTJAEbUkYSuOwVhAMABIAWgB&ictx=111&ved=0CAAQ5JsGahgKEwi4yqeexpWNAxUAAAAAHQAAAAAQhwE" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำพูน5.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำพูน5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+
+      <div id="info-ลำปาง" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวลำปาง1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำปาง2.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำปาง3.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำปาง4.webp" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวลำปาง5.jpeg" class="img">
+        </div>
+        <div class="text-box"><h1>วัดเฉลิมพระเกียรติพระจอมเกล้าราชานุสรณ์</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำปาง1.1.webp" />
+            <div class="content">
+            <p>วัดพุทธบาทสุทธาวาส เป็นวัดราษฎร์สังกัดคณะสงฆ์ฝ่ายธรรมยุต ตั้งอยู่ในตำบลวิเชตนคร อำเภอแจ้ห่ม จังหวัดลำปาง เปิดและปิดเวลา 6.30 - 16.00 น. ของทุกวัน <br> วัดพุทธบาทสุทธาวาส หรือชื่อเดิมคือ วัดเฉลิมพระเกียรติพระจอมเกล้าราชานุสรณ์ หรือชาวบ้านนิยมเรียกว่า วัดพระพุทธบาทปู่ผาแดง บางคนเรียกกันง่าย ๆ ว่า วัดล่าง ตั้งวัดเมื่อวันที่ 31 พฤษภาคม พ.ศ. 2553 แต่ก่อนบริเวณนี้มีแต่เพียงรอยพระพุทธบาทอยู่ดอยปู่ยักษ์หรือดอยพระบาทปู่ผาแดง เมื่อก่อนยังไม่มีการสร้างถนนขึ้นเขา ชาวบ้านใช้การเดินเท้าจากตีนเขาเพื่อขึ้นไปสักการะรอยพระพุทธบาทเป็นประจำทุกปี ต่อมาหลวงพ่อไพบูลย์ สุมังคโล (พระเทพวิสุทธิญาณ) เจ้าอาวาสวัดอนาลโยทิพยาราม จังหวัดพะเยา ได้เดินทางมาสักการะรอยพระพุทธบาทโดยการเดินเท้า แล้วเกิดศรัทธา จนทางคณะสงฆ์จึงมีมติให้สร้างวัดขึ้นที่บริเวณใกล้กับรอยพระพุทธบาท สร้างขึ้นอันเนื่องในวันพระบรมราชสมภพ 200 ปีแห่งพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว <br> บริเวณวัดแบ่งออกเป็น 3 ระดับ ชั้นแรกเป็นที่ตั้งของอุโบสถและเจดีย์ ภายในอุโบสถเป็นที่ประดิษฐานพระพุทธรูปที่จำลองมาจากพระนิรันตราย ซึ่งถือเป็นพระพุทธรูปประจำพระองค์ของรัชกาลที่ 4 หลังคาอุโบสถทรงล้านนาลดหลั่นสองชั้น และมีสิงห์คู่ยืนเฝ้าอยู่บริเวณทางเข้าสู่ลานอุโบสถ บริเวณชั้น 2 เป็นที่ประดิษฐานรอยพระพุทธบาท ทุก ๆ ปี ในวันขึ้น 15 ค่ำ เดือน 8 จะมีการจัดงานนมัสการรอยพระพุทธบาทขึ้นเป็นประจำ ภายในศาลาจะมีรอยพระพุทธบาทจำลอง และมีรอยพระพุทธบาทอยู่ในพื้นหินบริเวณใกล้เคียง ชั้นที่ 3 คือ ดอยพระบาท เป็นที่ประดิษฐานขององค์พระธาตุสีทอง มีเจดีย์สีขาว 5 องค์อยู่ริมชะง่อนผา
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B9%80%E0%B8%89%E0%B8%A5%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B8%A2%E0%B8%A3%E0%B8%95%E0%B8%B4+(%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%9E%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%9A%E0%B8%B2%E0%B8%97%E0%B8%AA%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B8%B2%E0%B8%A7%E0%B8%B2%E0%B8%AA)/@18.7463333,99.5323247,17z/data=!3m1!4b1!4m6!3m5!1s0x30d999b6bc3231c1:0x605b7e8b8d7decaa!8m2!3d18.7463333!4d99.5323247!16s%2Fg%2F11f8f28d73?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ทุ่งดอกบัวตอง แม่เมาะ</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำปาง2.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล แม่เมาะ อำเภอแม่เมาะ ลำปาง 52220 เปิดและปิดเวลา 6.00 - 18.00 น. ของทุกวัน <br> หน้าหนาวปี 2565 มาแล้ว ดอกบัวตองสีเหลืองได้เบ่งบานอวดความสวยทุกปี แต่ดอกบัวตองพืชพื้นเมืองของประเทศเม็กซิโกพันธุ์นี้อวดความสวยได้ไม่นานนะคะ จะผลิบานสะพรั่งเต็มทุ่งแค่ 2 เดือนเท่านั้น! คือเดือนพฤศจิกายนและเดือนธันวาคมหลังจากนั้นก็จะร่วงโรยแห้งเหี่ยวเฉาไปตามกาลเวลา <br> ถ้าร่างกายอยากปะทะอากาศเย็นและได้ชมความงามของดอกบัวตอง ตามมาติด ๆ มาปักหมุดให้ฮีลใจได้ที่ สวนเฉลิมพระเกียรติ 84 พรรษา พระบาทสมเด็จพระเจ้าอยู่หัวฯ หรือทุ่งดอกบัวตอง ตั้งอยู่ที่ ตำบลแม่เมาะ อำเภอแม่เมาะ จังหวัดลำปาง เปิดให้เข้าชมแล้วตั้งแต่วันที่ 1 พฤศจิกายน 2565
+              <a href="https://www.google.com/maps/place/%E0%B8%97%E0%B8%B8%E0%B9%88%E0%B8%87%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B8%9A%E0%B8%B1%E0%B8%A7%E0%B8%95%E0%B8%AD%E0%B8%87+%E0%B8%81%E0%B8%9F%E0%B8%9C.%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%A1%E0%B8%B2%E0%B8%B0/@18.3458265,99.7536928,17z/data=!3m1!4b1!4m6!3m5!1s0x30d91adc663ee4d1:0x20ee030d0e23519!8m2!3d18.3458265!4d99.7536928!16s%2Fg%2F11btlw6p4t?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ดอยฟ้างาม</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำปาง3.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล บ้านสา อำเภอแจ้ห่ม ลำปาง 52120 <br> ตั้งอยู่ตำบลบ้านสา เป็นดอยสูงที่ล้อมรอบด้วยภูเขาและทิวทัศน์ที่สวยงามและเป็นจุดชมทะเลหมอกยามเช้าที่สวยงามอีกแห่งหนึ่งของจังหวัดลำปาง ด้านบนสามารถชมทัศนียภาพโดยรอบอำเภอแจ้ห่มได้แบบ 360 องศา การเดินเท้าขึ้นสู่ยอดดอยฟ้างามมีระยะทางประมาณ 2 กิโลเมตร ใช้เวลาประมาณ 30 นาทีนักท่องเที่ยวควรติดต่อผู้นำทางล่วงหน้าอย่างน้อย 1-2 วัน หากต้องการพักแรมบนยอดดอย ด้านบนมีเพิงสำหรับกางเต็นท์ได้ นักท่องเที่ยวต้องเตรียมเครื่องนอน อาหาร และน้ำไปเอง
+              <a href="https://www.google.com/maps/place/%E0%B8%88%E0%B8%B8%E0%B8%94%E0%B8%8A%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%A7+%E0%B8%94%E0%B8%AD%E0%B8%A2%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%B2%E0%B8%A1/@18.6158206,99.5911989,17z/data=!3m1!4b1!4m6!3m5!1s0x30d9a10734e76db9:0x878ef33dd1dd1b90!8m2!3d18.6158206!4d99.5911989!16s%2Fg%2F11f327bs62?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>อุทยานแห่งชาติแจ้ซ้อน</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำปาง4.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 343 ตำบล แจ้ซ้อน อำเภอ เมืองปาน ลำปาง 52240 เปิดและปิดเวลา 6.00 - 18.00 น. ของทุกวัน <br> อุทยานแห่งชาติแจ้ซ้อน มีพื้นที่ครอบคลุมอยู่ในท้องที่อำเภอเมืองปาน อำเภอแจ้ห่ม อำเภอวังเหนือ และอำเภอเมืองลำปาง จังหวัดลำปาง ตั้งอยู่ทางทิศตะวันออกเฉียงเหนือของจังหวัด มีสภาพป่าอันอุดมสมบูรณ์ เป็นแหล่งต้นน้ำลำธาร มีสัตว์ป่านานาชนิด และมีทรัพยากรทางธรรมชาติที่สวยงามหลายแห่ง เช่น น้ำตก แอ่งน้ำอุ่น บ่อน้ำร้อน ซึ่งสามารถเป็นหลักฐานหนึ่งที่แสดงว่าใต้พื้นโลกเรายังมีความร้อนระอุอยู่ <br>
+              <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%8B%E0%B9%89%E0%B8%AD%E0%B8%99/@18.836605,99.47068,17z/data=!3m1!4b1!4m6!3m5!1s0x30d996bb07cc9469:0xa0134b9c86cbb300!8m2!3d18.836605!4d99.47068!16s%2Fm%2F0w68pkq?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ศูนย์อนุรักษ์ช้างไทย</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวลำปาง5.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 272 หมู่ 6 ตำบลเวียงตาล อำเภอห้างฉัตร ลำปาง 52190 เปิดและปิดเวลา 8.30 - 15.30 น. ของทุกวัน <br> ตั้งอยู่ที่บ้านทุ่งเกวียน ตำบลเวียงตาล อยู่ในความดูแลของอุตสาหกรรมป่าไม้ภาคเหนือ องค์การอุตสาหกรรมป่าไม้ (ออป.) แต่เดิม ออป. เป็นศูนย์ฝึกลูกช้างซึ่งเป็นแห่งแรกและแห่งเดียวในโลก โดยเริ่มดำเนินการมาตั้งแต่ พ.ศ. 2512 เป็นสถานที่เลี้ยงและฝึกลูกช้างเพื่อให้เชื่อฟังคำสั่ง และมีความชำนาญในการทำไม้ขณะที่แม่ช้างไปทำงานในป่า และเนื่องจากมีนโยบายปิดป่าซึ่งทำให้ช้างต้องว่างงาน ศูนย์ฝึกลูกช้างจึงถูกปรับมาเป็นสถานที่ดูแลช้างแก่และเจ็บป่วย และที่นี่ยังเป็นสถานที่ตั้งของโรงพยาบาลช้างด้วย ต่อมาในเดือนมกราคม พ.ศ. 2535 ออป. ได้ก่อตั้งศูนย์อนุรักษ์ช้างไทยขึ้นและจัดกิจกรรมท่องเที่ยวเชิงนิเวศน์ ได้แก่ การแสดงช้าง การอาบน้ำช้าง การขี่ช้างชมธรรมชาติ การชมวิถีชีวิตช้างโขลง การฝึกควาญช้าง รวมไปถึงการพักโฮมสเตย์เพื่อสัมผัสวิถีชีวิตช้าง ซึ่งมีกิจกรรมให้นักท่องเที่ยวได้เลือกอย่างครบวงจร
+              <a href="https://www.google.com/maps/place/%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%8A%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4+%E0%B9%83%E0%B8%99%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%AD%E0%B8%B8%E0%B8%9B%E0%B8%96%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B9%8C%E0%B8%AF+(%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%8A%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%84%E0%B8%97%E0%B8%A2)/@18.3600666,99.2472345,17z/data=!3m1!4b1!4m6!3m5!1s0x30d963110770ea5d:0x8c8fa713e2558320!8m2!3d18.3600666!4d99.2472345!16s%2Fg%2F1hm2n2f_8?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักลำปาง1.webp" class="img">
+          <img src="imgเหนือ/bgที่พักลำปาง2.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักลำปาง3.webp" class="img">
+          <img src="imgเหนือ/bgที่พักลำปาง4.webp" class="img">
+          <img src="imgเหนือ/bgที่พักลำปาง5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>ลำปาง ริเวอร์ ลอดจ์</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำปาง1.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ เลขที่ 330 ชมพู อำเภอเมืองลำปาง ลำปาง 52100 โทร:054209777 <br> ค้นพบการพักผ่อนที่เงียบสงบที่ลำปาง ริเวอร์ ลอดจ์ ตั้งอยู่ในย่านชานเมืองลำปางที่เงียบสงบ ที่พักแห่งนี้มอบทัศนียภาพอันงดงามและวัฒนธรรมลานนาที่อุดมสมบูรณ์ให้กับนักท่องเที่ยว ผ่อนคลายในห้องพักปรับอากาศพร้อม WiFi ฟรีและระเบียงส่วนตัวที่มองเห็นสวนที่เงียบสงบ บ่อน้ำบัว หรือวิวแม่น้ำ สนุกกับการว่ายน้ำในสระว่ายน้ำที่เงียบสงบ ลิ้มรสอาหารไทยแสนอร่อยพร้อมวิวทิวทัศน์ที่ร้านอาหาร และผ่อนคลายด้วยการนวดบำบัดที่ปรับแต่งตามความต้องการ สำรวจสถานที่ทางประวัติศาสตร์ที่มีเสน่ห์และความงดงามโดยรอบด้วยทัวร์นำเที่ยว ทำให้ที่นี่เป็นสถานที่หลบหนีที่เหมาะสำหรับนักเดินทางสองคนที่ต้องการการผ่อนคลายและการค้นพบวัฒนธรรม
+            <a href="https://www.google.com/maps/place/Lampang+River+Lodge+Hotel+%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81%E0%B8%A5%E0%B8%B3%E0%B8%9B%E0%B8%B2%E0%B8%87+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97+%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B9%80%E0%B9%80%E0%B8%A1%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%A7%E0%B8%B1%E0%B8%87/@18.2276575,99.4263026,17z/data=!3m1!4b1!4m10!3m9!1s0x30d969e24cb44db5:0xd0238913a0886c62!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.2276575!4d99.4263026!16s%2Fg%2F1tlnstxk?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำปาง1.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำปาง1.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>Memmoth Hostel In Lampang</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำปาง2.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 219/1-3 ถนน ประสานไมตรี ตำบล สบตุ๋ย อำเภอเมืองลำปาง ลำปาง 52100 โทร:0954514583 <br> เพลิดเพลินกับการเข้าพักที่สะดวกสบายและมีเสน่ห์ที่ เมมมอธ โฮสเทล ในเมืองลำปาง ที่พักหรูแห่งนี้เหมาะสำหรับนักเดินทางสองคนที่กำลังมองหาความสะดวกสบายและการสำรวจ สำรวจสถานที่สำคัญทางวัฒนธรรม เช่น วัดพระธาตุลำปางหลวง และตลาดถนนกาดกองต้า ซึ่งอยู่ห่างออกไปเพียงไม่กี่นาที ผ่อนคลายในอากาศ - ห้องพักปรับอากาศพร้อมระเบียง/เฉลียงส่วนตัว และ Wi-Fi ฟรี ชมวิวเมือง สวน หรือธรรมชาติ พนักงานที่เป็นมิตร ห้องพักสะอาด และทำเลดีเยี่ยมใกล้สถานีรถไฟและตลาดกลางคืนทำให้ประสบการณ์ที่น่าจดจำ เริ่มต้น วันของคุณด้วยอาหารเช้าแสนอร่อยก่อนเช่ามอเตอร์ไซค์หรือจักรยานออกสำรวจง่ายๆ จองเลย แล้วสร้างความทรงจำอันยาวนานที่ Memmoth Hostel!
+            <a href="https://www.google.com/maps/place/Memmoth+Cafe%26Hostel+In+Lampang/@18.2835194,99.4675391,17z/data=!3m1!4b1!4m10!3m9!1s0x30d96bf77cb21a27:0x953ed95a1edc5cfe!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.2835194!4d99.4675391!16s%2Fg%2F11f4wtyykl?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำปาง2.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำปาง2.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>โรงแรมเกาะคาบุรี</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำปาง3.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 777 หมู่2 ถ. พหลโยธิน ตำบลศาลา อำเภอเกาะคา ลำปาง 52130 โทร:054010111 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านชานเมืองลำปางของลำปาง ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ทริปยังไม่จบถ้าไม่ได้แวะไปที่เที่ยวชื่อดังอย่าง วัดพระธาตุลำปางหลวง ด้วยอีกสักที่ ที่พัก 4 ดาวนี้มีห้องอาหาร การเข้าพักจึงผ่อนคลายและสะดวกสบายสุดๆ
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%B2%E0%B8%B0%E0%B8%84%E0%B8%B2%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5/@18.2060413,99.4111022,17z/data=!4m10!3m9!1s0x30d969ce92fd6643:0xc8fcdbead585de!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.2060413!4d99.4111022!16s%2Fg%2F11p4_8b1y1?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำปาง3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำปาง3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>บ้านเชียง เบด ลำปาง</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำปาง4.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 28/1 ถนน บ้านดงพัฒนา ตำบล บ่อแฮ้ว อำเภอเมือง ลำปาง 52100 โทร:0896332322 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านตัวเมืองลำปางของลำปาง ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/Baan+chiang+bed+lampang/@18.2970784,99.4767641,17z/data=!4m10!3m9!1s0x30d96d738f552805:0x311f1edc943c4fdf!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.2970784!4d99.4767641!16s%2Fg%2F11r3d8zkwk?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำปาง4.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำปาง4.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>ลำปาง วินเทจ (Lampang Vintage)</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักลำปาง5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 590 หมู่ 3 บ้าน โท ก หัว ช้าง อำเภอ เมือง 054011159 ตำบล พระบาท อำเภอเมืองลำปาง ลำปาง โทร:0931312111 <br> ลำปาง วินเทจ ตั้งอยู่ใจกลางเมืองลำปาง เหมาะสำหรับนักเดินทางสองคนที่ต้องการสำรวจวัฒนธรรมล้านนา อยู่ใกล้กับตลาด วัด และรถม้า ผสมผสานเสน่ห์แห่งประวัติศาสตร์กับความสะดวกสบายสมัยใหม่ ห้องพักปรับอากาศมี WiFi ฟรี ระเบียงส่วนตัวพร้อมวิวที่เงียบสงบ (ในบางห้อง) และบริการรูมเซอร์วิสตลอด 24 ชั่วโมง เพลิดเพลินกับสวนเขียวขจี ร้านอาหารภายในโรงแรม การเช็คอินที่รวดเร็ว และบริการทำความสะอาดประจำวันเพื่อความสะดวกสบายไร้กังวล
+            <a href="https://www.google.com/maps/place/%E0%B8%A5%E0%B8%B3%E0%B8%9B%E0%B8%B2%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%88/@18.2542856,99.5071654,17z/data=!4m10!3m9!1s0x30d96b0ec734fcfb:0xb8ea86a3f7da27ec!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.2542856!4d99.5071654!16s%2Fg%2F11f4wtk5ks?entry=ttu&g_ep=EgoyMDI1MDUwNi4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักลำปาง5.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักลำปาง5.3.jpg">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+
+      <div id="info-พะเยา" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวพะเยา1.png" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวพะเยา2.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวพะเยา3.webp" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวพะเยา4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวพะเยา5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>ดอยหลวง ดอยหนอก</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวพะเยา1.1.jpg" />
+            <div class="content">
+            <p>เปิดให้จองทางโทรศัพท์ 06 3018 7000 ช่องทางเดียวเท่านั้น ในเวลา 09.00-16.00 น <br> เปิดให้ขึ้นสัปดาห์ละ 3 รอบ โดยจำกัดนักท่องเที่ยวรอบละไม่เกิน 6 กลุ่ม กลุ่มละ 10 คน  <br> รอบที่ 1 วันศุกร์-เสาร์ <br> รอบที่ 2 วันเสาร์-อาทิตย์ <br> รอบที่ 3 วันอาทิตย์-จันทร์ <br>  ยอดดอยหลวงเป็นจุดสูงสุดของสันเขาดอยหลวง มีความสูง 1,694 เมตรจากระดับน้ำทะเล ยอดดอยหนอกเป็นเขาหินปูนที่มีความสูงและชันมาก ตั้งอยู่บนสันเขาดอยหลวง มีความสูง 1,077 เมตรจากระดับน้ำทะเล เหมาะสำหรับผู้ที่รักการผจญภัยและต้องการสัมผัสธรรมชาติอย่างไกล้ชิด เป็นจุดที่สามารถชมทิวทัศน์ได้ 360 องศา สามารถมองเห็นกว๊านพะเยา ตัวเมืองพะเยา ตัวอำเภอวังทอง และผืนป่าที่อยู่รอบด้าน ในฤดูหนาวบนดอยหนอกสามารถมองเห็นทะเลหมอกที่สวยงามมาก การเดินจะต้องเดินป่าและพักแรมในป่า เส้นทางเดินจะผ่านป่าดึกดำบรรพ์ ป่าสนเขา ทุ่งหญ้า ซึ่งมีความสวยงามเป็นสถานที่ท้าทายสำหรับผู้รักการผจญภัย ในการเดินทางสู่ยอดดอยหลวงดอยหนอกจะต้องมีเจ้าหน้าที่นำทาง การเดินทางสามารถขึ้นได้ 2 ทาง เส้นทางแรกขึ้นจากบ้านปากบอก อำเภองาว จังหวัดลำปาง ระยะทางประมาณ 12 กิโลเมตร เส้นทางที่สอง ขึ้นจากบ้านห้วยหม้อ ตำบลบ้านตุ่น อำเภอเมือง จังหวัดพะเยา ระยะทางประมาณ 7 กิโลเมตร แต่เส้นทางค่อนข้างลาดชัน
+              <a href="https://www.google.com/maps/place/%E0%B8%94%E0%B8%AD%E0%B8%A2%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%81/@19.1563874,99.737456,14z/data=!3m1!4b1!4m6!3m5!1s0x30d9d05060bda78b:0xee62b68d6d1703a3!8m2!3d19.1563889!4d99.7580556!16s%2Fg%2F12lsp_r3p?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>อ่างเก็บนํ้าแม่ตำ</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวพะเยา2.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบลแม่กา อำเภอเมืองพะเยา จังหวัดพะเยา <br>    อ่างเก็บน้ำแม่ต๋ำ เป็นโครงการอ่างเก็บน้ำแม่ต๋ำ อันเนื่องมาจากพระราชดำริ  ในโครงการชลประทานพะเยานั่นเองค่ะ ซึ่งจัดได้ว่าเป็นอ่างเก็บน้ำที่มีสันอ่างยาวที่สุดในภาคเหนือเลยค่ะ ประมาณ 1,800 เมตร และบรรจุน้ำได้ประมาณ 37 ล้านลูกบาศก์เมตร  ถือได้ว่าเป็นแหล่งน้ำที่สำคัญของเกษตรกรของอำเภอเมืองพะเยา <br>      และแน่นอนว่าบรรยากาศรอบๆ ของ อ่างเก็บน้ำแม่ต๋ำ นั้น ก็ยังมีทั้งความสวยงาม รวมไปถึง ร่มรื่นและเงียบสงบ อีกทั้งที่ตั้งของอ่างเก็บน้ำยังไม่ไกลจาก มหาลัยพะเยา เลยทำให้ที่นี่กลายมาเป็นแหล่งพักผ่อนของนักศึกษา ที่จะมานั่งเล่น ชมวิวในช่วงพระอาทิตย์ตกกัน เพราะวิวของพระอาทิตย์ลับขอบฟ้าที่นี่ ก็เป็นอีกแห่งที่น่าไปเยือนมาก <br>   ในช่วงตอนเย็นๆ ที่พระอาทิตย์ใกล้ตกนั้น ที่ อ่างเก็บน้ำแม่ต๋ำ จะมีอากาศหนาวเล็กน้อยบวกกับแสงยามเย็นที่สาดส่องมา บอกเลยว่าเป็นอะไรที่สุดเพอร์เฟคอย่างมาก
+              <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%95%E0%B9%8B%E0%B8%B3/@18.5343045,99.1516113,9z/data=!4m10!1m2!2m1!1z4Lit4LmI4Liy4LiH4LmA4LiB4LmH4Lia4LiZ4LmN4LmJ4Liy4LmB4Lih4LmI4LiV4Liz!3m6!1s0x30d83479f7c27ba9:0x8f8709a59f87d5b!8m2!3d19.0078242!4d99.9579021!15sCjPguK3guYjguLLguIfguYDguIHguYfguJrguJnguY3guYnguLLguYHguKHguYjguJXguLNaOSI34Lit4LmI4Liy4LiHIOC5gOC4geC5h-C4miDguJnguY3guYnguLIg4LmB4Lih4LmIIOC4leC4s5IBEnRvdXJpc3RfYXR0cmFjdGlvbpoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VNM2VFcFhVekZCUlJBQqoBjAEQASoqIibguK3guYjguLLguIcg4LmA4LiB4LmH4LiaIOC4meC5jeC5ieC4sig1Mh8QASIb0WVzeU4y8mzKyXy8yPDywl9D9eKk7eYp14JtMjsQAiI34Lit4LmI4Liy4LiHIOC5gOC4geC5h-C4miDguJnguY3guYnguLIg4LmB4Lih4LmIIOC4leC4s-ABAPoBBAgAEEE!16s%2Fg%2F11b7hnzcmn?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดนันตาราม</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวพะเยา3.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 1 หมู่ที่ 13 ตำบล หย่วน อำเภอ เชียงคำ พะเยา 56110 เปิดและปิดเวลา 7.00 - 18.00 น. ของทุกวัน <br> อำเภอเชียงคำในจังหวัดพะเยาเป็นอำเภอที่มีชาวไทลื้ออาศัยอยู่เป็นจำนวนมาก และถือเป็นหนึ่งอีกในอำเภอท่องเที่ยวสำคัญของพะเยา หากแต่ “วัดนันตาราม” ซึ่งตั้งอยู่ในตำบลหย่วน อำเภอเชียงคำแห่งนี้ กลับงดงามไปด้วยงานพุทธศิลป์แบบไทใหญ่-พม่า โดดเด่นไปด้วยวิหารไม้สักทั้งหลังที่มีผลงานการฉลุไม้ตกแต่งลวดลายอย่างงดงามวัดนันตารามไม่ปรากฏว่าสร้างมาตั้งแต่สมัยใด เล่ากันว่าแต่เดิมที่ตั้งวัดแห่งนี้เป็นวัดร้างมาก่อน ถือเป็นพื้นที่ศักดิ์สิทธิ์ พ่อหม่องโพธิ์ขิ่น และพ่อเฒ่าอุบลร่วมกันสร้างขึ้นและนิมนต์พระอูว์วัณณะ พระภิกษุชาวไทใหญ่จากเมืองตองจี รัฐฉาน มาจำพรรษา โดยระยะแรกสร้างเป็นเพียงวิหารไม้มุงด้วยหญ้าคา คนจึงเรียกว่าจองคา โดยคำว่าจองเป็นภาษาไทใหญ่หมายถึงวัด ส่วนคา หมายถึงมุงด้วยหญ้าคา บ้างก็เรียกจองม่าน หรือวัดพม่า
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1+%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%84%E0%B8%B3+%E0%B8%9E%E0%B8%B0%E0%B9%80%E0%B8%A2%E0%B8%B2/@19.5284271,100.3032215,17z/data=!3m1!4b1!4m6!3m5!1s0x30d7ec5155555555:0xde0b19ccf760128e!8m2!3d19.5284271!4d100.3032215!16s%2Fg%2F1hc79bld_?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ผาหัวเรือ</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวพะเยา4.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล บ้านต๋อม อำเภอเมืองพะเยา พะเยา 56000 <br> ผาหัวเรือ มีลักษณะเป็นภูเขาที่ยื่นออกไปในลักษณะคล้ายหัวเรือยื่นออกไป กลางอากาศ  และมีลานสำหรับให้นักท่องเที่ยวสามารถเดินเล่น หรือกางเต็นท์นอนสัมผัสบรรยากาศของท้องฟ้าอย่างใกล้ชิด  <br> นอกจากนั้นยังมีภูมิประเทศที่สวยงามที่อยู่บนภูเขาและป่าไม้ อยู่ไม่ไกลจากตัวเมือง พะเยา ห่างจากตัวเมืองเพียง 6 กิโลเมตร การเดินทางก็สามารถเดินทางได้อย่างสะดวกและมีรถบริการรับส่งด้วย <br> ในช่วงที่อากาศหนาวเย็นลงเช่นนี้ ขึ้นมาสูดอากาศบริสุทธิ์ชมวิวธรรมชาติป่าเขาสวยๆ บนยอดผาหัวเรืออันเงียบสงบแห่งนี้ดูจะเป็นหนึ่งในทริปที่น่าสนใจสำหรับนักท่องเที่ยวสายธรรมชาติทุกคน
+              <a href="https://www.google.com/maps/place/%E0%B8%9B%E0%B9%88%E0%B8%B2%E0%B8%AB%E0%B8%B4%E0%B8%99%E0%B8%9A%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B4%E0%B8%9A%E0%B8%AA%E0%B8%AD%E0%B8%87+%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9C%E0%B8%B2%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD+%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B9%84%E0%B8%9B/@19.242065,99.9103486,17z/data=!3m1!4b1!4m6!3m5!1s0x30d82b2e682d9a45:0xdbdd9a3ee5973c6e!8m2!3d19.242065!4d99.9103486!16s%2Fg%2F11j0yk9bm9?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>กว๊านพะเยา</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวพะเยา5.1.webp" />
+            <div class="content">
+            <p>อยู่ในเขตอำเภอเมืองพะเยา จังหวัดพะเยา เป็นทะเลสาบน้ำจืดใหญ่ที่สุดในภาคเหนือ คำว่า "กว๊าน" ตามภาษาพื้นเมืองหมายถึง "บึง" เกิดขึ้นจากกรมประมงได้ทำประตูกั้นน้ำไว้เพื่อให้ราษฎรมีน้ำใช้ในฤดูแล้ง และในฤดูฝนก็กั้นไม่ให้น้ำไหลแรงไปท่วมเรือกสวนไร่นาที่อยู่ปลายน้ำ ตั้งอยู่ใจกลางเมืองพะเยา มีทิวเขาเป็นฉากหลัง เกิดจากน้ำที่ไหลมาจากห้วยต่างๆ 18 สาย มีปริมาณน้ำเฉลี่ยปีละ 29.40 ล้านลูกบาศก์เมตร มีพันธุ์ปลาน้ำจืดถึง 45 ชนิด ใน 17 วงศ์[1] มีเนื้อที่ 12,831 ไร่ หรือ (20.529 ตารางกิโลเมตร) เป็นแหล่งเพาะพันธุ์ปลาต่างๆ ทัศนียภาพโดยรอบกว๊านพะเยา ทำให้เป็นสถานที่ท่องเที่ยวตามธรรมชาติที่สวยงามประทับใจผู้พบเห็น จนอาจจะกล่าวได้ว่าหัวใจของเมืองพะเยาอยู่ที่กว๊านพะเยา และด้วยความสมบูรณ์ของพันธุ์ปลาที่กว๊านพะเยา ทำให้เป็นแหล่งที่ผลิตปลาส้มรายใหญ่และขึ้นชื่อ จนกลายเป็นสินค้าที่มีชื่อเสียงของจังหวัดพะเยา
+              <a href="https://www.google.com/maps/place/%E0%B8%81%E0%B8%A7%E0%B9%8A%E0%B8%B2%E0%B8%99%E0%B8%9E%E0%B8%B0%E0%B9%80%E0%B8%A2%E0%B8%B2/@19.1666666,99.866667,15z/data=!3m1!4b1!4m6!3m5!1s0x30d9d30494212187:0xacf1cf3fb5963fbc!8m2!3d19.166667!4d99.866667!16zL20vMDZnZHBr?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักพะเยา1.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักพะเยา2.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักพะเยา3.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักพะเยา4.jpeg" class="img">
+          <img src="imgเหนือ/bgที่พักพะเยา5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>Ellipse Boutique Phayao</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักพะเยา1.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 249, ท่าวังทอง Muang, พะเยา 56000 โทร:0981715691 <br> ที่พักนี้มีบริการอินเทอร์เน็ต Wi-Fi ฟรีในทุกห้องพัก ช่วยให้การเดินทางสะดวกยิ่งขึ้นไปอีก ที่พักตั้งอยู่ในย่านแม่ปืม จึงอยู่ใกล้กับที่เที่ยวมากมาย และสะดวกต่อการเดินทางไปสถานที่ต่างๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/ELLIPSE+BOUTIQUE+%E0%B9%80%E0%B8%AD%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B8%9B+%E0%B8%9A%E0%B8%B9%E0%B8%97%E0%B8%B5%E0%B8%84+%E0%B8%84%E0%B8%B2%E0%B9%80%E0%B8%9F%E0%B9%88+%E0%B9%81%E0%B8%AD%E0%B8%99%E0%B8%94%E0%B9%8C+%E0%B8%AD%E0%B8%B5%E0%B9%80%E0%B8%97%E0%B8%AD%E0%B8%A3%E0%B8%B5%E0%B9%88/@19.1796438,99.9211608,17z/data=!3m1!4b1!4m10!3m9!1s0x30d82ddeb9e8b0a3:0x26865a886b876e4c!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.1796438!4d99.9211608!16s%2Fg%2F11v_4bmyrl?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักพะเยา1.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักพะเยา1.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>นาคา ธารา บูทีค รีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักพะเยา2.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 608 ถนน พหลโยธิน ตำบล บ้านต๋อม อำเภอเมือง พะเยา 56000 โทร:054430838 <br> ค้นพบความเงียบสงบที่ Naga Tara Boutique Resort ซึ่งตั้งอยู่ในทำเลที่เหมาะสมริมทะเลสาบพะเยาอันเงียบสงบ เหมาะสำหรับนักเดินทางสองคน มอบการหลีกหนีที่เงียบสงบพร้อมวิวทะเลสาบที่สวยงามและบรรยากาศที่ผ่อนคลายในพะเยา ซึ่งมีชื่อเสียงในเรื่องอาหารท้องถิ่นสดใหม่และวัฒนธรรมที่หลากหลาย เพลิดเพลินกับห้องพักปรับอากาศที่มี Wi-Fi ฟรีและระเบียงส่วนตัวพร้อมวิวสวนหรือสระว่ายน้ำ เพิ่มประสบการณ์การเข้าพักของคุณด้วยบริการเช็คอิน/เช็คเอาต์ส่วนตัวของรีสอร์ท สระว่ายน้ำที่สวยงาม และทัวร์แนะนำสถานที่ท่องเที่ยวใกล้เคียงโดยผู้เชี่ยวชาญ ที่นี่คือสถานที่พักผ่อนที่ไม่เหมือนใครสำหรับการผ่อนคลายและสำรวจเสน่ห์ของพะเยา
+            <a href="https://www.google.com/maps/place/%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/@19.1923238,99.8756746,17z/data=!4m10!3m9!1s0x30d9d3681a03a955:0x1760c6f5c9f5d944!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.1923238!4d99.8756746!16s%2Fg%2F11h320m3yn?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักพะเยา2.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักพะเยา2.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Green Hill Hotel Phayao</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักพะเยา3.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 356 1 ตำบล เวียง อำเภอเมืองพะเยา พะเยา 56000 โทร:054482277 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านแม่ปืม จึงอยู่ใกล้กับที่เที่ยวมากมาย และสะดวกต่อการเดินทางไปสถานที่ต่างๆ ที่พักนี้ยังมีสระว่ายน้ำกลางแจ้งเพื่ออำนวยความสะดวกให้แก่ผู้เข้าพักมากยิ่งขึ้น
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%A3%E0%B8%B5%E0%B8%99%E0%B8%AE%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%8C+%E0%B8%9E%E0%B8%B0%E0%B9%80%E0%B8%A2%E0%B8%B2/@19.1638469,99.9103012,17z/data=!4m10!3m9!1s0x30d82cd0dbbd288f:0xdee88b792f59d42f!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.1638469!4d99.9103012!16s%2Fg%2F11clv_dxkc?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักพะเยา3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักพะเยา3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>ZEN Home Resort & Garden</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักพะเยา4.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 224 Moo.1, Baan Mor Kang Tong, พะเยา 56000 โทร:0987501040 <br> รีสอร์ตวิลลานี้มีบริการ Wi-Fi ฟรีในทุกห้องพักพร้อมให้ท่องเน็ตได้ทุกเมื่อ รวมถึงบริการที่จอดรถฟรี ที่พักตั้งอยู่ในย่านแม่ปืม จึงอยู่ใกล้กับที่เที่ยวมากมาย และสะดวกต่อการเดินทางไปสถานที่ต่างๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/ZEN+Home+Resort+and+Garden+Phayao/@19.0194301,99.9151916,17z/data=!4m10!3m9!1s0x30d83358fa1cb09b:0x73655fc2a6a1f259!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.0194301!4d99.9151916!16s%2Fg%2F11btv65ydh?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักพะเยา4.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักพะเยา4.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>ภูเพียงดาว รีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักพะเยา5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 99 หมู่1 ถนนปง-เชียงม่วน ตำบลปง อำเภอปง ปง พะเยา 56140 โทร:0863184598 <br> ภูเพียงดาว รีสอร์ท เป็นที่พักเงียบสงบท่ามกลางธรรมชาติในอำเภอปง จังหวัดพะเยา รายล้อมด้วยวิวภูเขาและทุ่งนาอันสวยงาม เหมาะสำหรับผู้ที่ต้องการหลีกหนีความวุ่นวายและพักผ่อนอย่างเต็มที่ ภายในรีสอร์ทมีห้องพักหลากหลายสไตล์ในราคาย่อมเยา เริ่มต้นประมาณ 950 บาทต่อคืน พร้อมอาหารเช้าและกาแฟฟรี นอกจากนี้ยังมีสิ่งอำนวยความสะดวกครบครัน เช่น สระว่ายน้ำอินฟินิตี้พูล ร้านอาหาร และที่จอดรถ พร้อมบรรยากาศที่เป็นส่วนตัว เหมาะทั้งสำหรับคู่รัก ครอบครัว หรือผู้ที่ต้องการใช้เวลาเงียบๆ ท่ามกลางธรรมชาติอย่างแท้จริง
+            <a href="https://www.google.com/maps/place/%E0%B8%A0%E0%B8%B9%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%94%E0%B8%B2%E0%B8%A7+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/@19.0718242,100.2596063,17z/data=!3m1!4b1!4m10!3m9!1s0x30d83d5fa7372d1d:0x524fd9cc7279ca4c!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.0718242!4d100.2596063!16s%2Fg%2F1tfx_b8n?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักพะเยา5.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักพะเยา5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+
+      <div id="info-แพร่" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวแพร่1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแพร่2.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแพร่3.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแพร่4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวแพร่5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>อุทยานแห่งชาติแม่ยม</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแพร่1.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล สะเอียบ อำเภอสอง แพร่ 54120 เปิด 24 ชม. <br> อุทยานแห่งชาติแม่ยม ตั้งอยู่ในพื้นที่ของอำเภองาว จังหวัดลำปาง และอำเภอสอง จังหวัดแพร่ มีพื้นที่ประมาณ 284,218.75 ไร่ หรือ 454.75 ตารางกิโลเมตร มีลักษณะเป็นเทือกเขาสูงทั้งด้านทิศตะวันออกและทิศตะวันตกของพื้นที่ ลาดมายังแม่น้ำยมที่ไหลผ่านตอนกลางของพื้นที่ มีเทือกเขาอย่างดอยหลวง ดอยยาว ดอยขุนห้วยแปะ และดอยโตน เป็นต้น ซึ่งเป็นต้นกำเนิดแม่น้ำและลำห้วย อย่างเช่น น้ำแม่ปุง น้ำแม่ลำ น้ำแม่เต้น น้ำแม่สะกึ๋น น้ำแม่เป๋า ห้วยผาลาด ห้วยแม่ปง ห้วยแม่พุง ห้วยแม่แปง ห้วยเค็ด ห้วยปุย ห้วยเลิม และห้วยแม่ปุ๊ เป็นต้น และมีลำน้ำแม่งาว ไหลมารรจบกับแม่น้ำยมที่บริเวณอุทยาน <br> ทางด้านทิศเหนือไปทิศใต้ เป็นบริเวณที่ราบลาดเอียง ระดับความสูงประมาณ 180 เมตรจากระดับน้ำทะเล บริเวณอำเภอสอง แล้วลดความสูงมาเป็น 157 เมตร ส่วนทางด้านแนวทิศตะวันออกและทิศตะวันตกนั้น มีพื้นที่ลาดเอียงสู่แม่น้ำยมทั้งสองด้าน ดินส่วนใหญ่เป็นดินลูกรังและดินร่วนปนทราย ชนิดหินเป็นหินชั้นและหินเชล <br> กรมป่าไม้ได้นำเสนอคณะกรรมการอุทยานแห่งชาติเห็นสมควรให้ออกพระราชกฤษฎีกากำหนดพื้นที่ดังกล่าวเป็นอุทยานแห่งชาติ เมื่อ 23 มกราคม พ.ศ. 2527 โดยใช้ชื่อว่า “อุทยานแห่งชาติแม่ปุง” ต่อมาได้เปลี่ยนชื่อเป็น “อุทยานแห่งชาติแม่ยม” โดยกำหนดพื้นที่บริเวณที่ดินป่าแม่ปุง ป่าแม่เป้าและป่าแม่สอง ในท้องที่ตำบลเตาปูน ตำบลสะเอียบ อำเภอสอง จังหวัดแพร่ และป่าแม่งาวฝั่งซ้าย ในท้องที่ตำบลแม่ตีบ อำเภองาว จังหวัดลำปาง ให้เป็นอุทยานแห่งชาติ เมื่อวันที่ 1 มีนาคม พ.ศ. 2529 เป็นอุทยานแห่งชาติลำดับที่ 51 ของประเทศ
+              <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A2%E0%B8%A1/@18.6117946,100.1602956,17z/data=!3m1!4b1!4m6!3m5!1s0x30d85d07457014f3:0x35266ebe3e7f51e!8m2!3d18.6117946!4d100.1602956!16s%2Fm%2F03cg8ct?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดพระธาตุปูแจ</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแพร่2.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล บ้านเวียง อำเภอ ร้องกวาง แพร่ 54140 <br> พระธาตุปูแจประดิษฐานในเจดีย์สี่เหลี่ยมจัตุรัส ยาวด้านละ 4 เมตร สูง 4 เมตร บรรจุพระธาตุตาตุ่มข้างขวา (กระดูกข้อเท้า) ขององค์พระสัมมาสัมพุทธเจ้า เป็นโบราณสถานที่สำคัญอยู่ที่จังหวัดแพร่ สร้างมาแต่โบราณนานหลายร้อยปี หลายยุคหลายสมัย และมีเจ้าผู้ครองนครแพร่หลาย ๆ พระองค์ได้ บูรณปฏิสังขรณ์เป็นประจำเสมอมางานนมัสการพระธาตุปูแจ หรืองานขึ้นพระธาตุ ตรงกับวันขึ้น 11-15 ค่ำ เดือน 3 ของทุกปี (เดือน5 เหนือ) <br> ในสมัยที่พระโพธิสัตว์เสวยพระชาติเป็นเนื้อทรายทองได้ถูกนายพรานติดตามรอยเป็นเวลานาน เมื่อเดินทางมาถึงเขาลูกนี้เกิดอาการบาดเจ็บ ขัดเบา (อาการของโรคปัสสาวะไม่ออก) ได้รับทุกข์ทรมานอยู่เป็นเวลานาน 3 วัน จึงถึงแก่ความตาย การเกิดขัดเบาภาษาพื้นเมืองเรียกว่า ปวดแจเมื่อพระโพธิสัตว์ได้เป็นพระพุทธเจ้าแล้ว ได้เสด็จมาเผยแพร่ธรรมให้ประชาชนถึงดอยม่วงคำ (อำเภอเมืองพะเยา) เสด็จตามรอยทางเดิมถึงเขาลูกนี้ ก็ทรงแย้มพระโอษฐ์ พระอานนท์ซึ่งเสด็จตามจึงทูลถามว่า มีอะไรเกิดขึ้นที่นี่ ก็ตรัสเล่าถึงความหลังให้ฟังโดยตลอด พระอานนท์ก็ทูลขอว่าแห่งนี้ควรเป็นที่สักการะแห่งพุทธศาสนิกชนทั้งหลายในกาลภายหน้าสืบไป พระพุทธเจ้าจึงพระราชทานเกศาเส้นหนึ่งให้แก่พระอานนท์ ณ บัดนั้นพระอินทร์ก็เนรมิตผอบมารองรับบรรจุพระเกศาไว้ นำไปประดิษฐ์ในอุโมงค์เขาลูกนี้ และต่อมาได้สร้างพระธาตุปูแจ ไว้ให้ประชาชนได้กราบไว้สักการบูชา
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%95%E0%B8%B8%E0%B8%9B%E0%B8%B9%E0%B9%81%E0%B8%88/@18.2027352,100.2932454,17z/data=!3m1!4b1!4m6!3m5!1s0x30d894e3563076a7:0x239167ff53339f7d!8m2!3d18.2027352!4d100.2932454!16s%2Fg%2F121jj3d0?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>อ่างเก็บนํ้า แม่ถาง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแพร่3.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล บ้านเวียง อำเภอ ร้องกวาง แพร่ 54140 <br> เป็นอ่างเก็บน้ำขนาดกลางไม่ใหญ่มากนัก ซึ่งสร้างเสร็จในปี พ.ศ. 2538 มีปริมาณการเก็บกักน้ำมากกว่า 30.60 ล้านลูกบาศก์เมตร สามารถเก็บกักน้ำไว้ได้ตลอดทั้งปีกันเลยทีเดียว โดยจะอยู่ในความรับผิดชอบของโครงการชลประทานจังหวัดแพร่ และที่นี่ก็ยังเป็นแหล่งเลี้ยงสัตว์น้ำในกระชัง ไม่ว่าจะเป็น ปลานิล ปลากดคัง ที่ชาวบ้านนั้น สามารถหารายได้จากการเลี้ยงปลานี้กันด้วย <br>  แน่นอนว่านอกจากจะใช้ด้านคมนาคมต่างๆ แล้ว ที่นี่ก็ยังกลายมาเป็นสถานที่พักผ่อนหย่อนใจของทั้งชาวแพร่และนักท่องเที่ยวด้วยเช่นกันค่ะ เพราะมีวิวทิวทัศน์ที่สวยงดงาม รวมถึงมีแพไว้คอยบริการมากมาย ที่เป็นแพร้านอาหาร มีการใช้ปลาสดๆ จากกระชังเลยค่ะ อีกทั้งยังสามารถล่องแพเที่ยวชมอ่าง ในราคาสบายๆ ได้ด้วย และสำหรับใครที่ชอบการตกปลา อ่างเก็บน้ำแม่ถาง ยังมีมุมตกปลาไว้บริการพร้อม
+              <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%96%E0%B8%B2%E0%B8%87/@18.2249997,100.3288889,15z/data=!3m1!4b1!4m6!3m5!1s0x30d89413605194f5:0x6843e324be36e253!8m2!3d18.225!4d100.3288889!16s%2Fg%2F12lt8mjwx?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>คุ้มเจ้าหลวง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแพร่4.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ 4 ถนน ซอย คุ้มเดิม ตำบล ในเวียง อำเภอเมืองแพร่ แพร่ 54000 เปิดและปิดเวลา 8.30 - 16.30 น. ของทุกวัน <br> คุ้มเจ้าหลวง สร้างขึ้นในปี พ.ศ. 2435 โดยเจ้าพิริยเทพวงษ์ คุ้มแห่งนี้เป็นอาคารโอ่โถง มีประตู หน้าต่างทั้งหมด 72 บาน งดงามด้วยลวดลายฉลุไม้อยู่ด้านบนปั้นลม และชายคาน้ำ เป็นสถาปัตยกรรมสมัยรัชกาลที่ 5 ยุคต้น ซึ่งมีรูปทรงเป็นแบบสถาปัตยกรรมไทยผสมยุโรป หรือทรงขนมปังขิง ซึ่งเป็นที่นิยมในสมัยนั้น และจัดงานฉลองอย่างยิ่งใหญ่ในปีพ.ศ. 2435 คุ้มนี้งดงามใหญ่โตเพราะเงินคงคลังในสมัยพระยาพิมพิสารราชานั้นมีมาก ตกมาถึงรุ่นเจ้าพิริยเทพวงษ์ผู้เป็นราชโอรส จึงสามารถสร้างคุ้มใหม่หลังใหญ่ได้ แม้ว่าในปี พ.ศ. 2433 เป็นปีที่เมืองแพร่ฝนแล้งราษฎรทำนาได้หนึ่งส่วน เสียสี่ส่วนต้องเปิดคลังหลวงไปช่วยราษฎรก็ตาม แต่เมืองแพร่ยังมีเงินมากพอที่จะสร้างสถาปัตยกรรมงดงามล้ำค่าหลังนี้ขึ้นมาได้
+              <a href="https://www.google.com/maps/place/%E0%B8%84%E0%B8%B8%E0%B9%89%E0%B8%A1%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87/@18.1442619,100.1387616,17z/data=!3m1!4b1!4m6!3m5!1s0x30d8c26f06b98a33:0x9104925132979ea2!8m2!3d18.1442619!4d100.1387616!16s%2Fg%2F11clwbbpq1?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดพระธาตุสุโทนมงคลคีรี</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวแพร่5.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ไทรย้อย อำเภอเด่นชัย แพร่ 54110 เปิดและปิดเวลา 8.30 - 17.30 น. ของทุกวัน <br> ศาลาพิพิธภัณฑ์ สร้างด้วยไม้สักทองทั้งหลังรูปทรงล้านนา ภายในจัดแสดงโบราณวัตถุมีค่าของหัวเมืองฝ่ายเหนือไว้มากมาย เช่นพระพุทธรูปต่างๆ เครื่องเขิน เครื่องดนตรีล้านนา อาวุธโบราณ รูปภาพเจ้านายฝ่ายเหนือ และภาพเหตุการณ์ในอดีตต่างๆ <br>  ใครที่ชื่นชอบศิลปะแบบล้านนาล่ะก็ต้องแวะมาชม เพราะที่นี่คือศิลปกรรมล้านนาพุทธศิลป์ที่ผสมผสานกันอย่างลงตัวงดงาม เช่น พระเจ้าเก้าตื้อจำลองจากวัดสวนดอก พระพุทธไสยาส และพระพุทธรูปทรงเครื่อง พุทธศิลป์แบบพม่า อุโบสถศิลปะแบบล้านนา เป็นต้น นอกจากนี้ยังมีการจัดดแสดงเครื่องใช้ อาวุธของนักรบโบราณ รวมทั้งภาพถ่ายของเจ้านายฝ่ายเหนือและภาพเหตุการณ์ต่างๆ ในล้านนาอีกด้วย
+
+       พระธาตุบารมี 30 ทัศ ฐานแปดเหลี่ยมซ้อนกันสองชั้น ชั้นแรกมีช้างปูนปั้นค้ำอยู่สลับกับรูปหล่อพระปัจเจกพระพุทธเจ้า ชั้นที่สองประดิษฐานพระพุทธรูปประทับนั่งและประทับยืน ชั้นที่สาม เป็นหมู่เจดีย์ทรงกลมขนาดเล็ก 24 องค์ ขนาดกลาง 7 องค์ ขนาดใหญ่ 1 องค์ รวมทั้งสิ้น 32 องค์
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%95%E0%B8%B8%E0%B8%AA%E0%B8%B8%E0%B9%82%E0%B8%97%E0%B8%99%E0%B8%A1%E0%B8%87%E0%B8%84%E0%B8%A5%E0%B8%84%E0%B8%B5%E0%B8%A3%E0%B8%B5/@17.9754849,100.014188,17z/data=!3m1!4b1!4m6!3m5!1s0x30d8d09da407ccc7:0x8ad1c69145e9c745!8m2!3d17.9754849!4d100.014188!16s%2Fg%2F12238d4n?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักแพร่1.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักแพร่2.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักแพร่3.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักแพร่4.webp" class="img">
+          <img src="imgเหนือ/bgที่พักแพร่5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>Kinnotel</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแพร่1.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 400 400 ตำบลนาจักร อำเภอเมืองแพร่ แพร่ 54000 โทร:0800600996 <br> ตั้งอยู่ใจกลางเมืองแพร่ที่มีประวัติศาสตร์ คินโนเทลมอบความสงบและความสะดวกสบายที่ลงตัวสำหรับนักเดินทางคนเดียว สำรวจเสน่ห์อันเงียบสงบของพื้นที่ วัดไม้สักที่มีชื่อเสียง และตลาดท้องถิ่นที่คึกคักที่อยู่ใกล้แค่ไม่กี่ก้าว ผ่อนคลายในห้องพักที่มีเครื่องปรับอากาศและ Wi-Fi ฟรี บางห้องมีวิวสวนที่สวยงาม สิ่งอำนวยความสะดวกพื้นฐานอย่างฝักบัวและผ้าขนหนูนุ่มๆ ช่วยให้การเข้าพักของคุณเป็นไปอย่างผ่อนคลาย ผู้เข้าพักสามารถเพลิดเพลินกับอาหารอร่อยที่ร้านอาหารในสถานที่หรือจิบเครื่องดื่มที่บาร์บรรยากาศสบาย บริการรูมเซอร์วิสที่ราบรื่นช่วยเพิ่มประสบการณ์ที่ไร้กังวล
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%84%E0%B8%B4%E0%B8%99%E0%B9%82%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%A5/@18.1282926,100.1481979,17z/data=!4m10!3m9!1s0x30d8c3e573d23a77:0xd659d274e5561b20!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.1282926!4d100.1481979!16s%2Fg%2F11sd6x7y4r?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแพร่1.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแพร่1.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Ayla Chalet</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแพร่2.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 199 ต.ช่อแฮ อ.เมือง แพร่ 54000 โทร:0644909779 <br> หากกำลังมองหารีสอร์ตวิลลาพร้อมบริการที่จอดรถฟรีละก็ ที่นี่แหละใช่เลย ที่พักตั้งอยู่ในย่านใจกลางเมืองแพร่ของแพร่ ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ
+            <a href="https://www.google.com/maps/place/Ayla+Chalet+(Thailand)/@18.0799948,100.1980447,17z/data=!4m10!3m9!1s0x30d8c38c2ee570fb:0x34947fdeea460c11!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.0799948!4d100.1980447!16s%2Fg%2F11sbz3dpy1?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแพร่2.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแพร่2.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>โรงแรมเฮือนนานา (Huean Nana Hotel)</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแพร่3.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 7/9 อำเภอเมืองแพร่ แพร่ 54000 โทร:054524800 <br> ตั้งอยู่ในจังหวัดแพร่ เมืองที่มีมรดกทางวัฒนธรรมล้านนาและบ้านไม้สัก เฮือนนานา บูติก โฮเต็ล เหมาะสำหรับนักเดินทางสองคนที่กำลังมองหาการพักผ่อนแบบไม่เหมือนใคร การตกแต่งสไตล์ไทย สวนร่มรื่น สระว่ายน้ำที่เงียบสงบ และบริการให้เช่าจักรยานฟรี ช่วยสร้างโอกาสในการพักผ่อนและสำรวจ ผู้เข้าพักสามารถเพลิดเพลินกับเครื่องดื่มสดชื่นที่บาร์ ผ่อนคลายกับการนวด และพักในห้องพักที่มีระเบียงส่วนตัวพร้อมวิวเมืองหรือสวน พร้อมเครื่องปรับอากาศและ Wi-Fi ฟรี โรงแรมอยู่ใกล้สนามบินและให้บริการอาหารเช้าแบบบุฟเฟต์พร้อมตัวเลือกเมนูชุด เพื่อเริ่มต้นวันใหม่อย่างสะดวกสบาย
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B9%80%E0%B8%AE%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%B2%E0%B8%9A%E0%B8%B9%E0%B8%95%E0%B8%B4%E0%B8%84/@18.1338716,100.1422601,17z/data=!4m10!3m9!1s0x30d8bf0000000001:0xc3d09cc6cbc0d55!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.1338716!4d100.1422601!16s%2Fg%2F12vsbwlds?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแพร่3.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแพร่3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>ดิ อินดิโก้ เฮ้าส์ แพร่</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแพร่4.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 39 Moo 5 Yantrakit Kosol Rd., ตำบล ทุ่งโฮ้ง Meuang Phrae, แพร่ 54000 โทร:054063211 <br> นอกจากที่พักจะได้รับการรับรองมาตรฐาน SHA ที่พักยังมีบริการ Wi-Fi ฟรีในทุกห้องพัก และที่จอดรถฟรี ที่พักตั้งอยู่ในย่านใจกลางเมืองแพร่ของแพร่ ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/The+Indigo+House+Phrae/@18.168282,100.17065,17z/data=!3m1!4b1!4m10!3m9!1s0x30d8ea02a615e25d:0xc2cf02d7acfb8887!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.168282!4d100.17065!16s%2Fg%2F11clydt2n4?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแพร่4.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแพร่4.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>SuanGlangNa สวนกลางนา</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักแพร่5.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ สวนเขื่อน, 9/2 Moo 9 Suan Khuean, เมืองแพร่, อำเภอเมืองแพร่ แพร่ 54000 โทร:0936954624 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านPhrae City Centerของแพร่ ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 3.5 ดาวนี้มีห้องอาหาร การเข้าพักจึงผ่อนคลายและสะดวกสบายสุดๆ
+            <a href="https://www.google.com/maps/place/SuanGlangNa+%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2/@18.1373008,100.2206287,17z/data=!3m1!4b1!4m10!3m9!1s0x30d8c1d30157e813:0x866b9977d8bd7a53!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.1373008!4d100.2206287!16s%2Fg%2F11gn13nbld?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักแพร่5.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักแพร่5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+
+      <div id="info-น่าน" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวน่าน1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวน่าน2.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวน่าน3.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวน่าน4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวน่าน5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>สวนยาหลวง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวน่าน1.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ผาช้างน้อย อำเภอปง พะเยา 56140 <br> สวนยาหลวง ตั้งอยู่ในบริเวณของ บ้านสันเจริญ อำเภอท่าวังผา จังหวัดน่าน อยู่ภายในความดูแลรับผิดชอบของหน่วยศึกษาการอนุรักษ์ต้นน้ำดอยกาด โดยเป็นยอดดอยที่มีความสูงถึง 1600 เมตร สามารถขึ้นได้จากทั้งสองฝั่งจังหวัด ทั้ง อำเภอท่าวังผา จังหวัดน่าน และ อำเภอปง จังหวัดพะเยา ด้านบนนั้น จะเป็นบรรยากาศของพื้นที่ทุ่งหญ้าสีเขียวๆ  รอบล้อมด้วยทิวเขาอย่างสวยงามเลย <br> ที่ จุดชมวิว สวนยาหลวง นั้น เป็นจุดที่นักท่องเที่ยวจะได้ชมความสวยงามของพระอาทิตย์ขึ้น พร้อมวิวแบบ 360 องศา <br> เห็นทั้งไร่กาแฟและทิวเขา เรียกได้ว่าสวยจนต้องแชะภาพกันรัวๆ เลยทีเดียว จุดชมวิวนี้ จะอยู่ห่างจากบริเวณบ้านพักประมาณ 4 กิโลเมตร แต่ก็ขึ้นอยู่กับสภาพของเส้นทางด้วยถ้าวันไหนฝนตกถนนลื่น ก็อาจจะต้องเดินเท้าขึ้นไปแทน
+              <a href="https://www.google.com/maps/place/%E0%B8%88%E0%B8%B8%E0%B8%94%E0%B8%8A%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%A2%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87/@19.2152676,100.4518623,12z/data=!4m15!1m8!3m7!1s0x30d8017f46dfb727:0xa121ae32f2ae39b2!2z4Lir4LmJ4Lin4Lii4LiB4Lit4LiBIOC4reC4s-C5gOC4oOC4reC4m-C4hyDguJ7guLDguYDguKLguLI!3b1!8m2!3d19.2388536!4d100.5521142!16s%2Fg%2F11stqxk2w9!3m5!1s0x30d80018e94cfc4f:0xf4083a5b9de92d58!8m2!3d19.251922!4d100.598951!16s%2Fg%2F11g6977m60?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>บ้านเปียงซ้อ</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวน่าน2.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ขุนน่าน อำเภอ เฉลิมพระเกียรติ น่าน 55130 เปิดและปิดเวลา 6.00 - 18.00 น. ของทุกวัน <br> เป็นหมู่บ้านเล็ก ๆ บนภูเขาสูง ชายแดนไทย-ลาว ประชากรส่วนใหญ่เป็นชาวลัวะ หรือละว้า ซึ่งมีวัฒนธรรมและวิถีชีวิตเป็นอัตลักษณ์ของตนเองที่ถ่ายทอดเป็นภูมิปัญญาท้องถิ่น มีอาชีพเกษตรกรรมเป็นหลัก อย่างการทำไร่ข้าวโพดบนภูเขาสูง ทำนาข้าวบนดอย เลี้ยงสัตว์ ปลูกกาแฟและพืชผักต่าง ๆ
+              <a href="https://www.google.com/maps/search/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%9B%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%8B%E0%B9%89%E0%B8%AD/@19.3858097,101.1863136,13z?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ดอยเสมอดาว</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวน่าน3.1.webp" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ศรีษะเกษ อำเภอนาน้อย น่าน 55150 เปิด24 ชม. <br> ดอยเสมอดาว สถานที่เที่ยวสุดฮิตในอุทยานแห่งชาติศรีน่าน ตำบลศรีษะเกษ อำเภอนาน้อย จังหวัดน่านค่ะ เป็นพื้นที่ที่มีลานกว้างโค้งไปตามสันเขา มีความสูงเหนือระดับน้ำทะเลอยู่ 888 เมตร และถึงแม้ว่าจะไม่ใช่ดอยที่สูงที่สุด แต่ก็เป็นดอยที่มีความสวยง่ามอลังการไม่แพ้ดอยอื่นๆ ในประเทศไทย <br> ต้องบอกเลยว่าที่ดอยเสมอดาว ยังคงมีธรรมชาติที่อุดมสมบูรณ์มากค่ะ เหมาะแก่การมาเที่ยวพักผ่อนสุดๆ โดยเฉพาะในช่วงปลายฝนต้นหนาว ถือเป็นช่วงพีคของความสวยงามบนดอยนี้เลยก็ว่าได้
+              <a href="https://www.google.com/maps/place/%E0%B8%94%E0%B8%AD%E0%B8%A2%E0%B9%80%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%94%E0%B8%B2%E0%B8%A7+%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%99/@18.3761166,100.8273546,17z/data=!3m1!4b1!4m6!3m5!1s0x312770eeb28f7ccd:0xb3348d623f2c6aba!8m2!3d18.3761166!4d100.8273546!16s%2Fg%2F1hm5jks22?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>วัดมิ่งเมือง</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวน่าน4.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ถนน สุริยพงษ์ ตำบล ในเวียง อำเภอเมืองน่าน น่าน 55000 <br> บริเวณด้านหน้าพระอุโบสถของวัดมิ่งเมือง เป็นที่ตั้งของ เสาพระหลักเมืองน่าน (แต่เดิมเรียก เสามิ่งเมือง) ซึ่งประดิษฐานอยู่ในศาลาจตุรมุขสีขาวที่มีลวดลายปูนปั้นวิจิตรงดงาม มียอดพรหมสี่หน้าเป็นตัวอาคาร เสาหลักเมืองมีความสูงประมาณ 3 เมตร ฐานประดับด้วยไม้แกะลวดลายลงรักปิดทอง ยอดเสาแกะสลักเป็นรูปพระพรหมพักตร์มีชื่อ เมตตา กรุณา มุทิตา อุเบกขา <br> การสักการะเสาพระหลักเมืองน่านนั้นให้สักการะทั้ง 4 ทิศ โดยแต่ละทิศจะมีอุดมมงคลดังนี้<br> ทิศเหนือ คือพระเมตตา มีท่านท้าวเวสสุวรรณเป็นผู้รักษา เป็นทิศมงคลด้านอำนาจ มีบารมี มีความมั่นคง มีความกล้าแข็ง เข้มแข็ง เป็นที่เคารพ เกรงขาม <br>ทิศตะวันออก คือพระกรุณา มีท่านท้าวธะตะรัฎฐะเป็นผู้รักษา เป็นทิศมงคลด้านเสน่ห์ เมตตา มหานิยม เป็นที่รัก เป็นที่ปราถนา และชื่นชอบของคนและเทวดา <br>ทิศใต้ คือพระมุทิตา มีท่านท้าววิรุฬหะกะเป็นผู้รักษา เป็นทิศมงคลด้านความมั่งคั่ง ร่ำรวย อุดมสมบูรณ์ ทั้งทรัพย์สมบัติ ชื่อเสียง เกียรติยศ และบริวาร <br>ทิศตะวันตก คือพระอุเบกขา มีท่านท้าววิรูปักษ์เป็นผู้รักษา เป็นทิศมงคลด้านความสงบ ร่มเย็นเป็นสุข มีสันติภาพ ภราดร เป็นที่เคารพ นับถือ เชื่อถือ <br>
+              <a href="https://www.google.com/maps/place/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A1%E0%B8%B4%E0%B9%88%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87/@18.7746465,100.7691162,17z/data=!3m1!4b1!4m6!3m5!1s0x31278e76d6dfca8f:0x2e8d41e8bb4773c6!8m2!3d18.7746465!4d100.7691162!16s%2Fg%2F1v5fpc9_?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>ล่องแก่งนํ้าว้า</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวน่าน5.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ล่องแก่งน้ำว้า ตำบลไหล่น่าน อำเภอแม่จริม จังหวัดน่าน  <br> ล่องแก่งน้ำว้า ตั้งอยู่ในบริเวณของ อุทยานแห่งชาติขุนน่าน อำเภอแม่จริม จังหวัดน่าน แก่งน้ำว้า นั้น ถูกสรรสร้างมาจากธรรมชาติ ที่ตั้งอยู่บนทิวเขาหลวงพระบาง ไหลลงมาตามหุบเขาจนเกิดเป็นแก่งหินและวังน้ำขึ้นมากมายค่ะ และสองฝั่งจะเต็มไปด้วย ป่าเต็งรังและป่าเบญจพรรณมากมาย มีต้นไม้น้อยใหญ่ ทั้ง ไม้สัก ไม้แดง ไม้มะค่า ไม้เต็ง และ ไม้รัง นอกจากนั้นก็จะมีผีเสื้อหลากหลายสี ที่ลงมากินแร่ธาตุริมน้ำ เคล้าไปกับเสียงนกร้องไปทั่วทั้งป่าอีกด้วย <br>      ล่องแก่งน้ำว้า นั้น จะถูกแบ่งเป็น 3 ช่วงด้วยกัน เริ่มจาก น้ำว้าตอนบน ระยะ 35 กิโลเมตร มีเกาะแก่งกว่า 100 แก่ง ผ่านโขดหิน น้ำวน และน้ำตกเป็นระยะๆ มีกระแสน้ำเชี่ยวมาก เหมาะกับขาประจำล่องแก่ง ที่ต้องการความท้ายทายเท่านั้นค่ะ โดยจุดเริ่มต้นจะอยู่ที่หมู่บ้านสะปัน อำเภอบ่อเกลือ 
+              <a href="https://www.google.com/maps/search/%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B9%81%E0%B8%81%E0%B9%88%E0%B8%87%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%A7%E0%B9%89%E0%B8%B2/@18.8309158,100.9547424,10z?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักน่าน1.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักน่าน2.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักน่าน3.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักน่าน4.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักน่าน5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>อุ่นไอมาง</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักน่าน1.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 410, ตำบล ดงพญา อำเภอ บ่อเกลือ น่าน 55220 โทร:0626454666 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านบ่อเกลือของน่าน ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 4 ดาวคุณภาพสูงแห่งนี้มี บริการนวด และ สปา คอยอำนวยความสะดวกแก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B8%E0%B9%88%E0%B8%99%E0%B9%84%E0%B8%AD%E0%B8%A1%E0%B8%B2%E0%B8%87+%E0%B8%93+%E0%B8%AA%E0%B8%B0%E0%B8%9B%E0%B8%B1%E0%B8%99/@19.1928271,101.1967668,17z/data=!4m10!3m9!1s0x3127d9e670df5a61:0xfd1940eeb726a008!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.1928271!4d101.1967668!16s%2Fg%2F1hc9gy4vh?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักน่าน1.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักน่าน1.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Shanti-Retreat Hotel</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักน่าน2.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 434 m.8, ตำบล ปัว อำเภอ ปัว น่าน 55120 โทร:0931404869 <br> ที่พักให้บริการที่จอดรถฟรีเพื่อการเดินทางเข้าออกที่พักได้อย่างสะดวกสบาย รวมถึง Wi-Fi ฟรีให้ท่องเน็ตได้ทุกเมื่อ ที่พักตั้งอยู่ในย่านปัวของน่าน ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ทริปยังไม่จบถ้าไม่ได้แวะไปที่เที่ยวชื่อดังอย่าง วัดภูมินทร์ ด้วยอีกสักที่ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/Shanti-Retreat/@19.1831946,100.9104469,18z/data=!4m10!3m9!1s0x3127e17283ed2437:0x8938fb30c59815ec!5m3!1s2025-05-15!4m1!1i2!8m2!3d19.1829387!4d100.9104791!16s%2Fg%2F11f3vvqz67?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักน่าน2.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักน่าน2.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>โรงแรมเอ็มมาลีน</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักน่าน3.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ Saithali Road, ตัวเมืองน่าน, น่าน, ไทย, 55000 โทร:0612687888 <br> โรงแรม เอมรินทร์ ในเมืองน่าน ผสมผสานความสง่างามสมัยใหม่เข้ากับเสน่ห์ทางวัฒนธรรม โรงแรมบูติกแห่งนี้มีสวนที่เงียบสงบ จักรยานฟรีสำหรับการสำรวจ และห้องสวีทที่มีวิวเมืองแบบพาโนรามา เหมาะสำหรับนักเดินทางสองคนที่ต้องการการพักผ่อนและการผจญภัย โรงแรม เอมรินทร์ ตั้งอยู่ในใจกลางเมืองน่าน มอบการเข้าพักที่เงียบสงบใกล้กับสถานที่สำคัญทางวัฒนธรรม ตลาดที่มีชีวิตชีวา วัดประวัติศาสตร์ และคาเฟ่ท้องถิ่น เพลิดเพลินกับร้านอาหารในสถานที่ สวนที่เงียบสงบ และบริการเช่าจักรยานเพื่อสำรวจสถานที่ท่องเที่ยวใกล้เคียง ห้องพักมี Wi-Fi ฟรี เครื่องปรับอากาศ และบางห้องมีระเบียงส่วนตัวพร้อมวิวเมือง ห่างจากวัดภูมินทร์เพียง 187 เมตร เหมาะสำหรับการสำรวจสมบัติของเมืองน่าน
+            <a href="https://www.google.com/maps/place/Emmaline+Hotel+Nan/@18.7725938,100.7720175,17z/data=!4m10!3m9!1s0x31278fb95cd37f8d:0xd8812d776b9ec3bc!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.7725938!4d100.7745924!16s%2Fg%2F11p5q9mbcm?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักน่าน3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักน่าน3.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>บ้านน่าน โฮเทล</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักน่าน4.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 32 หน่อคำ ตำบล ในเมือง อำเภอเมืองน่าน น่าน 55000 โทร:0857176589 <br> สัมผัสใจกลางเมืองน่านที่โรงแรมบ้านน่าน (SHA Extra Plus) เพลิดเพลินไปกับบรรยากาศย่านที่มีชีวิตชีวา การเดินทางไปยังสถานที่ท่องเที่ยวในท้องถิ่นได้โดยง่าย และการผสมผสานระหว่างวัฒนธรรมและประวัติศาสตร์อันเป็นเอกลักษณ์ ดื่มด่ำกับที่พักปรับอากาศที่สวยงามพร้อมระเบียง/ ระเบียง อินเทอร์เน็ตไร้สายฟรี ฝักบัวเพื่อการฟื้นฟู และอุปกรณ์อาบน้ำสุดหรู ใช้บริการรูมเซอร์วิส 24 ชั่วโมง และร้านอาหารรสเลิศ สำรวจสถานที่สำคัญใกล้เคียง เช่น วัดภูมินทร์ วัดมิ่งเมือง และวัดศรีพันต้นเพื่อดื่มด่ำกับมรดกทางวัฒนธรรมอันยาวนาน สมบูรณ์แบบ สำหรับนักเดินทางสองคน โรงแรมบ้านน่าน (SHA Extra Plus) มอบการเข้าพักที่น่าจดจำและสะดวกสบายในใจกลางเมืองน่าน
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%99+Baan+Nan+Hotel/@18.7795246,100.7793594,17z/data=!4m10!3m9!1s0x31278e0a9c3e83a3:0x4c68ff1e36b1061a!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.7795246!4d100.7793594!16s%2Fg%2F1hm3md1nh?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักน่าน4.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักน่าน4.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>บ้านสวนลีลาวดีรีสอร์ท</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักน่าน5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 95 หมู่ 1 ต.ไชยสถาน ถ.น่าน-พะเยา อ.เมือง จ.น่าน, ชานเมืองน่าน, น่าน, ไทย, 55000 โทร:054719400 หรือ 0882909043 <br>หลีกหนีสู่ชานเมืองน่านอันเงียบสงบและค้นพบบ้านสวนลีลาวดีรีสอร์ท อัญมณีที่ซ่อนอยู่ซึ่งเหมาะสำหรับนักเดินทางสองคนที่กำลังมองหาสถานที่พักผ่อนที่ผ่อนคลาย ดื่มด่ำไปกับภูมิทัศน์อันเขียวชอุ่ม ตลาดท้องถิ่น และหมู่บ้านไทยดั้งเดิม เพลิดเพลินกับสิ่งอำนวยความสะดวกพิเศษ เช่น บาร์มีสไตล์ ในร่ม สระว่ายน้ำ และบริการนวดที่ทำให้สดชื่น ผ่อนคลายในห้องพักปรับอากาศพร้อมระเบียง/ชานเรือนส่วนตัวและ WiFi ฟรี ตื่นขึ้นมาด้วยอาหารเช้าแบบท้องถิ่นแสนอร่อยและนอนแช่ตัวในสระว่ายน้ำที่ยอดเยี่ยม สำรวจพื้นที่ด้วยการขี่จักรยานอย่างสนุกสนาน และเพลิดเพลินกับความสะดวกสบาย ที่จอดรถส่วนตัวสำหรับวิลล่าแต่ละหลัง การหลบหนีอันน่าจดจำของคุณรอคุณอยู่ที่บ้านสวนลีลาวดีรีสอร์ท
+            <a href="https://www.google.com/maps/place/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%A5%E0%B8%B5%E0%B8%A5%E0%B8%B2%E0%B8%A7%E0%B8%94%E0%B8%B5%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97+%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%99/@16.0775469,98.7476244,7z/data=!4m17!1m5!2m4!1z4Lia4LmJ4Liy4LiZ4Liq4Lin4LiZ4Lil4Li14Lil4Liy4Lin4LiU4Li14Lij4Li14Liq4Lit4Lij4LmM4LiX!5m2!5m1!1s2025-05-15!3m10!1s0x31278b846486fbe1:0x820979ec64aedcd8!5m3!1s2025-05-15!4m1!1i2!8m2!3d18.7894059!4d100.7275208!15sCj_guJrguYnguLLguJnguKrguKfguJnguKXguLXguKXguLLguKfguJTguLXguKPguLXguKrguK3guKPguYzguJeSAQxyZXNvcnRfaG90ZWyqAWwQATIfEAEiG0cG1lARPKxL-ksFQBIRQAW14kiYzDjJ6QHAhDJHEAIiQ-C4muC5ieC4suC4mSDguKrguKfguJkg4Lil4Li14Lil4LiyIOC4p-C4lOC4tSDguKPguLXguKrguK3guKPguYzguJfgAQA!16s%2Fg%2F11b6dg5zxd?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักน่าน5.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักน่าน5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+      
+      <div id="info-อุตรดิตถ์" class="info-box">
+        <nav class="menu-bar1">
+          <h1>ที่เที่ยว</h1>
+         </nav>
+        <center><div class="container">
+          <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์1.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์2.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์3.png" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์4.jpg" class="img">
+          <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์5.jpg" class="img">
+        </div>
+        <div class="text-box"><h1>อุทยานแห่งชาติภูสอยดาว</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์1.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล บ่อภาค อำเภอชาติตระการ พิษณุโลก 65170 เปิดและปิดเวลา 8.00 - 16.30 น. ของทุกวัน <br> อุทยานแห่งชาติภูสอยดาว มีพื้นที่ครอบคลุมอยู่ในท้องที่ป่าสงวนแห่งชาติป่าน้ำปาด ท้องที่ตำบลม่วงเจ็ดต้น ตำบลนาขุม ตำบลบ้านโคก อำเภอบ้านโคก ตำบลห้วยมุ่น อำเภอน้ำปาด จังหวัดอุตรดิตถ์ ตำบลบ่อภาค อำเภอชาติตระการ จังหวัดพิษณุโลก เป็นพื้นที่ที่มีสภาพป่าค่อนข้างสมบูรณ์ปกคลุมไปด้วยป่าธรรมชาติที่สวยงาม เป็นแหล่งต้นน้ำลำธาร ยอดสูงสุดของภูสอยดาวสูงจากระดับน้ำทะเล 2,102 เมตร ซึ่งสูงเป็นอันดับ 4 ของประเทศไทย[5] อุทยานแห่งนี้มีจุดเด่นที่น่าสนใจและเป็นที่ดึงดูดใจของนักท่องเที่ยว ได้แก่ น้ำตกภูสอยดาว เป็นน้ำตก 5 ชั้น และการผจญภัยขึ้นสู่ลานสนสามใบอันสวยงาม มีเนื้อที่กว้างประมาณ 1,000 ไร่ มีความสวยงามมาก มีถนนลาดยาง เข้าถึงพื้นที่ทำให้สะดวกสบายในการเดินทางพักผ่อนหย่อนใจ อุทยานแห่งชาติภูสอยดาวมีเนื้อที่ 125,110 ไร่ หรือ 200.18 ตารางกิโลเมตร
+               <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4%E0%B8%A0%E0%B8%B9%E0%B8%AA%E0%B8%AD%E0%B8%A2%E0%B8%94%E0%B8%B2%E0%B8%A7/@17.6984625,100.9462969,17z/data=!3m1!4b1!4m6!3m5!1s0x3120b508b39537bf:0x1d0100b2deabab20!8m2!3d17.6984625!4d100.9462969!16s%2Fm%2F0h_cv15?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>นํ้าตกแม่พลู</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์2.1.jpeg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล แม่พูล อำเภอ ลับแล อุตรดิตถ์ 53130 เปิด24 ชม. <br> เดินทางจากตัวเมืองอุตรดิตถ์ ไปที่บ้านต้นเกลือ ตำบลแม่พูล ก็จะพบกับ น้ำตกแม่พูล น้ำตกสวยที่เกิดจากการเทปูนเป็นชั้นๆ ให้สายธารได้ไหลลดหลั่นลงมาจนกลายเป็นน้ำตกขนาดใหญ่ มีชั้นน้ำที่สวยงาม กลมกลืนกับธรรมชาติโดยรอบเป็นอย่างดี ในแต่ละชั้นก็จะมีแอ่งน้ำที่ไม่ลึกมากนัก กำลังพอเหมาะให้พวกเราไปว่ายน้ำเล่นกันสบายๆ<br>     บรรยากาศรอบๆ น้ำตกดีมาก ส่วนใหญ่ชาวเมืองอุตรดิตถ์รวมถึงนักท่องเที่ยวจะนิยมนำเสื่อ และอุปกรณ์ต่างๆ มานั่งปิ๊กนิกกินลมชมวิวกันที่นี่ ใครที่ไม่ได้เตรียมอาหารมาก็ไม่ต้องกลัวหิวเลย เพราะบริเวณใกล้ๆ น้ำตกมีทั้งร้านอาหารและเครื่องดื่มมากมายให้เลือกสรร แถมยังมีร้านค้าขายของเครื่องใช้เผื่อขาดเหลืออะไร เรียกว่าสะดวกสุดๆ
+               <a href="https://www.google.com/maps/place/%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%95%E0%B8%81%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%9E%E0%B8%B9%E0%B8%A5/@17.7294502,99.9778551,17z/data=!3m1!4b1!4m6!3m5!1s0x30df2b91a29f473d:0xdc666aa899e96616!8m2!3d17.7294502!4d99.9778551!16s%2Fg%2F1hdzlcd59?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>เขื่อนสิริกิติ์</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์3.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ผาเลือด อำเภอท่าปลา อุตรดิตถ์ 53190 <br> เขื่อนสิริกิติ์ หรือที่เรียกกันในชื่อท้องถิ่นว่า เขื่อนท่าปลา จัดเป็นเขื่อนดินที่มีขนาดใหญ่ที่สุดในประเทศไทย อยู่ในอำเภอท่าปลา จังหวัดอุตรดิตถ์ กั้นแม่น้ำน่าน ที่ไหลลงมาจากอำเภอนาหมื่น จังหวัดน่าน เดิมอยู่ในความดูแลของกรมชลประทาน กระทรวงเกษตรและสหกรณ์ ภายหลังได้ติดตั้งโรงไฟฟ้าพลังงาน และมอบให้การไฟฟ้าฝ่ายผลิตแห่งประเทศไทยเป็นผู้รับผิดชอบดูแลต่อไป ทั้งนี้พื้นที่เหนือเขื่อนเป็นแอ่งเก็บน้ำขนาดใหญ่ และเป็นสถานที่ท่องเที่ยวที่สำคัญของจังหวัดอุตรดิตถ์ด้วย<br>เดิมเขื่อนนี้มีชื่อว่า เขื่อนผาซ่อม โดยก่อสร้างปิดกั้นแม่น้ำน่าน ริเวณเขาผาซ่อม ตำบลผาเลือด อำเภอท่าปลา จังหวัดอุตรดิตถ์ ภายหลังได้รับพระบรมราชานุญาตให้อัญเชิญพระนามาภิไธยสมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง มาขนานนามเขื่อนว่า เขื่อนสิริกิติ์ เมื่อวันที่ 24 พฤษภาคม พ.ศ. 2511 ทั้งนี้พระบาทสมเด็จพระมหาภูมิพลอดุลยเดชมหาราช บรมนาถบพิตร และสมเด็จพระนางเจ้าสิริกิติ์ พระบรมราชินีนาถ พระบรมราชชนนีพันปีหลวง ได้เสด็จพระราชดำเนินไปทรงวางศิลาฤกษ์เขื่อนสิริกิติ์ เมื่อวันที่ 27 กุมภาพันธ์ พ.ศ. 2514 งานก่อสร้างตัวเขื่อนและองค์ประกอบได้แล้วเสร็จเมื่อ พ.ศ. 2515
+              <a href="https://www.google.com/maps/place/%E0%B9%80%E0%B8%82%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B9%8C+%E0%B8%95%E0%B8%B3%E0%B8%9A%E0%B8%A5+%E0%B8%9C%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%94+%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%9B%E0%B8%A5%E0%B8%B2+%E0%B8%AD%E0%B8%B8%E0%B8%95%E0%B8%A3%E0%B8%94%E0%B8%B4%E0%B8%95%E0%B8%96%E0%B9%8C+53190/@17.763889,100.5607581,17z/data=!3m1!4b1!4m6!3m5!1s0x30d8ab3282879f53:0x7128eaae77dba59e!8m2!3d17.763889!4d100.563333!16s%2Fm%2F0gh7s49?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>อนุสาวรีย์พระยาพิชัยดาบหัก</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์4.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์ อุตรดิตถ์ 53000 เปิดและปิดเวลา 6.00 - 18.00 น. ของทุกวัน <br> อนุสาวรีย์พระยาพิชัยดาบหัก ประดิษฐานอยู่หน้าศาลากลาง จังหวัดอุตรดิตถ์ ใน ตำบลท่าอิฐ อำเภอเมืองอุตรดิตถ์ สาเหตุที่สร้างอนุสาวรีย์นี้ขึ้นมา ก็เพื่อเป็นเกียรติประวัติในความกล้าหาญ รักชาติ และเสียสละ เมื่อครั้งที่พระยาพิชัยครองเมืองพิชัยในสมัยธนบุรี ในเหตุการณ์ที่ท่านได้สร้างเกียรติประวัติไว้เมื่อปี พ.ศ. 2316 ตอนที่พม่ายกทัพมาตีเมืองพิชัย พระยาพิชัย ได้ยกทัพไปสกัดทัพพม่าจนแตกพ่ายกลับไปนั่นเอง <br>  ซึ่งอนุสาวรีย์นี้ ออกแบบและหล่อขึ้นมาโดยกรมศิลปากร และได้มีการทำพิธีเปิดไป เมื่อวันที่ 20 กุมภาพันธ์ พ.ศ. 2512 อีกทั้งภายในบริเวณนี้ยังมี พิพิธภัณฑ์ดาบเหล็กน้ำพี้ใหญ่ที่สุดในโลก ที่เป็นที่เก็บรักษาดาบเหล็กน้ำพี้ใหญ่ที่สุดในโลกอีกด้วย โดยจะมีน้ำหนักเกือบ 558 กิโลกรัม ฝักของดาบทำด้วยไม้ประดู่ ฝังลวดลายมุกหุ้มปลอกเงินสลักลาย
+              <a href="https://www.google.com/maps/place/%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%AA%E0%B8%B2%E0%B8%A7%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2%E0%B8%9E%E0%B8%B4%E0%B8%8A%E0%B8%B1%E0%B8%A2%E0%B8%94%E0%B8%B2%E0%B8%9A%E0%B8%AB%E0%B8%B1%E0%B8%81/@17.6297547,100.097396,17z/data=!3m1!4b1!4m6!3m5!1s0x30df303bdfe7bc99:0x40a7514bf38ece89!8m2!3d17.6297547!4d100.097396!16s%2Fg%2F11cmzzl2mk?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="text-box"><h1>แปลงสตรอว์เบอร์รี่ บ้านห้วยน้ำผัก</h1>
+          <div class="card">
+            <img src="imgเหนือ/bgที่เที่ยวอุตรดิตถ์5.1.jpg" />
+            <div class="content">
+            <p>ตั้งอยู่ที่ Unnamed Road ตำบล แสงภา อำเภอ นาแห้ว เลย 42170 เปิด24 ชม. <br> แม้อยู่สูงจากระดับน้ำทะเลแค่ 800 กิโลเมตร แต่ความหนาวเย็นของบ้านบ่อเหมืองน้อยและบ้านห้วยน้ำผักใน ต.แสงภา อ.นาแห้ว จ.เลย ก็เพียงพอสำหรับปลูกสตรอเบอร์รีให้ได้ผล ด้วยภูมิประเทศที่ตั้งอยู่บนภูสวนทราย และรายล้อมด้วยภูเขา จึงได้อุณหภูมิที่เหมาะสมสำหรับพืชเมืองหนาว ไม่ต่างจากหลายพื้นที่ทางภาคเหนือ
+              <a href="https://www.google.com/maps/place/%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B8%87%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B8%AD%E0%B8%A7%E0%B9%8C%E0%B9%80%E0%B8%9A%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A3%E0%B8%B5+%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%9C%E0%B8%B1%E0%B8%81/@17.5561664,100.9501844,17z/data=!3m1!4b1!4m6!3m5!1s0x3120b7a7a87765d7:0x505f57ba3c5e6259!8m2!3d17.5561664!4d100.9501844!16s%2Fg%2F11mvqt8gmh?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 100%; font-size: 25px;">แผนที่</a></p>
+          </div></div></div>
+        <div class="indicators"></div></center><br>
+        <nav class="menu-bar1">
+          <h1>ที่พัก</h1>
+         </nav>
+         <center><div class="container">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์1.webp" class="img">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์2.webp" class="img">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์3.webp" class="img">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์4.jpg" class="img">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์5.webp" class="img">
+        </div>
+        <div class="text-box"><h1>Seeharaj Hotel</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์1.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 163 ซอย บรมอาสน์ 4 ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์ อุตรดิตถ์ 53000 โทร:055832790 <br> โรงแรมสีหราช ตั้งอยู่ใจกลางเมืองอุตรดิตถ์ มอบประสบการณ์การพักผ่อนที่น่าจดจำให้กับนักเดินทางท่ามกลางทิวทัศน์เขียวขจีและบรรยากาศเงียบสงบ สัมผัสวัฒนธรรมและประวัติศาสตร์ที่วัดพระแท่นศิลาอาสน์ซึ่งอยู่ใกล้เคียง พร้อมเข้าพักในห้องพักกว้างขวางที่มีห้องน้ำที่เพิ่งปรับปรุงใหม่ ผ่อนคลายด้วย WiFi ฟรี เครื่องปรับอากาศ และตู้เซฟในห้องพัก โดยห้องพักบางห้องมีวิวเมืองที่น่าหลงใหล เพลิดเพลินกับชีวิตกลางคืนที่มีชีวิตชีวาที่ไนต์คลับในสถานที่ หรือผ่อนคลายในสระว่ายน้ำในร่มและห้องอบไอน้ำสุดหรู โรงแรมสีหราชมีการเข้าถึงสถานที่ท่องเที่ยวในท้องถิ่นและชีวิตในเมืองได้อย่างง่ายดาย รับรองการเข้าพักที่สดชื่นและเพลิดเพลิน
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1%E0%B8%AA%E0%B8%B5%E0%B8%AB%E0%B8%A3%E0%B8%B2%E0%B8%8A/@17.6148412,100.0909003,17z/data=!4m10!3m9!1s0x30df301a6f31e2b1:0xb742e143372d9dd5!5m3!1s2025-05-15!4m1!1i2!8m2!3d17.6148412!4d100.0909003!16s%2Fg%2F1tkjntsx?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์1.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์1.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Araya Hotel</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์2.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ หมู่ที่ 3 274 ถ.พิษณุโลก-เด่นชัย ทางหลวงหมายเลข11 ตำบลคุ้งตะเภา อ.เมืองอุตรดิตถ์ อุตรดิตถ์ 53000 โทร:0651616541 <br> หลีกหนีมาพักที่โรงแรมอารยาในเมืองอุตรดิตถ์ที่มีเสน่ห์ ประเทศไทย เพลิดเพลินกับห้องพักกว้างขวางพร้อมระเบียง/ชานเรือนและทิวทัศน์อันตระการตาของสวนหรือภูเขา เชื่อมต่ออินเทอร์เน็ตด้วย Wi-Fi ฟรี เพิ่มความสดชื่นด้วยอุปกรณ์อาบน้ำฟรี และดื่มด่ำกับอาหารเช้าแสนอร่อยจาก เครื่องชงกาแฟ สำรวจวัฒนธรรมท้องถิ่นพร้อมไกด์นำเที่ยวหรือซื้อของว่างจากตู้จำหน่ายอัตโนมัติ อารยา โฮเทล มอบความสะดวกสบายและความคุ้มค่าสูงสุดสำหรับนักเดินทางสองคนที่กำลังมองหาการเข้าพักที่น่าจดจำในอุตรดิตถ์
+            <a href="https://www.google.com/maps/place/ARAYA+HOTEL/@17.6374268,100.1301296,17z/data=!4m10!3m9!1s0x30df56aaaaaaaa9b:0xe9e0a1afaf5327dd!5m3!1s2025-05-15!4m1!1i2!8m2!3d17.6374268!4d100.1301296!16s%2Fg%2F1xgt_j1v?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์2.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์2.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>Ton Thong Resort Hotel</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์3.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 123/9 หมู่ 5 ถนน ศรีชาววัง ตำบล บ้านเกาะ อำเภอเมืองอุตรดิตถ์ อุตรดิตถ์ 53000 โทร:0836237117 <br> ที่พักตั้งอยู่ในย่านเมืองอุตรดิตถ์ของอุตรดิตถ์ ผู้เข้าพักจึงได้อยู่ใกล้สถานที่ท่องเที่ยวน่าสนใจและร้านอาหารอร่อยๆ ที่พัก 3 ดาวนี้มีสิ่งอำนวยความสะดวกที่จะช่วยเพิ่มความผ่อนคลายสูงสุดให้แก่ผู้เข้าพัก
+            <a href="https://www.google.com/maps/place/%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%AD%E0%B8%87+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97/@17.598664,100.0910289,17z/data=!4m10!3m9!1s0x30df3aa3cd622c3d:0x619daaf1af9d199d!5m3!1s2025-05-15!4m1!1i2!8m2!3d17.598664!4d100.0910289!16s%2Fg%2F1hc1dh5tm?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์3.2.webp" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์3.3.webp">
+        </div>
+      </div>
+        <div class="text-box"><h1>One dee dee Resort</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์4.1.jpg" >
+          <div class="text">
+            ตั้งอยู่ที่ 28 5 ถ.พิษณุโลก-เด่นชัย บ้านคุ้งตะเภา อำเภอเมืองอุตรดิตถ์ อุตรดิตถ์ 53000 โทร:063549 1691 <br> One Dee Dee Resort (วัน ดี ดี รีสอร์ท) เป็นที่พักสไตล์มินิมอลขนาดเล็ก ตั้งอยู่บนถนนพิษณุโลก–เด่นชัย ในตำบลคุ้งตะเภา อำเภอเมือง จังหวัดอุตรดิตถ์ ห่างจากอนุสาวรีย์พระยาพิชัยดาบหักประมาณ 5.9 กิโลเมตร รีสอร์ทแห่งนี้มีห้องพักเพียง 5 ห้อง บรรยากาศเงียบสงบ เป็นส่วนตัว เหมาะสำหรับผู้ที่ต้องการพักผ่อนแบบเรียบง่าย ห้องพักมีสิ่งอำนวยความสะดวกครบครัน เช่น เครื่องปรับอากาศ ทีวีจอแบน ตู้เย็น อินเทอร์เน็ต Wi-Fi ฟรี และห้องน้ำส่วนตัวพร้อมของใช้ในห้องน้ำ ราคาห้องพักเริ่มต้นประมาณ 630 บาทต่อคืน และในบางช่วงอาจมีโปรโมชั่นพร้อมอาหารเช้า ที่พักนี้เหมาะสำหรับนักเดินทางที่มองหาที่พักสะอาด สบาย และราคาไม่แพงในตัวเมืองอุตรดิตถ์
+            <a href="https://www.google.com/maps/place/One+dee+dee+Resort+%E0%B8%A7%E0%B8%B1%E0%B8%99+%E0%B8%94%E0%B8%B5+%E0%B8%94%E0%B8%B5+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97+%E0%B8%AD%E0%B8%B8%E0%B8%95%E0%B8%A3%E0%B8%94%E0%B8%B4%E0%B8%95%E0%B8%96%E0%B9%8C/@17.6216893,100.1246998,17z/data=!3m1!4b1!4m10!3m9!1s0x30df314d6864b7fb:0x281b6aacb3b78987!5m3!1s2025-05-15!4m1!1i2!8m2!3d17.6216893!4d100.1246998!16s%2Fg%2F11vqhtcf5l?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์4.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์4.3.jpg">
+        </div>
+      </div>
+        <div class="text-box"><h1>โรงแรม อารีน่ารีสอร์ท อุตรดิตถ์</h1><br>
+        <div class="image-block">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์5.1.webp" >
+          <div class="text">
+            ตั้งอยู่ที่ 119, 5 สุขเกษมใน ตำบล ท่าอิฐ อำเภอเมืองอุตรดิตถ์ อุตรดิตถ์ 53000 โทร:055414939 <br> ค้นพบความสงบที่อารีน่า รีสอร์ท แอนด์ โฮเทล อุตรดิตถ์ ตั้งอยู่ในเมืองอุตรดิตถ์ที่มีชื่อเสียงในเรื่องความเขียวขจีและเทศกาลวัฒนธรรมที่มีชีวิตชีวา เหมาะสำหรับนักเดินทางสองคนที่ต้องการความเงียบสงบ รีสอร์ทแห่งนี้มีบริการเช็คอินตลอด 24 ชั่วโมงและตัวเลือกส่วนตัวเพื่อสัมผัสความพิเศษ ผ่อนคลายในห้องพักปรับอากาศพร้อมอินเทอร์เน็ตไร้สายฟรี บางห้องมีระเบียงหรือเฉลียงส่วนตัวพร้อมวิวภายนอกที่สงบเงียบ เพิ่มประสบการณ์การเข้าพักด้วยการรับประทานอาหารในสถานที่และพื้นที่เลานจ์ส่วนกลางที่ผ่อนคลาย ทั้งหมดนี้ตั้งอยู่ในสวนที่เงียบสงบ
+            <a href="https://www.google.com/maps/place/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%A1+%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97+%E0%B8%AD%E0%B8%B8%E0%B8%95%E0%B8%A3%E0%B8%94%E0%B8%B4%E0%B8%95%E0%B8%96%E0%B9%8C/@17.6288141,100.1010411,17z/data=!4m10!3m9!1s0x30df3039178cdea3:0x75817ccc7d1e64f2!5m3!1s2025-05-15!4m1!1i2!8m2!3d17.6288141!4d100.1010411!16s%2Fg%2F1t_kcz1k?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" style="margin-right: 80%; font-size: 25px;">แผนที่</a>
+          </div>
+        </div>
+        <div class="image-block" style="margin-left: 30%;" >
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์5.2.jpg" >
+        </div>
+        <div class="image-block" style="margin-left: 10%;">
+          <img src="imgเหนือ/bgที่พักอุตรดิตถ์5.3.webp">
+        </div>
+      </div>
+        <div class="indicators"></div></center>
+      </div>
+</body>
+</html>
